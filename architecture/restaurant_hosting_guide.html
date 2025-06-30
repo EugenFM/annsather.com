@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Website Hosting Setup Guide</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        
+        .header .subtitle {
+            margin: 10px 0 0 0;
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .domain-info {
+            background: #e8f5e8;
+            border: 2px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .domain-info h3 {
+            color: #155724;
+            margin-top: 0;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 4px solid #f39c12;
+        }
+        
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .step-section {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .step-section h2 {
+            color: #495057;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .option-box {
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        
+        .option-box.recommended {
+            border-color: #28a745;
+            background: #f8fff8;
+        }
+        
+        .option-box h4 {
+            margin-top: 0;
+            color: #495057;
+        }
+        
+        .pros-cons {
+            margin: 10px 0;
+        }
+        
+        .pros-cons strong {
+            color: #28a745;
+        }
+        
+        .pros-cons strong.cons {
+            color: #dc3545;
+        }
+        
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .pricing-table th,
+        .pricing-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .pricing-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .pricing-table .highlight {
+            background: #fff3cd;
+            font-weight: 600;
+        }
+        
+        .checklist {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .checklist h4 {
+            margin-top: 0;
+            color: #495057;
+        }
+        
+        .checklist ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .checklist li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .checklist li:before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            color: #007bff;
+            font-weight: bold;
+        }
+        
+        .code-block {
+            background: #f1f3f4;
+            border: 1px solid #e8eaed;
+            border-radius: 4px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Restaurant Website Hosting Setup Guide</h1>
+        <p class="subtitle">AWS Amplify Implementation for ANNSATHER.COM</p>
+    </div>
+
+    <div class="executive-summary">
+        <h2>📋 Executive Summary</h2>
+        <p>This guide covers hosting the restaurant website frontend using AWS Amplify, managing the custom domain, and optionally transferring the domain to AWS Route 53. The current tech stack (Cognito, API Gateway, Lambda, DynamoDB) integrates seamlessly with Amplify.</p>
+        <p><strong>Bottom Line:</strong> AWS Amplify provides automatic SSL certificates, CI/CD deployments, global CDN, and costs approximately $8-10/month for a typical restaurant website after the 12-month free tier.</p>
+    </div>
+
+    <div class="domain-info">
+        <h3>🔍 ANNSATHER.COM Domain Analysis - COMPLETE</h3>
+        
+        <div class="success">
+            <strong>✅ Domain Successfully Located</strong><br>
+            <strong>Registrar:</strong> Network Solutions, LLC<br>
+            <strong>Management Portal:</strong> networksolutions.com<br>
+            <strong>Domain Age:</strong> 28 years (registered 1997-09-26)
+        </div>
+
+        <div class="warning">
+            <strong>⚠️ Transfer Lock Status:</strong> Currently ENABLED (clientTransferProhibited)<br>
+            Must be disabled at Network Solutions before AWS transfer can proceed
+        </div>
+
+        <div class="info">
+            <strong>📍 Current DNS Management:</strong><br>
+            • Nameservers: NS49.WORLDNIC.COM, NS50.WORLDNIC.COM<br>
+            • DNS Provider: Network Solutions<br>
+            • DNSSEC: Not enabled (no complications for transfer)<br>
+            • Expires: September 25, 2025
+        </div>
+
+        <h4>Required Actions for Domain Management:</h4>
+        <ul>
+            <li><strong>For Option A (Keep with Network Solutions):</strong> Log into networksolutions.com to add DNS records</li>
+            <li><strong>For Option B (Transfer to AWS):</strong> Contact Network Solutions to disable transfer lock and obtain authorization code</li>
+        </ul>
+    </div>
+
+    <div class="step-section">
+        <h2>🚀 Step 1: AWS Amplify Setup</h2>
+        
+        <h3>Hosting Configuration</h3>
+        <p>AWS Amplify automatically provides:</p>
+        <ul>
+            <li>✅ <strong>SSL/HTTPS certificates</strong> (free, auto-renewal)</li>
+            <li>✅ <strong>Global CDN</strong> via CloudFront</li>
+            <li>✅ <strong>CI/CD pipeline</strong> (GitHub/GitLab integration)</li>
+            <li>✅ <strong>Custom domain support</strong> with DNS management</li>
+            <li>✅ <strong>Branch-based deployments</strong> (staging/production)</li>
+        </ul>
+
+        <h3>Implementation Steps</h3>
+        <ol>
+            <li><strong>Connect Repository</strong>
+                <ul>
+                    <li>Go to AWS Amplify Console</li>
+                    <li>Choose "New app" → "Host web app"</li>
+                    <li>Connect to GitHub repository containing frontend code</li>
+                    <li>Amplify auto-detects build settings</li>
+                </ul>
+            </li>
+            <li><strong>Initial Deployment</strong>
+                <ul>
+                    <li>Amplify builds and deploys automatically</li>
+                    <li>Provides temporary URL (e.g., <code>abc123.amplifyapp.com</code>)</li>
+                    <li>Test functionality with existing API Gateway endpoints</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <div class="step-section">
+        <h2>🌐 Step 2: Custom Domain Setup for ANNSATHER.COM</h2>
+        
+        <div class="two-column">
+            <div class="option-box recommended">
+                <h4>Option A: Keep with Network Solutions (Recommended)</h4>
+                <div class="pros-cons">
+                    <strong>Pros:</strong> No transfer fees, faster setup, no risk of downtime<br>
+                    <strong class="cons">Cons:</strong> Manage domain and hosting in separate locations
+                </div>
+                
+                <h5>Steps:</h5>
+                <ol>
+                    <li>In Amplify Console → Domain Management → "Add domain"</li>
+                    <li>Enter <code>annsather.com</code></li>
+                    <li>Amplify provides DNS records to add</li>
+                    <li>Log into <strong>networksolutions.com</strong> with domain credentials</li>
+                    <li>Navigate to DNS Management for annsather.com</li>
+                    <li>Add the CNAME records provided by Amplify:
+                        <ul>
+                            <li>CNAME record for SSL verification</li>
+                            <li>CNAME record for www subdomain</li>
+                        </ul>
+                    </li>
+                    <li>Wait for DNS propagation (15 minutes - 2 hours)</li>
+                </ol>
+            </div>
+
+            <div class="option-box">
+                <h4>Option B: Transfer to AWS Route 53</h4>
+                <div class="pros-cons">
+                    <strong>Pros:</strong> Centralized AWS management, programmatic DNS control<br>
+                    <strong class="cons">Cons:</strong> Transfer fee (~$12), 60-day lock period, more complex setup
+                </div>
+
+                <div class="warning">
+                    <strong>Required Actions Before Transfer:</strong><br>
+                    1. Contact Network Solutions to disable <code>clientTransferProhibited</code><br>
+                    2. Request authorization code (EPP code)<br>
+                    3. Ensure contact information is current
+                </div>
+                
+                <h5>Transfer Steps:</h5>
+                <ol>
+                    <li><strong>Prepare at Network Solutions:</strong>
+                        <ul>
+                            <li>Log into networksolutions.com</li>
+                            <li>Disable domain transfer lock</li>
+                            <li>Request authorization code</li>
+                            <li>Backup current DNS settings</li>
+                        </ul>
+                    </li>
+                    <li><strong>Initiate Transfer in Route 53:</strong>
+                        <ul>
+                            <li>Go to Route 53 Console → "Transfer domain"</li>
+                            <li>Enter <code>annsather.com</code> and authorization code</li>
+                            <li>Provide contact information</li>
+                            <li>Confirm transfer fee payment (~$12)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Complete Transfer Process:</strong>
+                        <ul>
+                            <li>Respond to confirmation emails</li>
+                            <li>Transfer typically takes 5-7 days</li>
+                            <li>Once complete, configure Amplify domain</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="step-section">
+        <h2>🔒 Step 3: SSL Certificate Management</h2>
+        
+        <h3>Automatic SSL (Default)</h3>
+        <ul>
+            <li>Amplify automatically issues SSL certificates via AWS Certificate Manager</li>
+            <li>Valid for 13 months with auto-renewal</li>
+            <li>Covers both annsather.com and www.annsather.com</li>
+            <li>No additional cost</li>
+        </ul>
+
+        <h3>Custom SSL (Optional)</h3>
+        <p>If compliance requires specific certificates:</p>
+        <ul>
+            <li>Import third-party certificates into AWS Certificate Manager</li>
+            <li>Must be in US-East-1 region for CloudFront compatibility</li>
+            <li>Configure during domain setup process</li>
+        </ul>
+    </div>
+
+    <div class="step-section">
+        <h2>💰 Step 4: Pricing Breakdown</h2>
+        
+        <h3>AWS Amplify Costs</h3>
+        
+        <table class="pricing-table">
+            <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>Free Tier (First 12 Months)</th>
+                    <th>After Free Tier</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Build & Deploy</td>
+                    <td>1,000 minutes/month</td>
+                    <td>$0.01 per minute</td>
+                </tr>
+                <tr>
+                    <td>CDN Storage</td>
+                    <td>5 GB/month</td>
+                    <td>$0.023 per GB/month</td>
+                </tr>
+                <tr>
+                    <td>Data Transfer</td>
+                    <td>15 GB/month</td>
+                    <td>$0.15 per GB served</td>
+                </tr>
+                <tr>
+                    <td>SSR Requests</td>
+                    <td>500,000/month</td>
+                    <td>$0.30 per 1M requests</td>
+                </tr>
+                <tr class="highlight">
+                    <td><strong>Estimated Monthly Cost</strong></td>
+                    <td><strong>FREE</strong></td>
+                    <td><strong>~$8-10/month</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Additional Costs (If Applicable)</h3>
+        <ul>
+            <li><strong>Domain Transfer to Route 53:</strong> ~$12 one-time (includes 1-year renewal)</li>
+            <li><strong>Route 53 Hosted Zone:</strong> $0.50/month (only if domain transferred)</li>
+        </ul>
+    </div>
+
+    <div class="step-section">
+        <h2>🔗 Step 5: Integration with Existing Architecture</h2>
+        
+        <h3>API Gateway Integration</h3>
+        <ul>
+            <li>Update frontend API endpoints to point to existing API Gateway</li>
+            <li>No changes needed to Cognito, Lambda, or DynamoDB</li>
+            <li>Test authentication flows with Cognito</li>
+        </ul>
+
+        <h3>Environment Variables</h3>
+        <ul>
+            <li>Configure API endpoints in Amplify environment variables</li>
+            <li>Separate staging and production configurations</li>
+            <li>Secure handling of API keys if needed</li>
+        </ul>
+    </div>
+
+    <div class="step-section">
+        <h2>✅ Step 6: Testing & Go-Live Checklist</h2>
+        
+        <div class="checklist">
+            <h4>Pre-Launch Testing</h4>
+            <ul>
+                <li>Website loads correctly on Amplify URL</li>
+                <li>All API calls work properly</li>
+                <li>Authentication flows function</li>
+                <li>SSL certificate validates</li>
+                <li>DNS records propagate correctly</li>
+                <li>Mobile responsiveness confirmed</li>
+            </ul>
+        </div>
+
+        <div class="checklist">
+            <h4>Go-Live Process</h4>
+            <ul>
+                <li>Final DNS update at Network Solutions</li>
+                <li>Monitor for 24-48 hours</li>
+                <li>Verify SSL certificate active</li>
+                <li>Test from multiple locations</li>
+                <li>Update any hardcoded URLs</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="step-section">
+        <h2>🔧 Step 7: Troubleshooting Common Issues</h2>
+        
+        <h3>DNS Propagation Delays</h3>
+        <ul>
+            <li>Use DNS checker tools (whatsmydns.net)</li>
+            <li>Wait up to 48 hours for global propagation</li>
+            <li>Verify CNAME records are exact matches</li>
+        </ul>
+
+        <h3>SSL Configuration Stuck</h3>
+        <ul>
+            <li>Ensure CNAME verification record is correct</li>
+            <li>Check for nameserver mismatches</li>
+            <li>Contact AWS Support if persistent</li>
+        </ul>
+
+        <h3>Network Solutions Access Issues</h3>
+        <ul>
+            <li>Domain registered in 1997 - credentials may be outdated</li>
+            <li>Contact Network Solutions support: +1.877.722.8662</li>
+            <li>Have domain name and billing information ready</li>
+            <li>May need to verify ownership via email</li>
+        </ul>
+
+        <h3>Domain Transfer Issues</h3>
+        <ul>
+            <li>Verify authorization code is current (expires after time)</li>
+            <li>Ensure transfer lock is disabled</li>
+            <li>Check domain status allows transfers</li>
+            <li>Respond to all confirmation emails promptly</li>
+        </ul>
+    </div>
+
+    <div class="step-section">
+        <h2>📝 Step 8: Action Items Summary</h2>
+        
+        <div class="info">
+            <h4>Immediate Next Steps:</h4>
+            <ol>
+                <li><strong>Deploy to Amplify:</strong> Connect GitHub repo and deploy to temporary URL</li>
+                <li><strong>Access Network Solutions:</strong> Locate login credentials for networksolutions.com</li>
+                <li><strong>Choose Domain Strategy:</strong> 
+                    <ul>
+                        <li><span class="highlight">Recommended:</span> Keep with Network Solutions (faster)</li>
+                        <li>Alternative: Transfer to AWS Route 53 (more integrated)</li>
+                    </ul>
+                </li>
+                <li><strong>Configure Custom Domain:</strong> Follow chosen option steps above</li>
+                <li><strong>Test Integration:</strong> Verify all API calls work with existing backend</li>
+            </ol>
+        </div>
+
+        <div class="success">
+            <h4>Expected Timeline:</h4>
+            <ul>
+                <li><strong>Amplify Deployment:</strong> 10-15 minutes</li>
+                <li><strong>Domain Setup (Option A):</strong> 2-4 hours</li>
+                <li><strong>Domain Transfer (Option B):</strong> 5-7 days</li>
+                <li><strong>DNS Propagation:</strong> 15 minutes - 48 hours</li>
+                <li><strong>SSL Certificate:</strong> Automatic once DNS resolves</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="step-section">
+        <h2>🎯 Final Recommendation</h2>
+        
+        <div class="success">
+            <p><strong>For immediate deployment:</strong> Use Option A (keep domain with Network Solutions) for faster setup and lower risk.</p>
+            
+            <p><strong>For long-term management:</strong> Consider Option B (transfer to Route 53) during next maintenance window for centralized AWS management.</p>
+            
+            <p>The Amplify solution provides enterprise-grade hosting with minimal maintenance overhead and excellent integration with the existing serverless architecture.</p>
+        </div>
+    </div>
+
+    <footer style="margin-top: 50px; padding: 20px; background: #f8f9fa; border-radius: 8px; text-align: center; color: #6c757d;">
+        <p><strong>Support Contacts:</strong></p>
+        <p>AWS Support: Through AWS Console | Network Solutions: +1.877.722.8662 | Email: domain.operations@web.com</p>
+        <p><em>Document prepared for ANNSATHER.COM hosting migration to AWS Amplify</em></p>
+    </footer>
+</body>
+</html>
