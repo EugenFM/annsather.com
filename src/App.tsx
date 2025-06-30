@@ -165,10 +165,21 @@ const AnnSatherWebsite = () => {
                                     className={`h-16 w-auto transition-all duration-300 ${
                                         scrolled ? 'h-12' : 'h-16'
                                     }`}
+                                    // onError={(e) => {
+                                    //     e.target.style.display = 'none';
+                                    //     e.target.nextSibling.style.display = 'flex';
+                                    // }}
+                                    // Code update - EFM
                                     onError={(e) => {
-                                        e.target.style.display = 'none';
-                                        e.target.nextSibling.style.display = 'flex';
+                                        const target = e.target as HTMLElement;
+                                        target.style.display = 'none';
+
+                                        const sibling = target.nextSibling as HTMLElement | null;
+                                        if (sibling) {
+                                            sibling.style.display = 'flex';
+                                        }
                                     }}
+
                                 />
                                 </button>
                                 <div className="hidden items-center"

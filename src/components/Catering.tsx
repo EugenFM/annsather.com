@@ -80,7 +80,7 @@ const CateringSection = () => {
     const renderAccordion = (
         id: keyof typeof sectionRefs,
         title: string,
-        ContentComponent: JSX.Element
+        ContentComponent: React.ReactNode
     ) => (
         <div
             ref={sectionRefs[id]}
