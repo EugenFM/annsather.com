@@ -23,7 +23,7 @@ Amplify.configure({
         Cognito: {
             userPoolId: 'us-east-2_HzIoGsAYn', // Found in your Cognito User Pool details
             userPoolClientId: '1pvg7p14k9pacfp49k696n5kp2', // Found in your Cognito User Pool App client details
-            region: 'us-east-2',
+            // region: 'us-east-2',
         }
     },
     API: {
@@ -31,7 +31,6 @@ Amplify.configure({
             'RestaurantMenuAPI': {
                 endpoint: 'https://htdv60daf3.execute-api.us-east-2.amazonaws.com/dev', // The "Invoke URL" from your API Gateway deployment
                 region: 'us-east-2',
-
             }
         }
     }
