@@ -110,7 +110,7 @@ const CateringSection = () => {
             {/* Background image */}
             <div
                 className="absolute inset-0 bg-cover bg-center opacity-20"
-                style={{ backgroundImage: "url('src/assets/images/catering/annsather5.jpg')" }}
+                style={{ backgroundImage: "url('public/images/catering/annsather5.jpg')" }}
             />
 
             {/* Foreground content */}

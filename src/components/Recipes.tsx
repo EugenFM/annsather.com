@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 const recipeData = [
     {
         title: 'Breakfast',
-        image: 'src/assets/images/Breakfast-Sampler.jpg',
+        image: 'public/images/Breakfast-Sampler.jpg',
         pdfLinks: [
             { name: 'Swedish Pancakes', url: 'pdfs/swedish-pancakes.pdf' },
             { name: 'Hart-Shaped Waffles', url: 'pdfs/hart-shaped-waffles.pdf' },
@@ -15,28 +15,28 @@ const recipeData = [
     },
     {
         title: 'Starters',
-        image: 'src/assets/images/catering/AnnSather-Avocado Wrap-S.jpg',
+        image: 'public/images/catering/AnnSather-Avocado Wrap-S.jpg',
         pdfLinks: [
             { name: 'House Salad', url: 'pdfs/house-salad.pdf' }
         ]
     },
     {
         title: 'Sides',
-        image: 'src/assets/images/catering/3egg_omelet.jpg',
+        image: 'public/images/catering/3egg_omelet.jpg',
         pdfLinks: [
             { name: 'Hash Browns', url: 'pdfs/hash-browns.pdf' }
         ]
     },
     {
         title: 'Entrees',
-        image: 'src/assets/images/catering/AnnSather-Steak & Eggs 2-S.jpg',
+        image: 'public/images/catering/AnnSather-Steak & Eggs 2-S.jpg',
         pdfLinks: [
             { name: 'Swedish Meatballs', url: 'pdfs/swedish-meatballs.pdf' }
         ]
     },
     {
         title: 'Desserts',
-        image: 'src/assets/images/catering/swedish_pancakes.jpg',
+        image: 'public/images/catering/swedish_pancakes.jpg',
         pdfLinks: [
             { name: 'Pumpkin Squares', url: 'pdfs/pumpkin-squares.pdf' }
         ]
