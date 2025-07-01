@@ -523,30 +523,23 @@ const AnnSatherWebsite = () => {
 //--- App Component (Router) ---
 export default function App() {
     const [path, setPath] = useState(window.location.pathname);
-    const [initialPath] = useState(window.location.pathname); // Store initial path
 
     useEffect(() => {
-        console.log('App mounted with path:', initialPath);
-        console.log('Current pathname:', window.location.pathname);
-
         const onLocationChange = () => {
-            console.log('Location changed to:', window.location.pathname);
             setPath(window.location.pathname);
         };
-
         window.addEventListener('popstate', onLocationChange);
         return () => {
             window.removeEventListener('popstate', onLocationChange);
         };
-    }, [initialPath]);
+    }, []);
 
-    console.log('Rendering with path:', path);
+    // Fix: Handle both /admin and /admin/
+    const isAdminPath = path === '/admin' || path === '/admin/';
 
-    if (path.endsWith('/admin')) {
-        console.log('Rendering AdminPage');
+    if (isAdminPath) {
         return <AdminPage />;
     }
 
-    console.log('Rendering AnnSatherWebsite');
     return <AnnSatherWebsite />;
 }
