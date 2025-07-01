@@ -159,7 +159,7 @@ const AnnSatherWebsite = () => {
                                     className="focus:outline-none cursor-pointer"
                                     >
                                 <img
-                                    src="/src/assets/images/AnnSather-Logo_img.png"
+                                    src="images/AnnSather-Logo_img.png"
                                     alt="Ann Sather Restaurant"
                                     className={`h-16 w-auto transition-all duration-300 ${
                                         scrolled ? 'h-12' : 'h-16'
