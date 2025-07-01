@@ -52,7 +52,7 @@ const AboutUs: React.FC = () => {
             </h2>
             <div className="flex justify-center pb-4">
                 <img
-                    src="public/images/ann_sather_photo_cropped.jpg"
+                    src="images/ann_sather_photo_cropped.jpg"
                     alt="About our restaurant"
                     className="w-20 h-auto rounded-sm"
                 />
