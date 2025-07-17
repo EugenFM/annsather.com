@@ -121,7 +121,7 @@ const Recipes = () => {
                                               href={url}
                                               target="_blank"
                                               rel="noopener noreferrer"
-                                              className="inline-block w-36 bg-white text-blue-900 font-medium py-2 px-4 rounded-full text-center hover:bg-yellow-400 hover:text-blue-900 transition"                                          >
+                                              className="inline-block w-36 bg-white text-blue-900 font-medium py-1 px-4 text-center hover:bg-yellow-400 hover:text-blue-900 transition"                                          >
                                               {name}
                                           </a>
                                       </p>

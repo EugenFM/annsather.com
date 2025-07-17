@@ -15,6 +15,7 @@ import CompleteMenu from "./menu/breakfast-menu.tsx";   // adjust the path if th
 import AboutUs from './components/AboutUs';
 import Catering from "./components/Catering.tsx";
 import Recipes from "./components/Recipes.tsx";
+import Contact from "./components/Contact.tsx";
 import AdminPage from "./components/cms/admin-page.tsx";
 import {Amplify} from "aws-amplify";
 
@@ -478,7 +479,7 @@ const AnnSatherWebsite = () => {
             {/* The AboutUs component*/}
             <AboutUs />
             <Recipes />
-
+            <Contact />
 
             {/* Footer */}
             <footer className="bg-gray-900 text-white py-12">
