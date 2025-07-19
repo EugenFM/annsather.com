@@ -214,6 +214,14 @@ const AnnSatherWebsite = () => {
                                 </a>
                             ))}
                             <a
+                                href="/admin"
+                                className={`font-medium transition-colors duration-300 hover:text-yellow-400 ${
+                                    scrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white'
+                                }`}
+                            >
+                                Admin
+                            </a>
+                            <a
                                 href="#order-online"
                                 className={`ml-4 px-6 py-2 rounded-full font-bold transition-all duration-300 ${
                                     scrolled
@@ -224,8 +232,6 @@ const AnnSatherWebsite = () => {
                                 Order Now
                             </a>
                         </div>
-
-
 
                         {/* Mobile menu button */}
                         <button
@@ -241,7 +247,7 @@ const AnnSatherWebsite = () => {
 
                 {/* Mobile Navigation */}
                 <div className={`md:hidden absolute w-full bg-white shadow-lg transition-all duration-300 overflow-hidden ${
-                    isMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+                    isMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
                 }`} style={{ top: '100%' }}>
                     <div className="px-4 py-6 space-y-4">
                         {['Menu', 'Catering', 'Locations', 'Recipes', 'About Us', 'Contact'].map((item) => (
@@ -254,6 +260,16 @@ const AnnSatherWebsite = () => {
                                 {item}
                             </a>
                         ))}
+
+                        {/* Admin Link */}
+                        <a
+                            href="/admin"
+                            className="block text-gray-700 font-medium hover:text-blue-600 transition-colors duration-200"
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            Admin
+                        </a>
+
                     </div>
                 </div>
             </nav>

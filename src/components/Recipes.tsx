@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 const recipeData = [
     {
         title: 'Breakfast',
-        image: 'images/Breakfast-Sampler.jpg',
+        image: 'src/assets/images/recipes/TraditionalBenedict.png',
         pdfLinks: [
             { name: 'Swedish Pancakes', url: 'pdfs/swedish-pancakes.pdf' },
             { name: 'Hart-Shaped Waffles', url: 'pdfs/hart-shaped-waffles.pdf' },
@@ -36,7 +36,7 @@ const recipeData = [
     },
     {
         title: 'Desserts',
-        image: 'images/catering/swedish_pancakes.jpg',
+        image: 'src/assets/images/recipes/SwedishPancakes.jpg',
         pdfLinks: [
             { name: 'Pumpkin Squares', url: 'pdfs/pumpkin-squares.pdf' }
         ]
@@ -71,8 +71,7 @@ const Recipes = () => {
         <section
             id="recipes"
             ref={sectionRef}
-            className={`relative bg-blue-900 text-white px-6 py-14 max-w-7xl mx-auto transition-opacity duration-1000 ease-out ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            className={`relative bg-blue-900 text-white px-6 py-14 mx-auto'
             }`}
         >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center pt-10 mb-6 leading-relaxed px-4">
@@ -92,7 +91,7 @@ const Recipes = () => {
                 get cooking!
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 m-10 px-4 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 m-10 px-4 max-w-5xl mx-auto">
 
                 {recipeData.map(({ title, image, pdfLinks }) => (
                     <div
@@ -105,7 +104,7 @@ const Recipes = () => {
                             src={image}
                             alt={title}
                             // className="w-full h-24 object-cover rounded-md mb-3"
-                            className="w-full h-38 object-cover rounded-t-md mb-1"
+                            className="w-full h-42 object-cover rounded-t-md mb-1"
                         />
                         <div className="bg-yellow-400 text-gray-900 p-1 font-semibold text-center uppercase shadow-lg transform hover:shadow-2xl cursor-pointer flex items-center justify-center"
 
