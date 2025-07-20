@@ -42,8 +42,7 @@ const Contact: React.FC = () => {
         <section
             id="contact"
             ref={sectionRef}
-            className={`bg-white text-gray-800 px-6 py-14 max-w-5xl mx-auto transition-opacity duration-1000 ease-out ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            className={`bg-white text-gray-800 px-6 py-14 max-w-5xl mx-auto`}>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-blue-900 pt-10 mb-6 leading-relaxed px-4">
                 Contact Us
             </h2>

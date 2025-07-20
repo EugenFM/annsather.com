@@ -153,23 +153,21 @@ const AnnSatherWebsite = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center">
                         <div className="flex items-center">
+
                             {/* Logo - using the actual logo image */}
-                            <div className="flex items-center">
+                            <div className="hidden md:flex items-center">
                                 <button
                                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                                     className="focus:outline-none cursor-pointer"
                                     >
-                                <img
-                                    src="images/AnnSather-Logo_img.png"
-                                    alt="Ann Sather Restaurant"
-                                    className={`h-16 w-auto transition-all duration-300 ${
-                                        scrolled ? 'h-12' : 'h-16'
-                                    }`}
-                                    // onError={(e) => {
-                                    //     e.target.style.display = 'none';
-                                    //     e.target.nextSibling.style.display = 'flex';
-                                    // }}
-                                    // Code update - EFM
+                                    <img
+                                        src="/images/AnnSather-Logo_img.png"
+                                        alt="Ann Sather Restaurant"
+                                         // Still working on the LOGO ...
+                                        className="w-auto h-14"
+
+
+
                                     onError={(e) => {
                                         const target = e.target as HTMLElement;
                                         target.style.display = 'none';
@@ -182,6 +180,7 @@ const AnnSatherWebsite = () => {
 
                                 />
                                 </button>
+
                                 <div className="hidden items-center"
                                     style={{ display: 'none' }}
                                 >
@@ -232,20 +231,37 @@ const AnnSatherWebsite = () => {
                                 Order Now
                             </a>
                         </div>
-
-                        {/* Mobile menu button */}
-                        <button
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className={`md:hidden transition-colors duration-300 ${
-                                scrolled ? 'text-gray-700' : 'text-white'
-                            }`}
-                        >
-                            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                        </button>
                     </div>
                 </div>
 
-                {/* Mobile Navigation */}
+                        {/* Logo + Mobile Menu Button – Mobile Only */}
+                        <div className="md:hidden flex flex-col items-center justify-center py-2">
+                            {/* Centered Logo */}
+                            <button
+                                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                                className="focus:outline-none"
+                            >
+                                <img
+                                    src="/images/AnnSather-Logo_img.png"
+                                    alt="Ann Sather Restaurant"
+                                    className="h-13 w-auto sm:h-14 md:h-15 lg:h-16 transition-all duration-300 mb-2"
+                                />
+                            </button>
+
+                            {/* Centered Menu Button */}
+                            <button
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                className={`mt
+                                -2 transition-colors duration-300 ${
+                                    scrolled ? 'text-gray-700' : 'text-white'
+                                }`}
+                            >
+                                {isMenuOpen ? <X size={26} /> : <Menu size={28} />}
+                            </button>
+                        </div>
+
+
+                        {/* Mobile Navigation */}
                 <div className={`md:hidden absolute w-full bg-white shadow-lg transition-all duration-300 overflow-hidden ${
                     isMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
                 }`} style={{ top: '100%' }}>
@@ -521,7 +537,7 @@ const AnnSatherWebsite = () => {
                             <p className="opacity-80">Follow us for daily specials and updates</p>
                             <div className="mt-4">
                                 <a href="#" className="text-yellow-400 hover:text-yellow-300 transition-colors">
-                                    Subscribe to our newsletter →
+                                    Social Media Links
                                 </a>
                             </div>
                         </div>

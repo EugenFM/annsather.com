@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 const recipeData = [
     {
         title: 'Breakfast',
-        image: 'src/assets/images/recipes/TraditionalBenedict.png',
+        image: 'src/assets/images/recipes/Breakfast-Sampler.jpg',
         pdfLinks: [
             { name: 'Swedish Pancakes', url: 'pdfs/swedish-pancakes.pdf' },
             { name: 'Hart-Shaped Waffles', url: 'pdfs/hart-shaped-waffles.pdf' },
@@ -15,21 +15,21 @@ const recipeData = [
     },
     {
         title: 'Starters',
-        image: 'images/catering/AnnSather-Avocado Wrap-S.jpg',
+        image: 'src/assets/images/catering/AnnSather-Avocado Wrap-S.jpg',
         pdfLinks: [
             { name: 'House Salad', url: 'pdfs/house-salad.pdf' }
         ]
     },
     {
         title: 'Sides',
-        image: 'images/catering/3egg_omelet.jpg',
+        image: 'src/assets/images/catering/3egg_omelet.jpg',
         pdfLinks: [
             { name: 'Hash Browns', url: 'pdfs/hash-browns.pdf' }
         ]
     },
     {
         title: 'Entrees',
-        image: 'images/catering/AnnSather-Steak & Eggs 2-S.jpg',
+        image: 'src/assets/images/catering/AnnSather-Steak & Eggs 2-S.jpg',
         pdfLinks: [
             { name: 'Swedish Meatballs', url: 'pdfs/swedish-meatballs.pdf' }
         ]
