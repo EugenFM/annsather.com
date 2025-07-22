@@ -158,7 +158,7 @@ const AnnSatherWebsite = () => {
                             <div className="hidden md:flex items-center">
                                 <button
                                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                                    className="focus:outline-none cursor-pointer"
+                                    className="focus:outline-none cursor-pointer "
                                     >
                                     <img
                                         src="/images/AnnSather-Logo_img.png"
@@ -214,8 +214,8 @@ const AnnSatherWebsite = () => {
                             ))}
                             <a
                                 href="/admin"
-                                className={`font-medium transition-colors duration-300 hover:text-yellow-400 ${
-                                    scrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white'
+                                className={`font-medium transition-colors duration-300 ${
+                                    scrolled ? 'text-blue-600 hover:text-blue-800' : 'text-yellow-400 hover:text-yellow-500'
                                 }`}
                             >
                                 Admin
@@ -251,8 +251,7 @@ const AnnSatherWebsite = () => {
                             {/* Centered Menu Button */}
                             <button
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                className={`mt
-                                -2 transition-colors duration-300 ${
+                                className={`mt-2 transition-colors duration-300 ${
                                     scrolled ? 'text-gray-700' : 'text-white'
                                 }`}
                             >
