@@ -3,12 +3,12 @@ import { Utensils, X } from 'lucide-react';
 import { authedPut } from "../../utils/apiClient.ts";
 
 // We now accept 'itemToEdit' as a prop
-const UpdateMenuItem = ({ onClose, onSave, itemToEdit }) => {
+const UpdateMenuItem = ({categories, onClose, onSave, itemToEdit }) => {
     // Initialize state from the itemToEdit prop
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('');
     const [mealType, setMealType] = useState('Breakfast');
-    const [category, setCategory] = useState('');
+    const [category, setCategory] = useState(itemToEdit?.category ?? categories[0] ?? '');
     const [featured, setFeatured] = useState(false);
 
     const [isLoading, setIsLoading] = useState(false);
@@ -26,6 +26,9 @@ const UpdateMenuItem = ({ onClose, onSave, itemToEdit }) => {
             setFeatured(itemToEdit.featured === 'true');
         }
     }, [itemToEdit]);
+
+    useEffect(() => {setCategory(itemToEdit?.category ?? categories[0] ?? '');
+        }, [itemToEdit, categories]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -96,9 +99,19 @@ const UpdateMenuItem = ({ onClose, onSave, itemToEdit }) => {
                         <input id="mealType" type="text" value={mealType} disabled className="w-full mt-2 p-3 text-lg bg-gray-200 border-2 border-gray-300 rounded-lg" />
                     </div>
                     <div>
-                        <label htmlFor="category" className="text-sm font-bold text-gray-700 tracking-wide">Category</label>
-                        <input id="category" type="text" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="e.g., EGGS BENEDICT" className="w-full mt-2 p-3 text-lg border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-yellow-400" />
-                    </div>
+                         <label htmlFor="category" className="text-sm font-bold text-gray-700 tracking-wide">
+                           Category
+                         </label>
+                         <select
+                           id="category"
+                           value={category}
+                           onChange={e => setCategory(e.target.value)}
+                           className="w-full mt-2 p-3 text-lg border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-yellow-400"
+                         >
+                           {categories.map(c => (
+                             <option key={c} value={c}>{c}</option>
+                           ))}
+                         </select>                    </div>
                     {/* ... other fields: title, price, featured ... */}
                     <div>
                         <label htmlFor="title" className="text-sm font-bold text-gray-700 tracking-wide">Item Title</label>

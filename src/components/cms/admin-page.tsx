@@ -359,7 +359,7 @@ const AdminPage = () => {
         <div className="min-h-screen bg-gray-100 font-sans">
             {/* --- RENDER MODALS CONDITIONALLY --- */}
             {isCreateModalOpen && <CreateMenuItem categories={categories} onClose={closeCreateModal} onSave={handleSaveNewItem} />}
-            {isUpdateModalOpen && <UpdateMenuItem onClose={closeUpdateModal} onSave={handleSaveUpdatedItem} itemToEdit={itemToEdit} />}
+            {isUpdateModalOpen && <UpdateMenuItem categories={categories} onClose={closeUpdateModal} onSave={handleSaveUpdatedItem} itemToEdit={itemToEdit} />}
 
 
             <header className="bg-blue-900 text-white shadow-lg">
