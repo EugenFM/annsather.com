@@ -163,10 +163,7 @@ const AnnSatherWebsite = () => {
                                     <img
                                         src="/images/AnnSather-Logo_img.png"
                                         alt="Ann Sather Restaurant"
-                                         // Still working on the LOGO ...
                                         className="w-auto h-14"
-
-
 
                                     onError={(e) => {
                                         const target = e.target as HTMLElement;
@@ -212,14 +209,6 @@ const AnnSatherWebsite = () => {
                                     {item}
                                 </a>
                             ))}
-                            <a
-                                href="/admin"
-                                className={`font-medium transition-colors duration-300 ${
-                                    scrolled ? 'text-blue-600 hover:text-blue-800' : 'text-yellow-400 hover:text-yellow-500'
-                                }`}
-                            >
-                                Admin
-                            </a>
                             <a
                                 href="#order-online"
                                 className={`ml-4 px-6 py-2 rounded-full font-bold transition-all duration-300 ${
@@ -275,16 +264,7 @@ const AnnSatherWebsite = () => {
                                 {item}
                             </a>
                         ))}
-
-                        {/* Admin Link */}
-                        <a
-                            href="/admin"
-                            className="block text-gray-700 font-medium hover:text-blue-600 transition-colors duration-200"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Admin
-                        </a>
-
+                        
                     </div>
                 </div>
             </nav>
@@ -380,12 +360,6 @@ const AnnSatherWebsite = () => {
                         ))}
                     </div>
 
-                    {/*<div className="text-center mt-12">*/}
-                    {/*    <a href="#" className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors">*/}
-                    {/*        View Full Menu*/}
-                    {/*        <ChevronDown size={20} className="ml-2 transform -rotate-90" />*/}
-                    {/*    </a>*/}
-                    {/*</div>*/}
                 </div>
             </section>
 
