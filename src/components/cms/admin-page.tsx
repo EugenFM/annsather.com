@@ -10,7 +10,7 @@ import {
     PlusCircle,
     Utensils,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import {useState, useEffect, useMemo} from "react";
 import { signIn, signOut, getCurrentUser, confirmSignIn } from 'aws-amplify/auth';
 import CreateMenuItem from './CreateMenuItem.tsx';
 import SeedDatabase from "./seed-database.tsx";
@@ -224,16 +224,15 @@ const AdminPage = () => {
         setIsLoading(false);
     };
 
-    // --- Handlers for the modal ---
-    // const openCreateModal = () => setCreateModalOpen(true);
-    // const closeCreateModal = () => setCreateModalOpen(false);
-    const handleSaveItem = (newItem) => {
-        console.log('New item saved:', newItem);
-        // Optionally, you can add logic here to refresh a list of items
-        // For now, we'll just close the modal.
-        // You could also leave it open if the user wants to add multiple items in a row.
-        // closeCreateModal();
-    };
+    const categories = useMemo(() => {
+        // 1. Pull categories that exist on the current meal type, or all if you prefer
+        const pool = menuItems
+            .filter(i => i.mealType === selectedMealType)     // drop this line for “all meal types”
+            .map(i => i.category?.trim() ?? 'Uncategorized');
+
+        // 2.  Deduplicate + sort
+        return Array.from(new Set(pool)).sort();            // Set gives you uniqueness  :contentReference[oaicite:0]{index=0}
+    }, [menuItems, selectedMealType]);
 
     // While checking for a session, show a loader
     if (isLoading) {
@@ -359,7 +358,7 @@ const AdminPage = () => {
     return (
         <div className="min-h-screen bg-gray-100 font-sans">
             {/* --- RENDER MODALS CONDITIONALLY --- */}
-            {isCreateModalOpen && <CreateMenuItem onClose={closeCreateModal} onSave={handleSaveNewItem} />}
+            {isCreateModalOpen && <CreateMenuItem categories={categories} onClose={closeCreateModal} onSave={handleSaveNewItem} />}
             {isUpdateModalOpen && <UpdateMenuItem onClose={closeUpdateModal} onSave={handleSaveUpdatedItem} itemToEdit={itemToEdit} />}
 
 
@@ -384,7 +383,7 @@ const AdminPage = () => {
             <main className="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">Content Management</h2>
-                    <p className="text-lg text-gray-600">Select a category below to edit website content.</p>
+                    <p className="text-lg text-gray-600">Add, edit, and remove menu items below.</p>
                 </div>
 
                 {/* --- 2. ADD THE SEED UTILITY HERE --- */}
@@ -438,30 +437,6 @@ const AdminPage = () => {
                         />
                     </div>
 
-
-                    {/* ... other cards (Locations, Content Pages) remain the same ... */}
-                    <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-2xl transition-shadow transform hover:-translate-y-1">
-                        <div className="flex items-center text-blue-800 mb-4">
-                            <MapPin size={28} className="mr-3" />
-                            <h2 className="text-2xl font-bold">Locations</h2>
-                        </div>
-                        <p className="text-gray-600 mb-6">Update restaurant locations, hours, and contact info.</p>
-                        <button disabled={true} className="w-full flex justify-center items-center bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition-colors">
-                            <PlusCircle size={20} className="mr-2" />
-                            Manage Locations
-                        </button>
-                    </div>
-                    <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-2xl transition-shadow transform hover:-translate-y-1">
-                        <div className="flex items-center text-blue-800 mb-4">
-                            <Edit size={28} className="mr-3" />
-                            <h2 className="text-2xl font-bold">Content Pages</h2>
-                        </div>
-                        <p className="text-gray-600 mb-6">Edit pages like "About Us", "Catering", and "Recipes".</p>
-                        <button className="w-full flex justify-center items-center bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition-colors">
-                            <PlusCircle size={20} className="mr-2" />
-                            Manage Content
-                        </button>
-                    </div>
 
                 </div>
             </main>

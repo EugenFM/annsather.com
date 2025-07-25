@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Edit, Trash2, ChevronDown } from 'lucide-react';
 
 const MenuList = ({ items, onEdit, onDelete, isLoading }) => {
