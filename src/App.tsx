@@ -147,8 +147,13 @@ const AnnSatherWebsite = () => {
     return (
         <div className="min-h-screen bg-white">
             {/* Navigation */}
+            {/*<nav className={`fixed w-full z-50 transition-all duration-300 ${*/}
+            {/*    scrolled ? 'bg-white shadow-lg py-2' : 'bg-transparent py-4'*/}
+            {/*}`}>*/}
             <nav className={`fixed w-full z-50 transition-all duration-300 ${
-                scrolled ? 'bg-white shadow-lg py-2' : 'bg-transparent py-4'
+                scrolled
+                    ? 'bg-blue-900/95 md:bg-white shadow-lg py-2'
+                    : 'bg-blue-900/95 md:bg-transparent py-4'
             }`}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center">
@@ -241,7 +246,7 @@ const AnnSatherWebsite = () => {
                             <button
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                                 className={`mt-2 transition-colors duration-300 ${
-                                    scrolled ? 'text-gray-700' : 'text-white'
+                                    scrolled ? 'text-white' : 'text-white'
                                 }`}
                             >
                                 {isMenuOpen ? <X size={26} /> : <Menu size={28} />}
