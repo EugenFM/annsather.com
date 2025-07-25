@@ -15,6 +15,7 @@ import CompleteMenu from "./menu/breakfast-menu.tsx";   // adjust the path if th
 import AboutUs from './components/AboutUs';
 import Catering from "./components/Catering.tsx";
 import Recipes from "./components/Recipes.tsx";
+import Contact from "./components/Contact.tsx";
 import AdminPage from "./components/cms/admin-page.tsx";
 import {Amplify} from "aws-amplify";
 
@@ -146,29 +147,29 @@ const AnnSatherWebsite = () => {
     return (
         <div className="min-h-screen bg-white">
             {/* Navigation */}
+            {/*<nav className={`fixed w-full z-50 transition-all duration-300 ${*/}
+            {/*    scrolled ? 'bg-white shadow-lg py-2' : 'bg-transparent py-4'*/}
+            {/*}`}>*/}
             <nav className={`fixed w-full z-50 transition-all duration-300 ${
-                scrolled ? 'bg-white shadow-lg py-2' : 'bg-transparent py-4'
+                scrolled
+                    ? 'bg-blue-900/95 md:bg-white shadow-lg py-2'
+                    : 'bg-blue-900/95 md:bg-transparent py-4'
             }`}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center">
                         <div className="flex items-center">
+
                             {/* Logo - using the actual logo image */}
-                            <div className="flex items-center">
+                            <div className="hidden md:flex items-center">
                                 <button
                                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                                    className="focus:outline-none cursor-pointer"
+                                    className="focus:outline-none cursor-pointer "
                                     >
-                                <img
-                                    src="images/AnnSather-Logo_img.png"
-                                    alt="Ann Sather Restaurant"
-                                    className={`h-16 w-auto transition-all duration-300 ${
-                                        scrolled ? 'h-12' : 'h-16'
-                                    }`}
-                                    // onError={(e) => {
-                                    //     e.target.style.display = 'none';
-                                    //     e.target.nextSibling.style.display = 'flex';
-                                    // }}
-                                    // Code update - EFM
+                                    <img
+                                        src="/images/AnnSather-Logo_img.png"
+                                        alt="Ann Sather Restaurant"
+                                        className="w-auto h-14"
+
                                     onError={(e) => {
                                         const target = e.target as HTMLElement;
                                         target.style.display = 'none';
@@ -181,6 +182,7 @@ const AnnSatherWebsite = () => {
 
                                 />
                                 </button>
+
                                 <div className="hidden items-center"
                                     style={{ display: 'none' }}
                                 >
@@ -223,24 +225,38 @@ const AnnSatherWebsite = () => {
                                 Order Now
                             </a>
                         </div>
-
-
-
-                        {/* Mobile menu button */}
-                        <button
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className={`md:hidden transition-colors duration-300 ${
-                                scrolled ? 'text-gray-700' : 'text-white'
-                            }`}
-                        >
-                            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                        </button>
                     </div>
                 </div>
 
-                {/* Mobile Navigation */}
+                        {/* Logo + Mobile Menu Button – Mobile Only */}
+                        <div className="md:hidden flex flex-col items-center justify-center py-2">
+                            {/* Centered Logo */}
+                            <button
+                                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                                className="focus:outline-none"
+                            >
+                                <img
+                                    src="/images/AnnSather-Logo_img.png"
+                                    alt="Ann Sather Restaurant"
+                                    className="h-13 w-auto sm:h-14 md:h-15 lg:h-16 transition-all duration-300 mb-2"
+                                />
+                            </button>
+
+                            {/* Centered Menu Button */}
+                            <button
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                className={`mt-2 transition-colors duration-300 ${
+                                    scrolled ? 'text-white' : 'text-white'
+                                }`}
+                            >
+                                {isMenuOpen ? <X size={26} /> : <Menu size={28} />}
+                            </button>
+                        </div>
+
+
+                        {/* Mobile Navigation */}
                 <div className={`md:hidden absolute w-full bg-white shadow-lg transition-all duration-300 overflow-hidden ${
-                    isMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+                    isMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
                 }`} style={{ top: '100%' }}>
                     <div className="px-4 py-6 space-y-4">
                         {['Menu', 'Catering', 'Locations', 'Recipes', 'About Us', 'Contact'].map((item) => (
@@ -253,6 +269,7 @@ const AnnSatherWebsite = () => {
                                 {item}
                             </a>
                         ))}
+                        
                     </div>
                 </div>
             </nav>
@@ -348,12 +365,6 @@ const AnnSatherWebsite = () => {
                         ))}
                     </div>
 
-                    {/*<div className="text-center mt-12">*/}
-                    {/*    <a href="#" className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors">*/}
-                    {/*        View Full Menu*/}
-                    {/*        <ChevronDown size={20} className="ml-2 transform -rotate-90" />*/}
-                    {/*    </a>*/}
-                    {/*</div>*/}
                 </div>
             </section>
 
@@ -478,7 +489,7 @@ const AnnSatherWebsite = () => {
             {/* The AboutUs component*/}
             <AboutUs />
             <Recipes />
-
+            <Contact />
 
             {/* Footer */}
             <footer className="bg-gray-900 text-white py-12">
@@ -504,7 +515,7 @@ const AnnSatherWebsite = () => {
                             <p className="opacity-80">Follow us for daily specials and updates</p>
                             <div className="mt-4">
                                 <a href="#" className="text-yellow-400 hover:text-yellow-300 transition-colors">
-                                    Subscribe to our newsletter →
+                                    Social Media Links
                                 </a>
                             </div>
                         </div>
