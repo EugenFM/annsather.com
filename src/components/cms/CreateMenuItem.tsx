@@ -1,14 +1,13 @@
-import { useState } from 'react';
-import { post } from 'aws-amplify/api';
+import {useEffect, useState} from 'react';
 import { Utensils, X } from 'lucide-react';
 import { fetchAuthSession } from 'aws-amplify/auth';
 import {authedPost} from "../../utils/apiClient.ts";
 
-const CreateMenuItem = ({ onClose, onSave }) => {
+const CreateMenuItem = ({ categories, onClose, onSave }) => {
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('');
     const [mealType, setMealType] = useState('Breakfast');
-    const [category, setCategory] = useState('');
+    const [category, setCategory] = useState(categories[0] ?? '');
     const [featured, setFeatured] = useState(false);
 
     const [isLoading, setIsLoading] = useState(false);
@@ -75,6 +74,8 @@ const CreateMenuItem = ({ onClose, onSave }) => {
         }
     };
 
+    useEffect(() => { setCategory(categories[0] ?? ''); }, [categories]);
+
 
     return (
         <div className="fixed inset-0 bg-gray-900/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
@@ -110,14 +111,16 @@ const CreateMenuItem = ({ onClose, onSave }) => {
                         </div>
                         <div>
                             <label htmlFor="category" className="text-sm font-bold text-gray-700 tracking-wide">Category</label>
-                            <input
+                            <select
                                 id="category"
-                                type="text"
                                 value={category}
-                                onChange={(e) => setCategory(e.target.value)}
-                                placeholder="e.g., EGGS BENEDICT"
+                                onChange={e => setCategory(e.target.value)}
                                 className="w-full mt-2 p-3 text-lg border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-yellow-400"
-                            />
+                            >
+                                {categories.map(c => (
+                                    <option key={c} value={c}>{c}</option>
+                                ))}
+                            </select>
                         </div>
                     </div>
 
