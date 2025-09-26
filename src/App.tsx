@@ -145,179 +145,135 @@ const AnnSatherWebsite = () => {
     };
 
     return (
-        <div className="min-h-screen bg-white">
-            {/* Navigation */}
-            {/*<nav className={`fixed w-full z-50 transition-all duration-300 ${*/}
-            {/*    scrolled ? 'bg-white shadow-lg py-2' : 'bg-transparent py-4'*/}
-            {/*}`}>*/}
-            <nav className={`fixed w-full z-50 transition-all duration-300 ${
-                scrolled
-                    ? 'bg-blue-900/95 md:bg-white shadow-lg py-2'
-                    : 'bg-blue-900/95 md:bg-transparent py-4'
-            }`}>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between items-center">
-                        <div className="flex items-center">
+        <div className="min-h-screen bg-[#EDEDED]">
+            <nav
+                className={`flex items-center bg-[#330000] fixed w-full z-50 transition-all duration-300 ${
+                    scrolled ? 'bg-[#EDEDED] shadow-lg py-4' : 'bg-[#330000] py-4'
+                }`}
+            >
+                {/* Left: Logo (fixed width, flush left) */}
+                <div className="w-60 pl-4 flex-shrink-0">
+                    <button
+                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                        className="focus:outline-none cursor-pointer text-left"
+                    >
+                        <h2
+                            className={`text-2xl md:text-2xl font-['Playfair_Display'] leading-tight drop-shadow-lg transition-all duration-300 ${
+                                scrolled
+                                    ? 'text-[#330000] hover:text-[#7a1a1a] font-bold'
+                                    : 'text-[#C8B8AE] hover:text-[#EAE6D2]'
+                            }`}
+                        >
+                            Ann Sather<br />
+                            <span className="text-base md:text-lg">Restaurant & Catering</span>
+                        </h2>
+                    </button>
+                </div>
 
-                            {/* Logo - using the actual logo image */}
-                            <div className="hidden md:flex items-center">
-                                <button
-                                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                                    className="focus:outline-none cursor-pointer "
-                                    >
-                                    <img
-                                        src="/images/AnnSather-Logo_img.png"
-                                        alt="Ann Sather Restaurant"
-                                        className="w-auto h-14"
-
-                                    onError={(e) => {
-                                        const target = e.target as HTMLElement;
-                                        target.style.display = 'none';
-
-                                        const sibling = target.nextSibling as HTMLElement | null;
-                                        if (sibling) {
-                                            sibling.style.display = 'flex';
-                                        }
-                                    }}
-
-                                />
-                                </button>
-
-                                <div className="hidden items-center"
-                                    style={{ display: 'none' }}
-                                >
-                                    <div className="flex flex-col">
-                                        <h1 className={`text-2xl font-bold transition-colors duration-300 ${
-                                            scrolled ? 'text-blue-900' : 'text-white'
-                                        }`}>
-                                            ANN SATHER
-                                        </h1>
-                                        <span className={`text-xs uppercase tracking-wider transition-colors duration-300 ${
-                                            scrolled ? 'text-blue-700' : 'text-yellow-300'
-                                        }`}>
-                      Restaurant & Catering
-                    </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                {/* Right: Full Nav & Button aligned right */}
+                <div className="flex-1">
+                    <div className="flex justify-end items-center gap-8 pr-6">
                         {/* Desktop Navigation */}
-                        <div className="hidden md:flex space-x-8 items-center">
+                        <div className="hidden md:flex items-center gap-6">
                             {['Menu', 'Catering', 'Locations', 'Recipes', 'About Us', 'Contact'].map((item) => (
-                                <a key={item}
+                                <a
+                                    key={item}
                                     href={`#${item.toLowerCase().replace(' ', '-')}`}
-                                    className={`font-medium transition-colors duration-300 hover:text-yellow-400 ${
-                                        scrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white'
+                                    className={`font-medium tracking-wide font-['Playfair_Display'] uppercase transition-colors duration-300 ${
+                                        scrolled
+                                            ? 'text-[#330000] hover:text-[#7a1a1a] font-bold'
+                                            : 'text-[#C8B8AE] hover:text-[#EAE6D2]'
                                     }`}
                                 >
                                     {item}
                                 </a>
                             ))}
+
                             <a
                                 href="#order-online"
-                                className={`ml-4 px-6 py-2 rounded-full font-bold transition-all duration-300 ${
+                                className={`ml-4 px-6 py-1 rounded-full font-bold font-['Playfair_Display'] uppercase transition-all duration-300 ${
                                     scrolled
-                                        ? 'bg-yellow-400 text-blue-900 hover:bg-yellow-500'
-                                        : 'bg-white/20 backdrop-blur text-white border border-white hover:bg-white hover:text-blue-900'
+                                        ? 'bg-transparent border border-[#330000] text-[#330000]'
+                                        : 'bg-[#330000] text-[#EAE6D2] border border-[#EAE6D2] hover:bg-[#601f1f] shadow-md'
                                 }`}
                             >
                                 Order Now
                             </a>
                         </div>
-                    </div>
-                </div>
-
-                        {/* Logo + Mobile Menu Button – Mobile Only */}
-                        <div className="md:hidden flex flex-col items-center justify-center py-2">
-                            {/* Centered Logo */}
-                            <button
-                                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                                className="focus:outline-none"
-                            >
-                                <img
-                                    src="/images/AnnSather-Logo_img.png"
-                                    alt="Ann Sather Restaurant"
-                                    className="h-13 w-auto sm:h-14 md:h-15 lg:h-16 transition-all duration-300 mb-2"
-                                />
-                            </button>
-
-                            {/* Centered Menu Button */}
-                            <button
-                                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                className={`mt-2 transition-colors duration-300 ${
-                                    scrolled ? 'text-white' : 'text-white'
-                                }`}
-                            >
-                                {isMenuOpen ? <X size={26} /> : <Menu size={28} />}
-                            </button>
-                        </div>
-
-
-                        {/* Mobile Navigation */}
-                <div className={`md:hidden absolute w-full bg-white shadow-lg transition-all duration-300 overflow-hidden ${
-                    isMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-                }`} style={{ top: '100%' }}>
-                    <div className="px-4 py-6 space-y-4">
-                        {['Menu', 'Catering', 'Locations', 'Recipes', 'About Us', 'Contact'].map((item) => (
-                            <a
-                                key={item}
-                                href={`#${item.toLowerCase().replace(' ', '-')}`}
-                                className="block text-gray-700 font-medium hover:text-blue-600 transition-colors duration-200"
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                {item}
-                            </a>
-                        ))}
-                        
                     </div>
                 </div>
             </nav>
 
+
             {/* Hero Section */}
-            <section className="relative h-screen">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 to-blue-700/80 z-10"></div>
+            <section className="relative h-screen bg-[#EDEDED] font-['Playfair_Display'] overflow-hidden">
+
+                {/* ✅ Background image with white margins */}
                 <div
-                    className="absolute inset-0 bg-cover bg-center"
+                    className="absolute top-29 bottom-6 left-6 right-6 bg-cover bg-center"
                     style={{
-                        backgroundImage: "url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=1920&h=1080&fit=crop')"
+                        backgroundImage:
+                            "url('https://www.chasbender.com/projects/annsather/gallery/annsather5.jpg')",
                     }}
                 ></div>
 
-                <div className="relative z-20 pt-15 h-full flex items-center justify-center text-center px-4">
+
+                {/* Content */}
+                <div className="relative z-20 pt-15 h-full flex items-center justify-center text-center px-4 px-10">
                     <div className="max-w-4xl">
+                        {/* Banner */}
                         <div className="mb-8">
-              <span className="inline-block px-6 py-2 bg-white/20 backdrop-blur rounded-full text-yellow-300 font-semibold text-lg mt-10">
-                Serving Chicago Since 1945
-              </span>
+        {/*<span className="inline-block px-6 py-2 bg-[#F6E6A8]/90 rounded-full text-[#7B4F27] font-semibold text-lg shadow-md">*/}
+        {/*  Serving Chicago Since 1945*/}
+        {/*</span>*/}
                         </div>
-                        <h2 className="text-5xl md:text-7xl font-bold text-white mb-2 animate-fade-in">
-                            Home of the Famous<br />Cinnamon Rolls
+
+                        {/* Headline */}
+                        <h2 className="text-5xl md:text-7xl text-white leading-tight drop-shadow-lg font-['Playfair_Display']">
+                            Ann Sather<br />
+                            
                         </h2>
-                        <p className="text-xl md:text-2xl text-white/90 mb-8">
-                            Authentic Swedish cuisine in the heart of Chicago
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <a href="#order-online" className="bg-yellow-400 text-blue-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 transform hover:scale-105 transition-all duration-300 shadow-xl">
-                                Order Now
-                            </a>
-                            <a href="#menu" className="bg-white/20 backdrop-blur text-white border-2 border-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-blue-900 transform hover:scale-105 transition-all duration-300">
-                                View Menu
-                            </a>
-                        </div>
-                        <div className="mt-12 animate-bounce">
-                            <ChevronDown size={32} className="text-white mx-auto" />
-                        </div>
+                        <span className={"text-3xl text-white"}>Restaurants & Catering</span>
+
+
+
+
+                        {/* Subheading */}
+                        {/*<p className="text-xl md:text-2xl text-[#5A3D2B]/90 mb-8 font-serif">*/}
+                        {/*    Authentic Swedish cuisine in the heart of Chicago*/}
+                        {/*</p>*/}
+
+                        {/* Buttons */}
+                        {/*<div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">*/}
+                        {/*    <a*/}
+                        {/*        href="#order-online"*/}
+                        {/*        className="bg-[#7a1a1a]/50 border-2 border-[#601f1f] text-white px-8 py-2 rounded-full text-lg hover:bg-[#7a1a1a]/70 transition-all duration-300 shadow-md"*/}
+                        {/*    >*/}
+                        {/*        Order Now*/}
+                        {/*    </a>*/}
+                        {/*    <a*/}
+                        {/*        href="#menu"*/}
+                        {/*        className="bg-[#F6E6A8]/30 border-2 border-[#601f1f] text-[#601f1f] px-8 py-2 rounded-full font-bold text-lg hover:bg-[#F6E6A8]/70 transition-all duration-300"*/}
+                        {/*    >*/}
+                        {/*        View Menu*/}
+                        {/*    </a>*/}
+                        {/*</div>*/}
+                        
+                        {/* Scroll Icon*/}
+                        {/*<div className="mt-12 animate-bounce">*/}
+                        {/*    <ChevronDown size={32} className="text-[#5A3D2B]" />*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             </section>
 
+
             {/* Open Hours Banner */}
-            <section className="bg-yellow-400 py-6">
+            <section className="bg-[#EAE6D2] py-3">
                 <div className="max-w-7xl mx-auto px-4 text-center">
                     <div className="flex items-center justify-center space-x-4">
-                        <Clock className="text-blue-900" size={24} />
-                        <p className="text-blue-900 font-bold text-lg">
+                        <Clock className="text-[#601f1f]" size={24} />
+                        <p className="text-[#601f1f] font-bold text-lg">
                             Open Daily 7 AM - 3 PM | Dine-In • Take-Out • Delivery
                         </p>
                     </div>
