@@ -202,7 +202,7 @@ const SeedDatabase = () => {
 
             <button
                 onClick={handleSeedDatabase}
-                disabled={true}
+                disabled={false}
                 className="w-full flex justify-center items-center bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition-colors disabled:bg-gray-400"
             >
                 {isLoading ? 'Importing...' : 'Start Menu Import'}
