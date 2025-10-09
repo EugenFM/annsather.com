@@ -145,7 +145,7 @@ const AnnSatherWebsite = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#EDEDED]">
+        <div className="min-h-screen bg-[#FFFFFF]">
             <nav
                 className={`flex items-center bg-[#330000] fixed w-full z-50 transition-all duration-300 ${
                     scrolled ? 'bg-[#EDEDED] shadow-lg py-4' : 'bg-[#330000] py-4'
@@ -206,20 +206,20 @@ const AnnSatherWebsite = () => {
 
 
             {/* Hero Section */}
-            <section className="relative h-screen bg-[#EDEDED] font-['Playfair_Display'] overflow-hidden">
+            <section className="relative h-screen bg-[#FFFFFF] font-['Playfair_Display'] overflow-hidden">
 
                 {/* ✅ Background image with white margins */}
                 <div
-                    className="absolute top-29 bottom-6 left-6 right-6 bg-cover bg-center"
+                    className="absolute top-29 bottom-5 left-5 right-5 bg-cover bg-center"
                     style={{
                         backgroundImage:
-                            "url('https://www.chasbender.com/projects/annsather/gallery/annsather5.jpg')",
+                            "url('src/assets/images/EFM-AnnSather_PICS/Belmont-indoor7.jpeg')",
                     }}
                 ></div>
 
 
                 {/* Content */}
-                <div className="relative z-20 pt-15 h-full flex items-center justify-center text-center px-4 px-10">
+                <div className="relative z-20 pt-15 h-full flex items-center justify-center text-center px-10">
                     <div className="max-w-4xl">
                         {/* Banner */}
                         <div className="mb-8">
@@ -234,35 +234,6 @@ const AnnSatherWebsite = () => {
                             
                         </h2>
                         <span className={"text-3xl text-white"}>Restaurants & Catering</span>
-
-
-
-
-                        {/* Subheading */}
-                        {/*<p className="text-xl md:text-2xl text-[#5A3D2B]/90 mb-8 font-serif">*/}
-                        {/*    Authentic Swedish cuisine in the heart of Chicago*/}
-                        {/*</p>*/}
-
-                        {/* Buttons */}
-                        {/*<div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">*/}
-                        {/*    <a*/}
-                        {/*        href="#order-online"*/}
-                        {/*        className="bg-[#7a1a1a]/50 border-2 border-[#601f1f] text-white px-8 py-2 rounded-full text-lg hover:bg-[#7a1a1a]/70 transition-all duration-300 shadow-md"*/}
-                        {/*    >*/}
-                        {/*        Order Now*/}
-                        {/*    </a>*/}
-                        {/*    <a*/}
-                        {/*        href="#menu"*/}
-                        {/*        className="bg-[#F6E6A8]/30 border-2 border-[#601f1f] text-[#601f1f] px-8 py-2 rounded-full font-bold text-lg hover:bg-[#F6E6A8]/70 transition-all duration-300"*/}
-                        {/*    >*/}
-                        {/*        View Menu*/}
-                        {/*    </a>*/}
-                        {/*</div>*/}
-                        
-                        {/* Scroll Icon*/}
-                        {/*<div className="mt-12 animate-bounce">*/}
-                        {/*    <ChevronDown size={32} className="text-[#5A3D2B]" />*/}
-                        {/*</div>*/}
                     </div>
                 </div>
             </section>
@@ -280,11 +251,30 @@ const AnnSatherWebsite = () => {
                 </div>
             </section>
 
-            {/* Menu Highlights */}
-            <section id="menu" className="py-20 bg-gray-50">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* ✅ Menu Highlights with diagonal textured background */}
+            <section
+                id="menu"
+                className="py-5 bg-white p-5">
+                <div
+
+                style={{
+                    backgroundColor: "#EDEDED", // base background
+                    backgroundImage: `
+      repeating-linear-gradient(
+        -45deg,
+        rgba(96, 31, 31, .1) 0px,   /* stripe color */
+        rgba(0, 0, 0, 0.08) 0.1px,   /* stripe thickness */
+        transparent 2px,
+        transparent 6px           /* spacing */
+      )
+    `,
+                }}
+
+                className={'w-full h-full'}
+            >
+                <div className="max-w-7xl mx-auto pb-20 px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12">
-                        <h2 className="text-4xl font-bold text-gray-900 mb-4">Menu Favorites</h2>
+                        <h2 className="text-4xl font-bold text-gray-900 pt-15 mb-4">Menu Favorites</h2>
                         <p className="text-xl text-gray-600">From Swedish classics to American breakfast favorites</p>
                     </div>
 
@@ -320,9 +310,10 @@ const AnnSatherWebsite = () => {
                             </div>
                         ))}
                     </div>
-
+                    </div>
                 </div>
             </section>
+
 
             <CompleteMenu />   {/* new tabbed breakfast menu */}
 

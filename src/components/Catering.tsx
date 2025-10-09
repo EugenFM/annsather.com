@@ -84,11 +84,11 @@ const CateringSection = () => {
     ) => (
         <div
             ref={sectionRefs[id]}
-            className="bg-white/20 rounded-4xl shadow-lg overflow-hidden max-w-xl mx-auto mb-6"
+            className="bg-white/40 rounded-4xl shadow-lg overflow-hidden max-w-2xl mx-auto mb-6"
         >
             <button
                 onClick={() => setOpenSection((prev) => (prev === id ? null : id))}
-                className="w-full px-6 py-4 bg-white-100 hover:bg-white/20 text-white font-bold transition-colors flex items-center justify-between cursor-pointer"
+                className="w-full px-6 py-4 bg-white/10 hover:bg-white/30 text-white font-bold transition-colors flex items-center justify-between cursor-pointer"
 
             >
                 <h3 className="text-xl font-bold uppercase">{title}</h3>
@@ -106,21 +106,30 @@ const CateringSection = () => {
     );
 
     return (
-        <section id="catering" className="max-w-7xl mx-auto py-20 px-6 bg-blue-900 text-white relative">
+        <section id="catering"
+                 className="relative w-full bg-[#FFF] py-20 px-5 text-white overflow-hidden">
             {/* Background image */}
             <div
-                className="absolute inset-0 bg-cover bg-center opacity-20"
-                style={{ backgroundImage: "url('images/catering/annsather5.jpg')" }}
+                className="absolute inset-5 bg-cover bg-center brightness-40"
+                style={{
+                    backgroundImage: `
+        linear-gradient(rgba(96, 31, 31, .1), rgba(96, 31, 31, .1)),
+        url('src/assets/images/EFM-AnnSather_PICS/Belmont-walls1.jpeg')`,
+                    backgroundBlendMode: 'overlay',
+                    zIndex: 0,
+                }}
             />
+
+            <div className="absolute inset-5 bg-[#601f1f]/10 z-[1] pointer-events-none" />
 
             {/* Foreground content */}
             <div className="relative z-10">
-                <h3 className="text-4xl font-bold text-center mb-8">Ann Sather Catering</h3>
+                <h3 className="text-5xl font-bold text-center mb-8">Ann Sather Catering</h3>
 
                 <div className="mb-10 text-center">
                     <button
                         onClick={() => setShowDeliveryInfo(!showDeliveryInfo)}
-                        className="bg-white/10 text-white font-semibold px-4 py-2 rounded-full shadow hover:bg-white/40 transition cursor-pointer"
+                        className="bg-white/40 text-white font-semibold px-4 py-2 rounded-full shadow hover:bg-white/40 transition cursor-pointer"
                     >
                         {showDeliveryInfo ? 'Hide Delivery Info' : 'View Delivery Info'}
                     </button>
