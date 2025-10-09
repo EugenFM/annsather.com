@@ -78,14 +78,6 @@ const AnnSatherWebsite = () => {
                 Belmont: 'https://www.doordash.com/store/ann-sather-chicago-3142/'
             }
         },
-        {
-            name: 'Postmates',
-            icon: ShoppingBag,
-            color: 'hover:bg-blue-500/20',
-            links: {
-                Broadway: 'https://postmates.com/store/ann-sather-broadway/_rqbqrenQPOb9u-BdcIkcw'
-            }
-        }
     ];
 
     const locations = [
@@ -93,20 +85,20 @@ const AnnSatherWebsite = () => {
             name: "Belmont",
             address: "909 W. Belmont",
             phone: "773-348-2378",
-            image: "https://images.unsplash.com/photo-1559305616-3f99cd43e353?w=800&h=600&fit=crop",
+            image: "src/assets/images/EFM-AnnSather_PICS/Belmont-outdoor1.jpeg",
             special: "Swedish Specials Available"
         },
         {
             name: "Broadway",
             address: "3415 N. Broadway",
             phone: "773-305-0024",
-            image: "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&h=600&fit=crop"
+            image: "src/assets/images/EFM-AnnSather_PICS/Broadview-outdoor1.jpeg"
         },
         {
             name: "Granville",
             address: "1147 W. Granville",
             phone: "773-274-0557",
-            image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop"
+            image: "src/assets/images/EFM-AnnSather_PICS/Granville-outside1.jpeg"
         }
     ];
 
@@ -321,9 +313,27 @@ const AnnSatherWebsite = () => {
             <Catering />
             
             {/* Locations */}
-            <section id="locations" className="py-20">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-12">
+            <section id="locations"
+
+                     className="py-5 bg-white p-5">
+                <div
+
+                    style={{
+                        backgroundColor: "#EDEDED", // base background
+                        backgroundImage: `
+      repeating-linear-gradient(
+        -45deg,
+        rgba(96, 31, 31, .1) 0px,   /* stripe color */
+        rgba(0, 0, 0, 0.08) 0.1px,   /* stripe thickness */
+        transparent 2px,
+        transparent 6px           /* spacing */
+      )
+    `,
+                    }}>
+
+
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+                    <div className="text-center mb-12 pt-10">
                         <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Locations</h2>
                         <p className="text-xl text-gray-600">Three convenient Chicago locations to serve you</p>
                     </div>
@@ -336,7 +346,7 @@ const AnnSatherWebsite = () => {
                                     onClick={() => setActiveLocation(index)}
                                     className={`p-6 rounded-xl cursor-pointer transition-all duration-300 ${
                                         activeLocation === index
-                                            ? 'bg-blue-600 text-white shadow-xl scale-105'
+                                            ? 'bg-[#601f1f] text-white shadow-xl scale-105'
                                             : 'bg-white shadow-lg hover:shadow-xl'
                                     }`}
                                 >
@@ -354,7 +364,7 @@ const AnnSatherWebsite = () => {
                                             {location.special && (
                                                 <div className="mt-3">
                           <span className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${
-                              activeLocation === index ? 'bg-yellow-400 text-blue-900' : 'bg-yellow-100 text-yellow-800'
+                              activeLocation === index ? 'bg-white text-blue-900' : 'bg-[#601f1f] text-white'
                           }`}>
                             {location.special}
                           </span>
@@ -384,7 +394,9 @@ const AnnSatherWebsite = () => {
                                 <p className="opacity-90">{locations[activeLocation].address}</p>
                             </div>
                         </div>
+
                     </div>
+                </div>
                 </div>
             </section>
 
