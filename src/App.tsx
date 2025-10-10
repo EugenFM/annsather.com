@@ -99,6 +99,7 @@ const AnnSatherWebsite = () => {
             address: "1147 W. Granville",
             phone: "773-274-0557",
             image: "src/assets/images/EFM-AnnSather_PICS/Granville-outside1.jpeg"
+
         }
     ];
 
@@ -107,26 +108,26 @@ const AnnSatherWebsite = () => {
             title: "Famous Cinnamon Rolls",
             description: "Our world-famous cinnamon rolls, made fresh daily",
             price: "$4.95",
-            image: "https://images.unsplash.com/photo-1509365390695-33aee754301f?w=400&h=300&fit=crop",
+            image: "/src/assets/images/EFM-AnnSather_PICS/CRolls3.jpg",
             popular: true
+        },
+        {
+            title: "Omelet",
+            description: "Choice of Omelet or Build Your Own",
+            price: "$15.50",
+            image: "src/assets/images/EFM-AnnSather_PICS/Omelette3.jpeg"
         },
         {
             title: "Swedish Pancakes",
             description: "Thin, delicate pancakes served with lingonberries",
             price: "$12.95",
-            image: "https://images.unsplash.com/photo-1565299543923-37dd37887442?w=400&h=300&fit=crop"
-        },
-        {
-            title: "Swedish Meatballs",
-            description: "Traditional meatballs with cream sauce and lingonberries",
-            price: "$14.95",
-            image: "https://images.unsplash.com/photo-1529042410759-befb1204b468?w=400&h=300&fit=crop"
+            image: "src/assets/images/EFM-AnnSather_PICS/SwedishPancakes2.jpg"
         },
         {
             title: "Eggs Benedict",
             description: "Classic brunch favorite with hollandaise sauce",
-            price: "$13.95",
-            image: "https://images.unsplash.com/photo-1608039829572-78524f79c4c7?w=400&h=300&fit=crop"
+            price: "$16.95",
+            image: "src/assets/images/EFM-AnnSather_PICS/EggsBenedict3.jpeg"
         }
     ];
     /* Helper to pick the correct link for the active location */
@@ -328,8 +329,8 @@ const AnnSatherWebsite = () => {
         transparent 2px,
         transparent 6px           /* spacing */
       )
-    `,
-                    }}>
+    `,}}
+                >
 
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
@@ -401,7 +402,26 @@ const AnnSatherWebsite = () => {
             </section>
 
             {/* Order Online – now clickable & location‑aware */}
-            <section id="order-online" className="py-20 bg-blue-900 text-white">
+            <section id="order-online"
+                className="py-5 bg-white p-5 text-black">
+            <div
+
+            style={{
+            backgroundColor: "#EDEDED", // base background
+            backgroundImage: `
+            repeating-linear-gradient(
+            -45deg,
+            rgba(96, 31, 31, .1) 0px,   /* stripe color */
+            rgba(0, 0, 0, 0.08) 0.1px,   /* stripe thickness */
+            transparent 2px,
+            transparent 6px           /* spacing */
+            )
+            `,
+            }}
+
+            className={'w-full h-full'}
+            >
+
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-4xl font-bold mb-4">Order Online</h2>
                     <p className="text-xl mb-12 opacity-90">Get your favorites delivered or ready for pickup</p>
@@ -442,7 +462,9 @@ const AnnSatherWebsite = () => {
                             ))}
                         </div>
                     </div>
+
                 </div>
+              </div>
             </section>
 
             {/* The AboutUs component*/}
