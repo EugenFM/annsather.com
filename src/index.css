@@ -1,2 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Cormorant+Garamond&family=Libre+Baskerville&family=EB+Garamond&family=Lora&family=Crimson+Pro&family=Cardo&family=Spectral&display=swap');
 @import "tailwindcss";
+
+/* Background styling */
+@layer components {
+    .striped-bg {
+        @apply bg-white p-5;
+        background-color: #EDEDED;
+        background-image: repeating-linear-gradient(
+                -45deg,
+                rgba(96, 31, 31, 0.1) 0px,      /* stripe color */
+                rgba(0, 0, 0, 0.08) 0.1px,      /* stripe thickness */
+                transparent 2px,
+                transparent 6px                 /* spacing */
+        );
+    }
+}
+
+/* ZoomOut effect for hero-img */
+@keyframes zoomOut {
+    0% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.animate-zoomOut {
+    animation: zoomOut 10s ease-out forwards;
+}

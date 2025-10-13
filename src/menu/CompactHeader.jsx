@@ -11,14 +11,14 @@ const CompactHeader = ({
                                 setPriceFilter,
                             }) => {
     return (
-        <div className="bg-blue-900 text-white shadow-lg p-4 md:p-6 font-sans">
+        <div className="bg-[#601f1f] text-white shadow-lg p-4 md:p-6 font-sans">
             <div className="max-w-7xl mx-auto">
                 {/* Top Row: Main title and primary actions */}
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
                     {/* Title and Subtitle */}
                     <div className="text-center md:text-left">
                         <h1 className="text-4xl font-bold text-white tracking-tight">Our Menu</h1>
-                        <p className="flex items-center justify-center md:justify-start gap-2 text-blue-200 mt-1">
+                        <p className="flex items-center justify-center md:justify-start gap-2 text-white mt-1">
                             <Sparkles size={18} className="text-yellow-400" />
                             <span>Authentic Swedish Cuisine</span>
                         </p>
@@ -30,12 +30,12 @@ const CompactHeader = ({
                         <div className="relative flex-grow">
                             <Search
                                 size={18}
-                                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-blue-300"
+                                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#601f1f]"
                             />
                             <input
                                 type="text"
                                 placeholder="Search menu..."
-                                className="w-full bg-blue-800/60 border border-blue-700 text-white placeholder-blue-300 rounded-md py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all"
+                                className="w-full bg-white border border-[#601f1f] text-[#601f1f] placeholder-[#601f1f] rounded-md py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
@@ -45,10 +45,10 @@ const CompactHeader = ({
                         <div className="relative">
                             <Filter
                                 size={18}
-                                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-blue-300"
+                                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#601f1f]"
                             />
                             <select
-                                className="appearance-none w-full bg-blue-800/60 border border-blue-700 text-white rounded-md py-2 pl-10 pr-8 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all"
+                                className="appearance-none w-full bg-white border border-[#601f1f] text-[#601f1f] rounded-md py-2 pl-10 pr-8 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all"
                                 value={priceFilter}
                                 onChange={(e) => setPriceFilter(e.target.value)}
                             >
@@ -62,7 +62,7 @@ const CompactHeader = ({
                 </div>
 
                 {/* Bottom Section: Customer Favorites */}
-                <div className="border-t border-blue-700/70 pt-4">
+                <div className="border-t border-white pt-4">
                     <h3 className="flex items-center gap-2 text-xl font-semibold text-yellow-400 mb-3">
                         Customer Favorites
                     </h3>

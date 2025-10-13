@@ -6,8 +6,8 @@ interface AccordionCardProps {
 
 const AccordionCard: React.FC<AccordionCardProps> = ({ children }) => {
     return (
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden max-w-4xl mx-auto mb-6">
-            <div className="p-2 space-y-4 text-sm text-blue-900 leading-relaxed">
+        <div className="bg-[#EAE6D2] rounded-xl shadow-lg overflow-hidden max-w-7xl mx-auto mb-6">
+            <div className="p-2 space-y-4 text-base text-[#330000] leading-relaxed">
                 {children}
             </div>
         </div>

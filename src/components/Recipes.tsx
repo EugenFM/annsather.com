@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 
 const recipeData = [
@@ -71,27 +70,30 @@ const Recipes = () => {
         <section
             id="recipes"
             ref={sectionRef}
-            className={`relative bg-blue-900 text-white px-6 py-14 mx-auto'
+            className={`relative bg-white p-5 pb-14'
             }`}
         >
+
+            <div className="w-full h-full bg-[#601f1f] text-white pb-4">
+
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center pt-10 mb-6 leading-relaxed px-4">
                 Cooking at Home with Ann Sather
             </h2>
 
-            <p className="max-w-5xl mx-auto text-justify leading-relaxed px-4">
+            <p className="max-w-6xl mx-auto text-justify leading-relaxed px-4">
                 Do you think it’s possible to replicate our much celebrated cinnamon rolls,
                 Swedish pancakes, roast duck or one of our delectable pies at home?
                 We don’t think so, either, but we are giving you the opportunity to try.
             </p>
 
-            <p className="max-w-5xl mx-auto text-justify leading-relaxed px-4">
+            <p className="max-w-6xl mx-auto text-justify leading-relaxed px-4">
                 In 1994, Ann Sather’s restaurants published a 50th anniversary cookbook.
                 Due to popular demand, we now have recipes for some of our much-loved dishes
                 available online. Download the recipes for your favorite menu items below and
                 get cooking!
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 m-10 px-4 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 m-10 px-4 max-w-6xl mx-auto">
 
                 {recipeData.map(({ title, image, pdfLinks }) => (
                     <div
@@ -104,9 +106,9 @@ const Recipes = () => {
                             src={image}
                             alt={title}
                             // className="w-full h-24 object-cover rounded-md mb-3"
-                            className="w-full h-42 object-cover rounded-t-md mb-1"
+                            className="w-full h-56 object-cover rounded-t-md mb-1"
                         />
-                        <div className="bg-yellow-400 text-gray-900 p-1 font-semibold text-center uppercase shadow-lg transform hover:shadow-2xl cursor-pointer flex items-center justify-center"
+                        <div className="bg-[#EAE6D2] text-gray-900 p-1 font-semibold text-center uppercase shadow-lg transform hover:shadow-2xl cursor-pointer flex items-center justify-center"
 
                         >{title}</div>
 
@@ -131,6 +133,7 @@ const Recipes = () => {
                       </div>
                     </div>
                 ))}
+            </div>
             </div>
         </section>
     );

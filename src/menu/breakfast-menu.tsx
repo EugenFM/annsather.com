@@ -368,7 +368,7 @@ const CompleteMenu = () => {
                                             onClick={() => handleCategoryChange(category)}
                                             className={`w-full text-left px-4 py-3 rounded-lg flex items-center justify-between transition-all duration-200 ${
                                                 activeCategory === category
-                                                    ? 'bg-blue-900 text-white shadow-lg'
+                                                    ? 'bg-[#601f1f] text-white shadow-lg'
                                                     : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
                                             }`}
                                         >
@@ -383,12 +383,12 @@ const CompleteMenu = () => {
                             </nav>
 
                             {/* Hours Info */}
-                            <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <div className="mt-8 bg-white border border-[#601f1f] rounded-lg p-4">
                                 <div className="flex items-center mb-2">
-                                    <Clock className="text-blue-900 mr-2" size={20} />
-                                    <h4 className="font-bold text-blue-900">Hours</h4>
+                                    <Clock className="text-[#601f1f] mr-2" size={20} />
+                                    <h4 className="font-bold text-[#601f1f]">Hours</h4>
                                 </div>
-                                <p className="text-sm text-blue-800">Daily: 7 AM - 3 PM</p>
+                                <p className="text-sm text-[#601f1f]">Daily: 7 AM - 3 PM</p>
                             </div>
                         </div>
                     </div>
@@ -425,11 +425,11 @@ const CompleteMenu = () => {
                                                 className="w-full px-6 py-4 bg-white hover:bg-gray-50 transition-colors"
                                             >
                                                 <div className="flex items-center justify-between">
-                                                    <h3 className="text-xl font-bold text-blue-900">{section}</h3>
+                                                    <h3 className="text-xl font-bold text-[#601f1f]">{section}</h3>
                                                     <div className="flex items-center">
                                                         <span className="text-sm text-gray-600 mr-3">{items.length} items</span>
                                                         <ChevronDown
-                                                            className={`text-blue-900 transform transition-transform duration-300 ${
+                                                            className={`text-[#601f1f] transform transition-transform duration-300 ${
                                                                 expandedSections[`${category}-${section}`] ? 'rotate-180' : ''
                                                             }`}
                                                             size={24}

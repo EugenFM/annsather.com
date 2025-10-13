@@ -141,7 +141,7 @@ const AnnSatherWebsite = () => {
         <div className="min-h-screen bg-[#FFFFFF]">
             <nav
                 className={`flex items-center bg-[#330000] fixed w-full z-50 transition-all duration-300 ${
-                    scrolled ? 'bg-[#EDEDED] shadow-lg py-4' : 'bg-[#330000] py-4'
+                    scrolled ? 'bg-[#FFFFFF] py-4' : 'bg-[#330000] py-4'
                 }`}
             >
                 {/* Left: Logo (fixed width, flush left) */}
@@ -203,7 +203,7 @@ const AnnSatherWebsite = () => {
 
                 {/* ✅ Background image with white margins */}
                 <div
-                    className="absolute top-29 bottom-5 left-5 right-5 bg-cover bg-center"
+                    className="absolute top-29 bottom-5 left-5 right-5 bg-cover bg-center animate-zoomOut"
                     style={{
                         backgroundImage:
                             "url('src/assets/images/EFM-AnnSather_PICS/Belmont-indoor7.jpeg')",
@@ -216,10 +216,7 @@ const AnnSatherWebsite = () => {
                     <div className="max-w-4xl">
                         {/* Banner */}
                         <div className="mb-8">
-        {/*<span className="inline-block px-6 py-2 bg-[#F6E6A8]/90 rounded-full text-[#7B4F27] font-semibold text-lg shadow-md">*/}
-        {/*  Serving Chicago Since 1945*/}
-        {/*</span>*/}
-                        </div>
+                            </div>
 
                         {/* Headline */}
                         <h2 className="text-5xl md:text-7xl text-white leading-tight drop-shadow-lg font-['Playfair_Display']">
@@ -248,24 +245,8 @@ const AnnSatherWebsite = () => {
             <section
                 id="menu"
                 className="py-5 bg-white p-5">
-                <div
-
-                style={{
-                    backgroundColor: "#EDEDED", // base background
-                    backgroundImage: `
-      repeating-linear-gradient(
-        -45deg,
-        rgba(96, 31, 31, .1) 0px,   /* stripe color */
-        rgba(0, 0, 0, 0.08) 0.1px,   /* stripe thickness */
-        transparent 2px,
-        transparent 6px           /* spacing */
-      )
-    `,
-                }}
-
-                className={'w-full h-full'}
-            >
-                <div className="max-w-7xl mx-auto pb-20 px-4 sm:px-6 lg:px-8">
+                <div className={'striped-bg w-full h-full'}>
+                  <div className="max-w-7xl mx-auto pb-20 px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12">
                         <h2 className="text-4xl font-bold text-gray-900 pt-15 mb-4">Menu Favorites</h2>
                         <p className="text-xl text-gray-600">From Swedish classics to American breakfast favorites</p>
@@ -310,30 +291,10 @@ const AnnSatherWebsite = () => {
 
             <CompleteMenu />   {/* new tabbed breakfast menu */}
 
-            {/* Catering Component */}
-            <Catering />
-            
             {/* Locations */}
-            <section id="locations"
-
-                     className="py-5 bg-white p-5">
-                <div
-
-                    style={{
-                        backgroundColor: "#EDEDED", // base background
-                        backgroundImage: `
-      repeating-linear-gradient(
-        -45deg,
-        rgba(96, 31, 31, .1) 0px,   /* stripe color */
-        rgba(0, 0, 0, 0.08) 0.1px,   /* stripe thickness */
-        transparent 2px,
-        transparent 6px           /* spacing */
-      )
-    `,}}
-                >
-
-
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+            <section id="locations" className="pb-5 bg-white px-5">
+                <div className={'striped-bg'} >
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
                     <div className="text-center mb-12 pt-10">
                         <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Locations</h2>
                         <p className="text-xl text-gray-600">Three convenient Chicago locations to serve you</p>
@@ -403,30 +364,13 @@ const AnnSatherWebsite = () => {
 
             {/* Order Online – now clickable & location‑aware */}
             <section id="order-online"
-                className="py-5 bg-white p-5 text-black">
-            <div
-
-            style={{
-            backgroundColor: "#EDEDED", // base background
-            backgroundImage: `
-            repeating-linear-gradient(
-            -45deg,
-            rgba(96, 31, 31, .1) 0px,   /* stripe color */
-            rgba(0, 0, 0, 0.08) 0.1px,   /* stripe thickness */
-            transparent 2px,
-            transparent 6px           /* spacing */
-            )
-            `,
-            }}
-
-            className={'w-full h-full'}
-            >
-
+                className="pb-5 bg-white px-5 text-black">
+            <div className={'w-full h-full striped-bg'}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-4xl font-bold mb-4">Order Online</h2>
-                    <p className="text-xl mb-12 opacity-90">Get your favorites delivered or ready for pickup</p>
+                    <h2 className="text-4xl font-bold pt-10 mb-4">Order Online</h2>
+                    <p className="text-xl text-gray-600 mb-12 opacity-90">Get your favorites delivered or ready for pickup</p>
 
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
                         {deliveryPlatforms.map((platform) => {
                             const link = getLink(platform.name);
                             const isDisabled = !link;
@@ -462,14 +406,20 @@ const AnnSatherWebsite = () => {
                             ))}
                         </div>
                     </div>
-
                 </div>
               </div>
             </section>
 
+            {/* Catering Component */}
+            <Catering />
+
+            {/* The Recipes component*/}
+            <Recipes />
+
             {/* The AboutUs component*/}
             <AboutUs />
-            <Recipes />
+
+            {/* The Contact component*/}
             <Contact />
 
             {/* Footer */}

@@ -84,11 +84,11 @@ const CateringSection = () => {
     ) => (
         <div
             ref={sectionRefs[id]}
-            className="bg-white/40 rounded-4xl shadow-lg overflow-hidden max-w-2xl mx-auto mb-6"
+            className="bg-white/30 shadow-lg overflow-hidden max-w-3xl mx-auto mb-6"
         >
             <button
                 onClick={() => setOpenSection((prev) => (prev === id ? null : id))}
-                className="w-full px-6 py-4 bg-white/10 hover:bg-white/30 text-white font-bold transition-colors flex items-center justify-between cursor-pointer"
+                className="w-full px-6 py-3 bg-white/10 hover:bg-white/30 text-white font-bold transition-colors flex items-center justify-between cursor-pointer"
 
             >
                 <h3 className="text-xl font-bold uppercase">{title}</h3>
@@ -110,10 +110,10 @@ const CateringSection = () => {
                  className="relative w-full bg-[#FFF] py-20 px-5 text-white overflow-hidden">
             {/* Background image */}
             <div
-                className="absolute inset-5 bg-cover bg-center brightness-40"
+                className="absolute inset-5 bg-cover bg-center brightness-50"
                 style={{
                     backgroundImage: `
-        linear-gradient(rgba(96, 31, 31, .1), rgba(96, 31, 31, .1)),
+        linear-gradient(rgba(96, 31, 31, .3), rgba(96, 31, 31, .3)),
         url('src/assets/images/EFM-AnnSather_PICS/Belmont-walls1.jpeg')`,
                     backgroundBlendMode: 'overlay',
                     zIndex: 0,
@@ -129,14 +129,14 @@ const CateringSection = () => {
                 <div className="mb-10 text-center">
                     <button
                         onClick={() => setShowDeliveryInfo(!showDeliveryInfo)}
-                        className="bg-white/40 text-white font-semibold px-4 py-2 rounded-full shadow hover:bg-white/40 transition cursor-pointer"
+                        className="bg-white/40 text-white font-semibold px-4 py-2 rounded-full shadow hover:bg-white/60 transition cursor-pointer"
                     >
                         {showDeliveryInfo ? 'Hide Delivery Info' : 'View Delivery Info'}
                     </button>
                 </div>
 
                 {showDeliveryInfo && (
-                    <div className="bg-white text-blue-900 rounded-xl shadow-lg p-6 max-w-3xl mx-auto mb-10 text-sm">
+                    <div className="bg-[#f7f5ee] text-[#330000] rounded-xl shadow-lg p-6 max-w-5xl mx-auto mb-10 text-base">
 
                         <h4 className="text-lg font-bold mb-4">Deliveries</h4>
                         <p className="mb-2">
@@ -175,12 +175,12 @@ const CateringSection = () => {
                     </div>
                 )}
 
-
                 {renderAccordion('breakfast', 'Breakfast', <BreakfastCaterMenu />)}
                 {renderAccordion('lunch', 'Lunch & Dinner', <LunchDinerCaterMenu />)}
                 {renderAccordion('alaCarte', 'A La Carte', <ALaCarteCaterMenu />)}
                 {renderAccordion('holiday', 'Holiday Specials', <HolidaySpecialsCaterMenu />)}
                 {renderAccordion('desserts', 'Appetizers & Desserts', <AppetizersDessertsCaterMenu />)}
+
             </div>
         </section>
     );
