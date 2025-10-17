@@ -41,7 +41,7 @@ const AboutUs: React.FC = () => {
 
     return (
         <section
-            id="about-us"
+            id="our-story"
             ref={sectionRef}
             className={`bg-white text-gray-800 px-6 py-14 max-w-5xl mx-auto transition-opacity duration-1000 ease-out ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4' }`} >

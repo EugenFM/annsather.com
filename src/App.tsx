@@ -165,10 +165,10 @@ const AnnSatherWebsite = () => {
 
                 {/* Right: Full Nav & Button aligned right */}
                 <div className="flex-1">
-                    <div className="flex justify-end items-center gap-8 pr-6">
+                    <div className="flex justify-end items-center gap-10 pr-8">
                         {/* Desktop Navigation */}
-                        <div className="hidden md:flex items-center gap-6">
-                            {['Menu', 'Catering', 'Locations', 'Recipes', 'About Us', 'Contact'].map((item) => (
+                        <div className="hidden md:flex items-center gap-10">
+                            {['Home', 'Our Story', 'Menu', 'Catering', 'Visit'].map((item) => (
                                 <a
                                     key={item}
                                     href={`#${item.toLowerCase().replace(' ', '-')}`}
@@ -199,7 +199,7 @@ const AnnSatherWebsite = () => {
 
 
             {/* Hero Section */}
-            <section className="relative h-screen bg-[#FFFFFF] font-['Playfair_Display'] overflow-hidden">
+            <section id='home' className="relative h-screen bg-[#FFFFFF] font-['Playfair_Display'] overflow-hidden">
 
                 {/* ✅ Background image with white margins */}
                 <div
@@ -288,77 +288,126 @@ const AnnSatherWebsite = () => {
                 </div>
             </section>
 
-
             <CompleteMenu />   {/* new tabbed breakfast menu */}
 
-            {/* Locations */}
-            <section id="locations" className="pb-5 bg-white px-5">
-                <div className={'striped-bg'} >
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
-                    <div className="text-center mb-12 pt-10">
-                        <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Locations</h2>
-                        <p className="text-xl text-gray-600">Three convenient Chicago locations to serve you</p>
-                    </div>
+            {/* Visit */}
+            <section id="visit" className="pb-5 bg-white px-5">
+                <div className="striped-bg">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        {/* Heading */}
+                        <div className="text-center mb-12 pt-10">
+                            <h2 className="text-4xl font-bold text-gray-900 mb-4">Visit Ann Sather</h2>
+                            <p className="text-xl text-gray-600">
+                                Three convenient Chicago locations — and the friendly team behind them.
+                            </p>
+                        </div>
 
-                    <div className="grid md:grid-cols-2 gap-8">
-                        <div className="space-y-4">
-                            {locations.map((location, index) => (
-                                <div
-                                    key={index}
-                                    onClick={() => setActiveLocation(index)}
-                                    className={`p-6 rounded-xl cursor-pointer transition-all duration-300 ${
-                                        activeLocation === index
-                                            ? 'bg-[#601f1f] text-white shadow-xl scale-105'
-                                            : 'bg-white shadow-lg hover:shadow-xl'
-                                    }`}
-                                >
-                                    <div className="flex justify-between items-start">
-                                        <div>
-                                            <h3 className="text-2xl font-bold mb-2">{location.name}</h3>
-                                            <div className="flex items-center mb-2">
-                                                <MapPin size={18} className="mr-2" />
-                                                <span>{location.address}</span>
-                                            </div>
-                                            <div className="flex items-center">
-                                                <Phone size={18} className="mr-2" />
-                                                <span>{location.phone}</span>
-                                            </div>
-                                            {location.special && (
-                                                <div className="mt-3">
-                          <span className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${
-                              activeLocation === index ? 'bg-white text-blue-900' : 'bg-[#601f1f] text-white'
-                          }`}>
-                            {location.special}
-                          </span>
+                        {/* === GRID: Locations | Image | OUR TEAM (aside) === */}
+                        <div
+                            className="grid gap-8 md:grid-cols-2
+          lg:grid-cols-[1.1fr_1.5fr_0.45fr]   /* left | image | skinny aside */items-start">
+                            {/* LEFT: Locations accordion */}
+                            <div className="space-y-6">
+                                {locations.map((location, index) => (
+                                    <div
+                                        key={index}
+                                        onClick={() => setActiveLocation(index)}
+                                        className={`p-6 rounded-xl cursor-pointer transition-all duration-300 ${
+                                            activeLocation === index
+                                                ? 'bg-[#601f1f] text-white shadow-xl scale-105'
+                                                : 'bg-white shadow-lg hover:shadow-xl'
+                                        }`}
+                                    >
+                                        <div className="flex justify-between items-start">
+                                            <div>
+                                                <h3 className="text-2xl font-bold mb-2">{location.name}</h3>
+                                                <div className="flex items-center mb-2">
+                                                    <MapPin size={18} className="mr-2" />
+                                                    <span>{location.address}</span>
                                                 </div>
-                                            )}
+                                                <div className="flex items-center">
+                                                    <Phone size={18} className="mr-2" />
+                                                    <span>{location.phone}</span>
+                                                </div>
+                                                {location.special && (
+                                                    <div className="mt-3">
+                      <span
+                          className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${
+                              activeLocation === index ? 'bg-white text-[#601f1f]' : 'bg-[#601f1f] text-white'
+                          }`}
+                      >
+                        {location.special}
+                      </span>
+                             </div>
+                                                )}
+                                            </div>
+                                            <ChevronDown
+                                                size={24}
+                                                className={`transform transition-transform ${activeLocation === index ? 'rotate-180' : ''}`}
+                                            />
                                         </div>
-                                        <ChevronDown
-                                            size={24}
-                                            className={`transform transition-transform ${
-                                                activeLocation === index ? 'rotate-180' : ''
-                                            }`}
-                                        />
                                     </div>
-                                </div>
-                            ))}
-                        </div>
-
-                        <div className="relative h-96 md:h-auto rounded-xl overflow-hidden shadow-xl">
-                            <img
-                                src={locations[activeLocation].image}
-                                alt={locations[activeLocation].name}
-                                className="w-full h-full object-cover"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                            <div className="absolute bottom-6 left-6 text-white">
-                                <h3 className="text-2xl font-bold">{locations[activeLocation].name} Location</h3>
-                                <p className="opacity-90">{locations[activeLocation].address}</p>
+                                ))}
                             </div>
-                        </div>
 
+                            {/* MIDDLE: Dynamic image */}
+                            <div className="relative h-90 lg:h-[520px] rounded-xl overflow-hidden shadow-xl">
+                                <img
+                                    src={locations[activeLocation].image}
+                                    alt={locations[activeLocation].name}
+                                    className="w-full h-full object-cover"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                                <div className="absolute bottom-6 left-6 text-white">
+                                    <h3 className="text-2xl font-bold">{locations[activeLocation].name} Location</h3>
+                                    <p className="opacity-90">{locations[activeLocation].address}</p>
+                                </div>
+                            </div>
+
+                            {/* Our Team */}
+                            <aside
+                                className="bg-white shadow-md rounded-xl p-6 lg:p-5 lg:sticky lg:top-24
+                                max-h-[560px] overflow-hidden flex flex-col justify-center
+                                w-[200px]  /* narrower width */"
+                            >
+                                <h3 className="text-xl font-bold text-gray-800 pt-4 mb-3 text-center uppercase tracking-wide">
+                                    Our Team
+                                </h3>
+
+                                {/* Make vertical list take full height and center items evenly */}
+                                <ul className="flex flex-col justify-around items-center h-full w-full text-base leading-snug text-gray-900">
+                                    <li className="text-center">
+                                        <p className="font-semibold">Adolfo Martinez</p>
+                                        <p className="text-gray-700">General Manager</p>
+                                        <p className="text-gray-700">773-348-2378</p>
+                                        <a href="mailto:adolfo@annsather.com" className="text-gray-700 hover:underline hover:font-bold">
+                                            adolfo@annsather.com
+                                        </a>
+                                    </li>
+
+                                    <li className="text-center">
+                                        <p className="font-semibold">Carrie Patino</p>
+                                        <p className="text-gray-700">Office Manager</p>
+                                        <p className="text-gray-700">773-348-2378, ext. 11</p>
+                                        <a href="mailto:carrie@annsather.com" className="text-gray-700 hover:underline hover:font-bold">
+                                            carrie@annsather.com
+                                        </a>
+                                    </li>
+
+                                    <li className="text-center">
+                                        <p className="font-semibold">Tom Tunney</p>
+                                        <p className="text-gray-700">Owner</p>
+                                        <p className="text-gray-700">773-348-2378</p>
+                                        <a href="mailto:tom@annsather.com" className="text-gray-700 hover:underline hover:font-bold">
+                                            tom@annsather.com
+                                        </a>
+                                    </li>
+                                </ul>
+                            </aside>
+
+
+                        </div>
                     </div>
-                </div>
                 </div>
             </section>
 
@@ -420,7 +469,7 @@ const AnnSatherWebsite = () => {
             <AboutUs />
 
             {/* The Contact component*/}
-            <Contact />
+            {/*<Contact />*/}
 
             {/* Footer */}
             <footer className="bg-gray-900 text-white py-12">
