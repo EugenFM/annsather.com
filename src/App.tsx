@@ -12,12 +12,13 @@ import {
     Heart,
 } from 'lucide-react';
 import CompleteMenu from "./menu/breakfast-menu.tsx";   // adjust the path if the file lives elsewhere
-import AboutUs from './components/AboutUs';
+import OurStory from './components/OurStory.tsx';
 import Catering from "./components/Catering.tsx";
 import Recipes from "./components/Recipes.tsx";
-import Contact from "./components/Contact.tsx";
+// import Contact from "./components/Contact.tsx";
 import AdminPage from "./components/cms/admin-page.tsx";
 import {Amplify} from "aws-amplify";
+// import OurStory from "./components/OurStory.tsx";
 
 Amplify.configure({
     Auth: {
@@ -168,7 +169,7 @@ const AnnSatherWebsite = () => {
                     <div className="flex justify-end items-center gap-10 pr-8">
                         {/* Desktop Navigation */}
                         <div className="hidden md:flex items-center gap-10">
-                            {['Home', 'Our Story', 'Menu', 'Catering', 'Visit'].map((item) => (
+                            {['Home', 'Menu','Our Story', 'Catering', 'Visit'].map((item) => (
                                 <a
                                     key={item}
                                     href={`#${item.toLowerCase().replace(' ', '-')}`}
@@ -290,10 +291,19 @@ const AnnSatherWebsite = () => {
 
             <CompleteMenu />   {/* new tabbed breakfast menu */}
 
+            {/* The OurStory component*/}
+            <OurStory />
+
+            {/* Catering Component */}
+            <Catering />
+
+            {/* The Recipes component*/}
+            <Recipes />
+
             {/* Visit */}
             <section id="visit" className="pb-5 bg-white px-5">
                 <div className="striped-bg">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-7xl mx-auto px-4 pb-10 sm:px-6 lg:px-8">
                         {/* Heading */}
                         <div className="text-center mb-12 pt-10">
                             <h2 className="text-4xl font-bold text-gray-900 mb-4">Visit Ann Sather</h2>
@@ -338,7 +348,7 @@ const AnnSatherWebsite = () => {
                       >
                         {location.special}
                       </span>
-                             </div>
+                                                    </div>
                                                 )}
                                             </div>
                                             <ChevronDown
@@ -404,72 +414,63 @@ const AnnSatherWebsite = () => {
                                     </li>
                                 </ul>
                             </aside>
-
-
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Order Online – now clickable & location‑aware */}
-            <section id="order-online"
-                className="pb-5 bg-white px-5 text-black">
-            <div className={'w-full h-full striped-bg'}>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-4xl font-bold pt-10 mb-4">Order Online</h2>
-                    <p className="text-xl text-gray-600 mb-12 opacity-90">Get your favorites delivered or ready for pickup</p>
-
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                        {deliveryPlatforms.map((platform) => {
-                            const link = getLink(platform.name);
-                            const isDisabled = !link;
-                            const Icon = platform.icon;
-                            return (
-                                <a
-                                    key={platform.name}
-                                    href={link || '#'}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={`rounded-xl p-6 text-center transition-all duration-300 transform ${
-                                        isDisabled
-                                            ? 'bg-white/10 cursor-not-allowed opacity-40'
-                                            : `${platform.color} hover:scale-105 cursor-pointer`
-                                    }`}
-                                    aria-disabled={isDisabled}
-                                >
-                                    <Icon size={32} className="mx-auto mb-3" />
-                                    <p className="font-semibold">{platform.name}</p>
-                                    {isDisabled && <p className="mt-2 text-xs opacity-70">(Not available)</p>}
-                                </a>
-                            );
-                        })}
-                    </div>
-
-                    <div className="mt-12">
-                        <p className="text-lg mb-4">Or call for pickup:</p>
-                        <div className="flex flex-wrap justify-center gap-6">
-                            {locations.map((location, index) => (
-                                <div key={index} className="bg-white/10 backdrop-blur rounded-lg px-6 py-3">
-                                    <span className="font-semibold">{location.name}:</span> {location.phone}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Catering Component */}
-            <Catering />
-
-            {/* The Recipes component*/}
-            <Recipes />
-
-            {/* The AboutUs component*/}
-            <AboutUs />
 
             {/* The Contact component*/}
             {/*<Contact />*/}
+
+            {/* Order Online – now clickable & location‑aware */}
+            <section id="order-online"
+                     className="pb-5 bg-white px-5 text-black">
+                <div className={'w-full h-full striped-bg'}>
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                        <h2 className="text-4xl font-bold pt-10 mb-4">Order Online</h2>
+                        <p className="text-xl text-gray-600 mb-12 opacity-90">Get your favorites delivered or ready for pickup</p>
+
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                            {deliveryPlatforms.map((platform) => {
+                                const link = getLink(platform.name);
+                                const isDisabled = !link;
+                                const Icon = platform.icon;
+                                return (
+                                    <a
+                                        key={platform.name}
+                                        href={link || '#'}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={`rounded-xl p-6 text-center transition-all duration-300 transform ${
+                                            isDisabled
+                                                ? 'bg-white/10 cursor-not-allowed opacity-40'
+                                                : `${platform.color} hover:scale-105 cursor-pointer`
+                                        }`}
+                                        aria-disabled={isDisabled}
+                                    >
+                                        <Icon size={32} className="mx-auto mb-3" />
+                                        <p className="font-semibold">{platform.name}</p>
+                                        {isDisabled && <p className="mt-2 text-xs opacity-70">(Not available)</p>}
+                                    </a>
+                                );
+                            })}
+                        </div>
+
+                        <div className="mt-12">
+                            <p className="text-lg mb-4">Or call for pickup:</p>
+                            <div className="flex flex-wrap justify-center gap-6">
+                                {locations.map((location, index) => (
+                                    <div key={index} className="bg-white/10 backdrop-blur rounded-lg px-6 py-3">
+                                        <span className="font-semibold">{location.name}:</span> {location.phone}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
 
             {/* Footer */}
             <footer className="bg-gray-900 text-white py-12">
