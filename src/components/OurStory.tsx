@@ -43,7 +43,7 @@ const OurStory: React.FC = () => {
     const sectionRef = useRef<HTMLDivElement | null>(null);
 
     const paragraphClass =
-        'max-w-7xl mx-auto text-gray-700 text-justify leading-relaxed px-4';
+        'max-w-7xl mx-auto text-[#601f1f] italic text-justify leading-relaxed px-4';
 
     // Scroll-in animation + collapse when out of view
     useEffect(() => {
@@ -84,20 +84,20 @@ const OurStory: React.FC = () => {
             <div
                 className={`striped-bg w-full h-full`}
             >
-                <div className="max-w-7xl mx-auto pb-20 px-4 sm:px-6 lg:px-8">
+                <div className="relative max-w-7xl mx-auto pb-20 px-4 sm:px-6 lg:px-8 text-[#601f1f]">
                     <div className="text-center mb-12">
-                        <h2 className="text-4xl font-bold text-gray-900 pt-16 mb-4">Our Story</h2>
+                        <h2 className="text-4xl font-bold text-[#601f1f] pt-12 mb-4">Our Story</h2>
                     </div>
 
-                    <div className="flex justify-end pb-4 pr-26">
+                    <div className="absolute right-10 top-8">
                         <img
-                            src="/images/ann_sather_photo_cropped.jpg"
-                            alt="About our restaurant"
-                            className="w-20 h-auto rounded-sm"
+                            src="src/assets/images/ann_sather_photo_cropped.jpg"
+                            alt="Ann Sather"
+                            className="w-28 h-auto rounded-md shadow-md border border-gray-300"
                         />
                     </div>
 
-                    <p className="text-lg leading-relaxed text-center max-w-3xl mx-auto mb-4">
+                    <p className="text-lg leading-relaxed italic text-center max-w-3xl mx-auto mb-4">
                         Yes, there really was an Ann Sather.
                     </p>
 
@@ -153,7 +153,7 @@ const OurStory: React.FC = () => {
                         </p>
 
                         <br />
-                        <p className="font-bold max-w-3xl text-gray-700 text-xl leading-relaxed px-4">
+                        <p className="font-bold max-w-3xl text-xl leading-relaxed px-4">
                             Ann Sather Corporate and Special Event Catering
                         </p>
                         <p className={paragraphClass}>
@@ -168,7 +168,7 @@ const OurStory: React.FC = () => {
                         </p>
 
                         <br />
-                        <p className="font-bold max-w-3xl text-gray-700 text-xl leading-relaxed px-4">
+                        <p className="font-bold max-w-3xl text-xl leading-relaxed px-4">
                             Serving the Community
                         </p>
                         <p className={paragraphClass}>
@@ -186,76 +186,7 @@ const OurStory: React.FC = () => {
                     </div>
                 </div>
             </div>
-
-            {/* ——— RECIPES (merged in) ——— */}
-            <section
-                id="recipes"
-                className="relative bg-white p-5 pb-14 mt-12 rounded-xl overflow-hidden"
-            >
-                <div className="w-full h-full bg-[#601f1f] text-white pb-4 rounded-xl">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center pt-10 mb-6 leading-relaxed px-4">
-                        Cooking at Home with Ann Sather
-                    </h2>
-
-                    <p className="max-w-6xl mx-auto text-justify leading-relaxed px-4">
-                        Do you think it’s possible to replicate our much celebrated cinnamon rolls,
-                        Swedish pancakes, roast duck or one of our delectable pies at home? We don’t
-                        think so, either, but we are giving you the opportunity to try.
-                    </p>
-
-                    <p className="max-w-6xl mx-auto text-justify leading-relaxed px-4">
-                        In 1994, Ann Sather’s restaurants published a 50th anniversary cookbook. Due to
-                        popular demand, we now have recipes for some of our much-loved dishes available
-                        online. Download the recipes for your favorite menu items below and get cooking!
-                    </p>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 m-10 px-4 max-w-6xl mx-auto">
-                        {recipeData.map(({ title, image, pdfLinks }) => (
-                            <div
-                                key={title}
-                                onClick={() =>
-                                    setActiveCategory(activeCategory === title ? null : title)
-                                }
-                                className="text-blue-900 font-semibold text-center rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300 hover:shadow-2xl cursor-pointer"
-                            >
-                                <div className="relative">
-                                    <img
-                                        src={image}
-                                        alt={title}
-                                        className="w-full h-56 object-cover rounded-t-md mb-1"
-                                        onError={(e) => {
-                                            (e.target as HTMLImageElement).src = "https://placehold.co/600x400?text=Recipe";
-                                        }}
-                                    />
-                                    <div className="bg-[#EAE6D2] text-gray-900 p-1 font-semibold text-center uppercase shadow-lg flex items-center justify-center">
-                                        {title}
-                                    </div>
-
-                                    {activeCategory === title && (
-                                        <div className="absolute left-1/2 -translate-x-1/2 bg-blue-900 px-6 py-4 rounded-xl shadow-lg space-y-2">
-                                            {pdfLinks.map(({ name, url }) => (
-                                                <p key={name}>
-                                                    <a
-                                                        href={url}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="inline-block w-36 bg-white text-blue-900 font-medium py-1 px-4 text-center hover:bg-yellow-400 hover:text-blue-900 transition"
-                                                    >
-                                                        {name}
-                                                    </a>
-                                                </p>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
         </section>
-
-
     );
 };
 

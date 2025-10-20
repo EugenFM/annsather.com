@@ -169,7 +169,7 @@ const AnnSatherWebsite = () => {
                     <div className="flex justify-end items-center gap-10 pr-8">
                         {/* Desktop Navigation */}
                         <div className="hidden md:flex items-center gap-10">
-                            {['Home', 'Menu','Our Story', 'Catering', 'Visit'].map((item) => (
+                            {['Home', 'Menu', 'Visit', 'Catering', 'Recipes', 'Our Story' ].map((item) => (
                                 <a
                                     key={item}
                                     href={`#${item.toLowerCase().replace(' ', '-')}`}
@@ -249,15 +249,15 @@ const AnnSatherWebsite = () => {
                 <div className={'striped-bg w-full h-full'}>
                   <div className="max-w-7xl mx-auto pb-20 px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12">
-                        <h2 className="text-4xl font-bold text-gray-900 pt-15 mb-4">Menu Favorites</h2>
-                        <p className="text-xl text-gray-600">From Swedish classics to American breakfast favorites</p>
+                        <h2 className="text-4xl font-bold text-[#601f1f] pt-15 pb-5 mb-4">Menu Favorites</h2>
+                        <p className="text-xl text-[#601f1f] pb-5">From Swedish classics to American breakfast favorites</p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {menuHighlights.map((item, index) => (
                             <div
                                 key={index}
-                                className="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300 hover:shadow-2xl"
+                                className="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300 hover:shadow-2xl"
                             >
                                 <div className="relative">
                                     <img
@@ -273,10 +273,10 @@ const AnnSatherWebsite = () => {
                                     )}
                                 </div>
                                 <div className="p-6">
-                                    <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
-                                    <p className="text-gray-600 mb-4">{item.description}</p>
+                                    <h3 className="text-xl font-bold text-[#601f1f] mb-2">{item.title}</h3>
+                                    <p className="text-[#601f1f] mb-4">{item.description}</p>
                                     <div className="flex justify-between items-center">
-                                        <span className="text-2xl font-bold text-blue-600">{item.price}</span>
+                                        <span className="text-xl font-bold text-[#601f1f]">{item.price}</span>
                                         <button className="text-red-500 hover:text-red-600 transition-colors">
                                             <Heart size={24} />
                                         </button>
@@ -291,23 +291,14 @@ const AnnSatherWebsite = () => {
 
             <CompleteMenu />   {/* new tabbed breakfast menu */}
 
-            {/* The OurStory component*/}
-            <OurStory />
-
-            {/* Catering Component */}
-            <Catering />
-
-            {/* The Recipes component*/}
-            <Recipes />
-
             {/* Visit */}
-            <section id="visit" className="pb-5 bg-white px-5">
+            <section id="visit" className="pb-5 bg-white px-5 text-[#601f1f]">
                 <div className="striped-bg">
                     <div className="max-w-7xl mx-auto px-4 pb-10 sm:px-6 lg:px-8">
                         {/* Heading */}
                         <div className="text-center mb-12 pt-10">
-                            <h2 className="text-4xl font-bold text-gray-900 mb-4">Visit Ann Sather</h2>
-                            <p className="text-xl text-gray-600">
+                            <h2 className="text-4xl font-bold  mb-4">Visit Ann Sather</h2>
+                            <p className="text-xl">
                                 Three convenient Chicago locations — and the friendly team behind them.
                             </p>
                         </div>
@@ -380,35 +371,35 @@ const AnnSatherWebsite = () => {
                                 max-h-[560px] overflow-hidden flex flex-col justify-center
                                 w-[200px]  /* narrower width */"
                             >
-                                <h3 className="text-xl font-bold text-gray-800 pt-4 mb-3 text-center uppercase tracking-wide">
+                                <h3 className="text-xl font-bold text-[#601f1f] pt-4 mb-3 text-center uppercase tracking-wide">
                                     Our Team
                                 </h3>
 
                                 {/* Make vertical list take full height and center items evenly */}
-                                <ul className="flex flex-col justify-around items-center h-full w-full text-base leading-snug text-gray-900">
+                                <ul className="flex flex-col justify-around items-center h-full w-full text-base leading-snug text-[#601f1f]">
                                     <li className="text-center">
                                         <p className="font-semibold">Adolfo Martinez</p>
-                                        <p className="text-gray-700">General Manager</p>
-                                        <p className="text-gray-700">773-348-2378</p>
-                                        <a href="mailto:adolfo@annsather.com" className="text-gray-700 hover:underline hover:font-bold">
+                                        <p>General Manager</p>
+                                        <p>773-348-2378</p>
+                                        <a href="mailto:adolfo@annsather.com" className="hover:underline hover:font-bold">
                                             adolfo@annsather.com
                                         </a>
                                     </li>
 
                                     <li className="text-center">
                                         <p className="font-semibold">Carrie Patino</p>
-                                        <p className="text-gray-700">Office Manager</p>
-                                        <p className="text-gray-700">773-348-2378, ext. 11</p>
-                                        <a href="mailto:carrie@annsather.com" className="text-gray-700 hover:underline hover:font-bold">
+                                        <p>Office Manager</p>
+                                        <p>773-348-2378, ext. 11</p>
+                                        <a href="mailto:carrie@annsather.com" className="hover:underline hover:font-bold">
                                             carrie@annsather.com
                                         </a>
                                     </li>
 
                                     <li className="text-center">
                                         <p className="font-semibold">Tom Tunney</p>
-                                        <p className="text-gray-700">Owner</p>
-                                        <p className="text-gray-700">773-348-2378</p>
-                                        <a href="mailto:tom@annsather.com" className="text-gray-700 hover:underline hover:font-bold">
+                                        <p>Owner</p>
+                                        <p>773-348-2378</p>
+                                        <a href="mailto:tom@annsather.com" className="hover:underline hover:font-bold">
                                             tom@annsather.com
                                         </a>
                                     </li>
@@ -419,9 +410,17 @@ const AnnSatherWebsite = () => {
                 </div>
             </section>
 
+            {/* Catering Component */}
+            <Catering />
+
+            {/* The Recipes component*/}
+            <Recipes />
 
             {/* The Contact component*/}
             {/*<Contact />*/}
+
+            {/* The OurStory component*/}
+            <OurStory />
 
             {/* Order Online – now clickable & location‑aware */}
             <section id="order-online"
@@ -470,7 +469,6 @@ const AnnSatherWebsite = () => {
                     </div>
                 </div>
             </section>
-
 
             {/* Footer */}
             <footer className="bg-gray-900 text-white py-12">

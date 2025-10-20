@@ -1,8 +1,8 @@
 
 const LunchDinnerCaterMenu = () => {
     return (
-        <div className="bg-[#f7f5ee] rounded-xl shadow-lg overflow-hidden max-w-5xl mx-auto">
-            <div className="p-6 space-y-4 text-base text-[#330000] leading-relaxed">
+        <div className="rounded-xl shadow-lg overflow-hidden max-w-7xl mx-auto">
+            <div className="p-6 space-y-4 text-base text-white leading-relaxed">
 
                 <h4 className="text-xl font-bold pt-4">COLD LUNCH OPTIONS</h4>
                 <p className="italic">Available for Delivery or Pick-Up Every Day</p>

@@ -84,7 +84,7 @@ const CateringSection = () => {
     ) => (
         <div
             ref={sectionRefs[id]}
-            className="bg-white/30 shadow-lg overflow-hidden max-w-3xl mx-auto mb-6"
+            className="bg-white/20 shadow-lg overflow-hidden max-w-3xl mx-auto mb-6"
         >
             <button
                 onClick={() => setOpenSection((prev) => (prev === id ? null : id))}
@@ -110,33 +110,33 @@ const CateringSection = () => {
                  className="relative w-full bg-[#FFF] py-20 px-5 text-white overflow-hidden">
             {/* Background image */}
             <div
-                className="absolute inset-5 bg-cover bg-center brightness-50"
+                className="absolute inset-5 bg-cover bg-center brightness-70"
                 style={{
                     backgroundImage: `
-        linear-gradient(rgba(96, 31, 31, .3), rgba(96, 31, 31, .3)),
+        linear-gradient(rgba(96, 31, 31, .1), rgba(96, 31, 31, .3)),
         url('src/assets/images/EFM-AnnSather_PICS/Belmont-walls1.jpeg')`,
                     backgroundBlendMode: 'overlay',
                     zIndex: 0,
                 }}
             />
 
-            <div className="absolute inset-5 bg-[#601f1f]/10 z-[1] pointer-events-none" />
+            <div className="absolute inset-5 bg-[#601f1f]/20 z-[1] pointer-events-none" />
 
             {/* Foreground content */}
             <div className="relative z-10">
-                <h3 className="text-4xl font-bold text-center mb-8">Ann Sather Catering</h3>
+                <h3 className="text-4xl font-bold text-center p-10 mb-8">Ann Sather Catering</h3>
 
-                <div className="mb-10 text-center">
+                <div className="mb-10 text-center pb-4">
                     <button
                         onClick={() => setShowDeliveryInfo(!showDeliveryInfo)}
-                        className="bg-white/40 text-white font-semibold px-4 py-2 rounded-full shadow hover:bg-white/60 transition cursor-pointer"
+                        className="bg-white/40 text-white font-bold px-4 py-2 shadow hover:bg-white/60 transition cursor-pointer"
                     >
                         {showDeliveryInfo ? 'Hide Delivery Info' : 'View Delivery Info'}
                     </button>
                 </div>
 
                 {showDeliveryInfo && (
-                    <div className="bg-[#f7f5ee] text-[#330000] rounded-xl shadow-lg p-6 max-w-5xl mx-auto mb-10 text-base">
+                    <div className="striped-bg text-[#601f1f] rounded-lg shadow-lg p-6 max-w-5xl mx-auto mb-10 text-base">
 
                         <h4 className="text-lg font-bold mb-4">Deliveries</h4>
                         <p className="mb-2">

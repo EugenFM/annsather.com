@@ -1,7 +1,7 @@
 const AppetizersDessertsCaterMenu = () => {
     return (
-        <div className="bg-[#f7f5ee] rounded-xl shadow-lg overflow-hidden max-w-5xl mx-auto">
-            <div className="p-6 space-y-4 text-base text-[#330000] leading-relaxed">
+        <div className="rounded-xl shadow-lg overflow-hidden max-w-7xl mx-auto">
+            <div className="p-6 space-y-4 text-base text-white leading-relaxed">
                 <p>
                     <em>
                         Select Four Appetizers for $14.95 per Person<br />
