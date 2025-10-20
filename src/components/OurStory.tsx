@@ -84,9 +84,9 @@ const OurStory: React.FC = () => {
             <div
                 className={`striped-bg w-full h-full`}
             >
-                <div className="relative max-w-7xl mx-auto pb-20 px-4 sm:px-6 lg:px-8 text-[#601f1f]">
+                <div className="relative max-w-7xl mx-auto pb-10 px-4 sm:px-6 lg:px-8 text-[#601f1f]">
                     <div className="text-center mb-12">
-                        <h2 className="text-4xl font-bold text-[#601f1f] pt-12 mb-4">Our Story</h2>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#601f1f] pt-12 mb-4">Our Story</h2>
                     </div>
 
                     <div className="absolute right-10 top-8">

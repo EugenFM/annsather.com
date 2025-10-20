@@ -70,13 +70,13 @@ const Recipes = () => {
         <section
             id="recipes"
             ref={sectionRef}
-            className={`relative bg-white p-5 pb-14'
+            className={`relative bg-white p-5'
             }`}
         >
 
             <div className="w-full h-full bg-[#601f1f] text-white pb-4">
 
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center pt-10 mb-6 leading-relaxed px-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center pt-12 mb-4 leading-relaxed">
                 Cooking at Home with Ann Sather
             </h2>
 
