@@ -16,6 +16,39 @@
     }
 }
 
+@layer components {
+    .chicago-bg {
+        @apply relative bg-cover bg-center;
+        background-image: url('src/assets/images/EFM-AnnSather_PICS/Chicago-Skyline2.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+}
+
+@layer components {
+    .faded-fixed-bg {
+        @apply relative bg-[#EDEDED] text-[#2e2b28];
+        background-image: url('src/assets/images/EFM-AnnSather_PICS/Chicago-Skyline2.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed; /* keeps it fixed when scrolling */
+    }
+
+    .faded-fixed-bg::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: #EDEDED; /* soft overlay color */
+        opacity: 0.90;             /* how faded the background looks */
+        pointer-events: none;
+    }
+}
+
+
+
+
+
 /* ZoomOut effect for hero-img */
 @keyframes zoomOut {
     0% {

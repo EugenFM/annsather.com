@@ -82,7 +82,7 @@ const OurStory: React.FC = () => {
         >
             {/* Hero / intro container */}
             <div
-                className={`striped-bg w-full h-full`}
+                className={`faded-fixed-bg w-full h-full`}
             >
                 <div className="relative max-w-7xl mx-auto pb-10 px-4 sm:px-6 lg:px-8 text-[#601f1f]">
                     <div className="text-center mb-12">
@@ -152,20 +152,20 @@ const OurStory: React.FC = () => {
                             special deliveries.
                         </p>
 
-                        <br />
-                        <p className="font-bold max-w-3xl text-xl leading-relaxed px-4">
-                            Ann Sather Corporate and Special Event Catering
-                        </p>
-                        <p className={paragraphClass}>
-                            In addition to our three Chicago dine-in locations, Ann Sather proudly offers
-                            professional catering services tailored to corporate events, private gatherings,
-                            and special occasions. Our catering team upholds our long-standing commitment to
-                            quality, delivering exceptional Swedish comfort food alongside a wide selection
-                            of hors d’oeuvres, entrées, and desserts. Each event is supported by our highly
-                            trained service staff to ensure a seamless experience. Our flagship Belmont
-                            Avenue location, as well as our cafés, are available for private catered events
-                            — day or evening — for groups of 50 or more guests.
-                        </p>
+                        {/*<br />*/}
+                        {/*<p className="font-bold max-w-3xl text-xl leading-relaxed px-4">*/}
+                        {/*    Ann Sather Corporate and Special Event Catering*/}
+                        {/*</p>*/}
+                        {/*<p className={paragraphClass}>*/}
+                        {/*    In addition to our three Chicago dine-in locations, Ann Sather proudly offers*/}
+                        {/*    professional catering services tailored to corporate events, private gatherings,*/}
+                        {/*    and special occasions. Our catering team upholds our long-standing commitment to*/}
+                        {/*    quality, delivering exceptional Swedish comfort food alongside a wide selection*/}
+                        {/*    of hors d’oeuvres, entrées, and desserts. Each event is supported by our highly*/}
+                        {/*    trained service staff to ensure a seamless experience. Our flagship Belmont*/}
+                        {/*    Avenue location, as well as our cafés, are available for private catered events*/}
+                        {/*    — day or evening — for groups of 50 or more guests.*/}
+                        {/*</p>*/}
 
                         <br />
                         <p className="font-bold max-w-3xl text-xl leading-relaxed px-4">

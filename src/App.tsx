@@ -55,7 +55,7 @@ const AnnSatherWebsite = () => {
         {
             name: 'UberEats',
             icon: ShoppingBag,
-            color: 'hover:bg-green-500/20',
+            color: 'hover:bg-green-500/30',
             links: {
                 Belmont: 'https://www.ubereats.com/store/ann-sather-west-belmont-avenue/cV9GAHZBT7mgtHKW9q_VXQ',
                 Broadway: 'https://www.ubereats.com/store/ann-sather-broadway/_rqbqrenQPOb9u-BdcIkcw',
@@ -65,18 +65,23 @@ const AnnSatherWebsite = () => {
         {
             name: 'Grubhub',
             icon: ShoppingBag,
-            color: 'hover:bg-orange-500/20',
+            color: 'hover:bg-orange-500/30',
             links: {
+                Belmont: 'https://www.grubhub.com/restaurant/ann-sather-restaurant-909-w-belmont-ave-chicago/2032055',
                 Broadway: 'https://www.grubhub.com/restaurant/ann-sather-3415-n-broadway-chicago/2039221',
-                Granville: 'https://www.grubhub.com/restaurant/ann-sather-restaurant-1147-w-granville-ave-chicago/2039122'
+                Granville: 'https://www.grubhub.com/restaurant/ann-sather-restaurant-1147-w-granville-ave-chicago/2039122',
+
             }
         },
         {
             name: 'DoorDash',
             icon: ShoppingBag,
-            color: 'hover:bg-red-500/20',
+            color: 'hover:bg-red-500/30',
             links: {
-                Belmont: 'https://www.doordash.com/store/ann-sather-chicago-3142/'
+                // Belmont: 'https://www.doordash.com/store/ann-sather-chicago-3142/'
+                Belmont: 'https://order.online/store/3142?utm_source=dd-partner-link/',
+                Broadway: 'https://order.online/store/AnnSather-537540?hideModal=true&pickup=true&utm_source=dd-partner-link',
+                Granville: 'https://order.online/store/AnnSatherRestaurant-179764?hideModal=true&pickup=true&utm_source=dd-partner-link',
             }
         },
     ];
@@ -424,13 +429,25 @@ const AnnSatherWebsite = () => {
 
             {/* Order Online – now clickable & location‑aware */}
             <section id="order-online"
-                     className="pb-5 bg-white px-5 text-black">
-                <div className={'w-full h-full striped-bg'}>
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                        <h2 className="text-4xl font-bold pt-10 mb-4">Order Online</h2>
-                        <p className="text-xl text-gray-600 mb-12 opacity-90">Get your favorites delivered or ready for pickup</p>
+                     className="relative w-full h-[680px] bg-[#FFF] py-15 px-5 text-white overflow-hidden">
 
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                {/* Background image */}
+                <div
+                    className="absolute top-0 left-5 right-5 bottom-5 bg-cover bg-center brightness-70"
+                    style={{
+                        backgroundImage: `
+            linear-gradient(rgba(96, 31, 31, .1), rgba(96, 31, 31, .3)),
+            url('src/assets/images/EFM-AnnSather_PICS/Belmont-wall3.jpg')`,
+                        backgroundBlendMode: 'overlay',
+                        zIndex: 0,
+                    }}
+                />
+
+                {/*<div className="absolute top-0 left-5 right-5 bottom-5 bg-[#601f1f]/20 pointer-events-none" />*/}
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                        <h2 className="text-4xl font-bold pt-10 mb-6 opacity-90">Order Online</h2>
+                        <p className="text-xl text-white mb-32 opacity-90">Get your favorites delivered or ready for pickup</p>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
                             {deliveryPlatforms.map((platform) => {
                                 const link = getLink(platform.name);
                                 const isDisabled = !link;
@@ -441,7 +458,7 @@ const AnnSatherWebsite = () => {
                                         href={link || '#'}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className={`rounded-xl p-6 text-center transition-all duration-300 transform ${
+                                        className={`font-bold text-2xl rounded-xl p-6 text-center bg-white/30 opacity-90 transition-all duration-300 transform ${
                                             isDisabled
                                                 ? 'bg-white/10 cursor-not-allowed opacity-40'
                                                 : `${platform.color} hover:scale-105 cursor-pointer`
@@ -450,14 +467,14 @@ const AnnSatherWebsite = () => {
                                     >
                                         <Icon size={32} className="mx-auto mb-3" />
                                         <p className="font-semibold">{platform.name}</p>
-                                        {isDisabled && <p className="mt-2 text-xs opacity-70">(Not available)</p>}
+                                        {isDisabled && <p className="mt-2 text-xs opacity-90">(Not available)</p>}
                                     </a>
                                 );
                             })}
                         </div>
 
                         <div className="mt-12">
-                            <p className="text-lg mb-4">Or call for pickup:</p>
+                            <p className="font-bold mb-4 opacity-90 uppercase">Or call for pickup:</p>
                             <div className="flex flex-wrap justify-center gap-6">
                                 {locations.map((location, index) => (
                                     <div key={index} className="bg-white/10 backdrop-blur rounded-lg px-6 py-3">
@@ -467,11 +484,10 @@ const AnnSatherWebsite = () => {
                             </div>
                         </div>
                     </div>
-                </div>
             </section>
 
             {/* Footer */}
-            <footer className="bg-gray-900 text-white py-12">
+            <footer className="bg-[#1a0000] text-white py-12">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div>
@@ -493,7 +509,7 @@ const AnnSatherWebsite = () => {
                             <h4 className="font-semibold text-lg mb-4">Connect</h4>
                             <p className="opacity-80">Follow us for daily specials and updates</p>
                             <div className="mt-4">
-                                <a href="#" className="text-yellow-400 hover:text-yellow-300 transition-colors">
+                                <a href="#" className="opacity-80 hover:text-white font-bold transition-colors">
                                     Social Media Links
                                 </a>
                             </div>
