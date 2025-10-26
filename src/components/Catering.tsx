@@ -384,7 +384,9 @@ const CateringSection = () => {
                 style={{
                     backgroundImage: `
             linear-gradient(rgba(96, 31, 31, .1), rgba(96, 31, 31, .3)),
-            url('src/assets/images/EFM-AnnSather_PICS/Belmont-walls1.jpeg')`,
+            url('src/assets/images/EFM-AnnSather_PICS/Belmont-wall3.jpg')`,
+
+
                     backgroundBlendMode: 'overlay',
                     zIndex: 0,
                 }}
@@ -392,7 +394,7 @@ const CateringSection = () => {
 
             {/* Foreground content */}
             <div className="relative z-10">
-                <h3 className="text-4xl font-bold text-center p-10 mb-6">
+                <h3 className="text-4xl font-bold text-center p-5 mb-6">
                     Ann Sather Catering
                 </h3>
 
