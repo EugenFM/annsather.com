@@ -14,6 +14,7 @@ import {
 import { Link } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
+import ScrollToHashElement from './components/ScrollToHashElement.tsx';
 import CompleteMenu from "./menu/breakfast-menu.tsx";   // adjust the path if the file lives elsewhere
 import OurStory from './components/OurStory.tsx';
 import Catering from "./components/Catering.tsx";
@@ -100,7 +101,7 @@ const AnnSatherWebsite = () => {
             name: "Broadway",
             address: "3415 N. Broadway",
             phone: "773-305-0024",
-            image: "src/assets/images/EFM-AnnSather_PICS/Broadview-outdoor1.jpeg"
+            image: "src/assets/images/EFM-AnnSather_PICS/Broadview-outdoor3.jpg"
         },
         {
             name: "Granville",
@@ -175,51 +176,6 @@ const AnnSatherWebsite = () => {
                 <div className="flex-1">
                     <div className="flex justify-end items-center gap-10 pr-8">
                         {/* Desktop Navigation */}
-          {/*              <div className="hidden md:flex items-center gap-10">*/}
-          {/*                  {['Home', 'Menu', 'Visit', 'Catering', 'Recipes', 'Our Story'].map((item) => {*/}
-          {/*                      const isRecipes = item === 'Recipes';*/}
-
-          {/*                      return isRecipes ? (*/}
-          {/*                          // ✅ Use React Router <Link> for Recipes*/}
-          {/*                          <Link*/}
-          {/*                              key={item}*/}
-          {/*                              to="/recipes"*/}
-          {/*                              className={`font-medium tracking-wide font-['Playfair_Display'] uppercase transition-all duration-300*/}
-          {/*${*/}
-          {/*                                  scrolled*/}
-          {/*                                      ? 'text-[#330000] hover:text-[#7a1a1a] hover:underline underline-offset-4 decoration-[#7a1a1a]'*/}
-          {/*                                      : 'text-[#C8B8AE] hover:text-[#EAE6D2] hover:underline underline-offset-4 decoration-[#EAE6D2]'*/}
-          {/*                              }`}*/}
-          {/*                          >*/}
-          {/*                              {item}*/}
-          {/*                          </Link>*/}
-          {/*                      ) : (*/}
-          {/*                          // ✅ Prefix with "/" so it always navigates back to the homepage*/}
-          {/*                          <a*/}
-          {/*                              key={item}*/}
-          {/*                              href={`/${item === 'Home' ? '' : `#${item.toLowerCase().replace(' ', '-')}`}`}*/}
-          {/*                              className={`font-medium tracking-wide font-['Playfair_Display'] uppercase transition-colors duration-300 ${*/}
-          {/*                                  scrolled*/}
-          {/*                                      ? 'text-[#330000] hover:text-[#7a1a1a] font-bold'*/}
-          {/*                                      : 'text-[#C8B8AE] hover:text-[#EAE6D2]'*/}
-          {/*                              }`}*/}
-          {/*                          >*/}
-          {/*                              {item}*/}
-          {/*                          </a>*/}
-          {/*                      );*/}
-          {/*                  })}*/}
-
-          {/*                  <a*/}
-          {/*                      href="/#order-online"*/}
-          {/*                      className={`ml-4 px-6 py-1 rounded-full font-bold font-['Playfair_Display'] uppercase transition-all duration-300 ${*/}
-          {/*                          scrolled*/}
-          {/*                              ? 'bg-transparent border border-[#330000] text-[#330000]'*/}
-          {/*                              : 'bg-[#330000] text-[#EAE6D2] border border-[#EAE6D2] hover:bg-[#601f1f] shadow-md'*/}
-          {/*                      }`}*/}
-          {/*                  >*/}
-          {/*                      Order Now*/}
-          {/*                  </a>*/}
-          {/*              </div>*/}
 
                         <div className="hidden md:flex items-center gap-10">
                             {['Home', 'Menu', 'Visit', 'Catering', 'Recipes', 'Our Story'].map((item) => {
@@ -268,8 +224,6 @@ const AnnSatherWebsite = () => {
                                 Order Now
                             </HashLink>
                         </div>
-
-
                     </div>
                 </div>
             </nav>
@@ -321,7 +275,8 @@ const AnnSatherWebsite = () => {
             {/* ✅ Menu Highlights with diagonal textured background */}
             <section
                 id="menu"
-                className="py-5 bg-white p-5">
+                // className="py-5 bg-white p-5">
+                className="scroll-mt-20 relative w-full bg-[#FFF] py-15 px-5 text-white overflow-hidden">
                 <div className={'striped-bg w-full h-full'}>
                   <div className="max-w-7xl mx-auto pb-20 px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12">
@@ -368,7 +323,9 @@ const AnnSatherWebsite = () => {
             <CompleteMenu />   {/* new tabbed breakfast menu */}
 
             {/* Visit */}
-            <section id="visit" className="pb-5 bg-white px-5 text-[#601f1f]">
+            <section id="visit"
+
+                     className="scroll-mt-22 relative w-full bg-[#FFF] pb-5 px-5 text-[#601f1f] overflow-hidden">
                 <div className="striped-bg">
                     <div className="max-w-7xl mx-auto px-4 pb-10 sm:px-6 lg:px-8">
                         {/* Heading */}
@@ -617,6 +574,8 @@ const AnnSatherWebsite = () => {
 
 export default function App() {
     return (
+        <>
+            <ScrollToHashElement />
         <Routes>
             {/* Main Website (Home page sections) */}
             <Route path="/" element={<AnnSatherWebsite />} />
@@ -627,5 +586,6 @@ export default function App() {
             {/* Admin CMS Page */}
             <Route path="/admin" element={<AdminPage />} />
         </Routes>
+        </>
     );
 }

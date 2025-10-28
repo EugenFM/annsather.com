@@ -376,7 +376,7 @@ const CateringSection = () => {
     return (
         <section
             id="catering"
-            className="relative w-full bg-[#FFF] py-15 px-5 text-white overflow-hidden"
+            className="scroll-mt-28 relative w-full bg-[#FFF] py-15 px-5 text-white overflow-hidden"
         >
             {/* Background image */}
             <div

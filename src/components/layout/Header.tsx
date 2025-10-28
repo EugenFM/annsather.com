@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import { useState, useEffect } from "react";
+import { delayedScroll } from "../../utils/delayedScroll.ts";
+
 
 const Header = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -9,6 +12,7 @@ const Header = () => {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
 
     return (
         <nav
@@ -26,8 +30,11 @@ const Header = () => {
                                 : "text-[#C8B8AE] hover:text-[#EAE6D2]"
                         }`}
                     >
-                        Ann Sather<br />
-                        <span className="text-base md:text-lg">Restaurant & Catering</span>
+                        Ann Sather
+                        <br />
+                        <span className="text-base md:text-lg">
+              Restaurant & Catering
+            </span>
                     </h2>
                 </Link>
             </div>
@@ -51,9 +58,11 @@ const Header = () => {
                                     {item}
                                 </Link>
                             ) : (
-                                <a
+                                <HashLink
+                                    smooth
                                     key={item}
-                                    href={`#${item.toLowerCase().replace(" ", "-")}`}
+                                    to={`/#${item.toLowerCase().replace(" ", "-")}`}
+                                    scroll={(el) => delayedScroll(el, 120)}
                                     className={`font-medium tracking-wide font-['Playfair_Display'] uppercase transition-all duration-300 ${
                                         scrolled
                                             ? "text-[#330000] hover:text-[#7a1a1a]"
@@ -61,13 +70,15 @@ const Header = () => {
                                     }`}
                                 >
                                     {item}
-                                </a>
+                                </HashLink>
+
                             );
                         }
                     )}
 
-                    <a
-                        href="#order-online"
+                    <HashLink
+                        smooth
+                        to="/#order-online"
                         className={`ml-4 px-6 py-1 rounded-full font-bold font-['Playfair_Display'] uppercase transition-all duration-300 ${
                             scrolled
                                 ? "bg-transparent border border-[#330000] text-[#330000]"
@@ -75,7 +86,7 @@ const Header = () => {
                         }`}
                     >
                         Order Now
-                    </a>
+                    </HashLink>
                 </div>
             </div>
         </nav>
@@ -83,3 +94,4 @@ const Header = () => {
 };
 
 export default Header;
+

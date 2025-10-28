@@ -45,20 +45,21 @@
     }
 }
 
-
-
-
-
 /* ZoomOut effect for hero-img */
+.animate-zoomOut {
+    animation: zoomOut 12s ease-out forwards;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
 @keyframes zoomOut {
     0% {
-        transform: scale(1.2);
+        transform: scale(1.15);
+        filter: blur(0.3px); /* prevents grid shimmer at start */
     }
     100% {
         transform: scale(1);
+        filter: blur(0); /* crisp at end */
     }
-}
-
-.animate-zoomOut {
-    animation: zoomOut 10s ease-out forwards;
 }

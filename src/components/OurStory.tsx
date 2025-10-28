@@ -78,7 +78,8 @@ const OurStory: React.FC = () => {
         <section
             id="our-story"
             ref={sectionRef}
-            className="py-5 bg-white p-5"
+            className="scroll-mt-22 relative w-full bg-[#FFF] pb-5 px-5 text-[#601f1f] overflow-hidden"
+
         >
             {/* Hero / intro container */}
             <div
