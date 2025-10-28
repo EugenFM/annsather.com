@@ -19,7 +19,7 @@
 @layer components {
     .chicago-bg {
         @apply relative bg-cover bg-center;
-        background-image: url('src/assets/images/EFM-AnnSather_PICS/Chicago-Skyline2.jpg');
+        background-image: url('../public/images/EFM-AnnSather_PICS/Chicago-Skyline2.jpg');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -29,7 +29,7 @@
 @layer components {
     .faded-fixed-bg {
         @apply relative bg-[#EDEDED] text-[#2e2b28];
-        background-image: url('src/assets/images/EFM-AnnSather_PICS/Chicago-Skyline2.jpg');
+        background-image: url('../public/images/EFM-AnnSather_PICS/Chicago-Skyline2.jpg');
         background-size: cover;
         background-position: center;
         background-attachment: fixed; /* keeps it fixed when scrolling */
@@ -56,7 +56,7 @@
 @keyframes zoomOut {
     0% {
         transform: scale(1.15);
-        filter: blur(0.3px); /* prevents grid shimmer at start */
+        filter: blur(0.3 px); /* prevents grid shimmer at start */
     }
     100% {
         transform: scale(1);

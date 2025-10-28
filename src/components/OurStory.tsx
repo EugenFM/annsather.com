@@ -1,40 +1,40 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
-// ——— Recipes data (your original) ———
-const recipeData = [
-    {
-        title: 'Breakfast',
-        image: 'src/assets/images/recipes/Breakfast-Sampler.jpg',
-        pdfLinks: [
-            { name: 'Swedish Pancakes', url: 'pdfs/swedish-pancakes.pdf' },
-            { name: 'Hart-Shaped Waffles', url: 'pdfs/hart-shaped-waffles.pdf' },
-            { name: 'Bran Muffins', url: 'pdfs/bran-muffins.pdf' },
-            { name: 'Cinnamon Rolls', url: 'pdfs/cinnamon-rolls.pdf' },
-            { name: 'Powdered Sugar Glazes', url: 'pdfs/powdered-sugar-glazed.pdf' },
-        ],
-    },
-    {
-        title: 'Starters',
-        image: 'src/assets/images/catering/AnnSather-Avocado Wrap-S.jpg',
-        pdfLinks: [{ name: 'House Salad', url: 'pdfs/house-salad.pdf' }],
-    },
-    {
-        title: 'Sides',
-        image: 'src/assets/images/catering/3egg_omelet.jpg',
-        pdfLinks: [{ name: 'Hash Browns', url: 'pdfs/hash-browns.pdf' }],
-    },
-    {
-        title: 'Entrees',
-        image: 'src/assets/images/catering/AnnSather-Steak & Eggs 2-S.jpg',
-        pdfLinks: [{ name: 'Swedish Meatballs', url: 'pdfs/swedish-meatballs.pdf' }],
-    },
-    {
-        title: 'Desserts',
-        image: 'src/assets/images/recipes/SwedishPancakes.jpg',
-        pdfLinks: [{ name: 'Pumpkin Squares', url: 'pdfs/pumpkin-squares.pdf' }],
-    },
-];
+// // ——— Recipes data (your original) ———
+// const recipeData = [
+//     {
+//         title: 'Breakfast',
+//         image: '/images/recipes/Breakfast-Sampler.jpg',
+//         pdfLinks: [
+//             { name: 'Swedish Pancakes', url: 'pdfs/swedish-pancakes.pdf' },
+//             { name: 'Hart-Shaped Waffles', url: 'pdfs/hart-shaped-waffles.pdf' },
+//             { name: 'Bran Muffins', url: 'pdfs/bran-muffins.pdf' },
+//             { name: 'Cinnamon Rolls', url: 'pdfs/cinnamon-rolls.pdf' },
+//             { name: 'Powdered Sugar Glazes', url: 'pdfs/powdered-sugar-glazed.pdf' },
+//         ],
+//     },
+//     {
+//         title: 'Starters',
+//         image: '/images/catering/AnnSather-Avocado-Wrap-S.jpg',
+//         pdfLinks: [{ name: 'House Salad', url: 'pdfs/house-salad.pdf' }],
+//     },
+//     {
+//         title: 'Sides',
+//         image: '/images/catering/3egg_omelet.jpg',
+//         pdfLinks: [{ name: 'Hash Browns', url: 'pdfs/hash-browns.pdf' }],
+//     },
+//     {
+//         title: 'Entrees',
+//         image: '/images/catering/AnnSather-Steak-&-Eggs 2-S.jpg',
+//         pdfLinks: [{ name: 'Swedish Meatballs', url: 'pdfs/swedish-meatballs.pdf' }],
+//     },
+//     {
+//         title: 'Desserts',
+//         image: '/images/EFM-AnnSather_PICS/SwedishPancakes1.jpeg',
+//         pdfLinks: [{ name: 'Pumpkin Squares', url: 'pdfs/pumpkin-squares.pdf' }],
+//     },
+// ];
 
 const OurStory: React.FC = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -92,7 +92,7 @@ const OurStory: React.FC = () => {
 
                     <div className="absolute right-10 top-8">
                         <img
-                            src="src/assets/images/ann_sather_photo_cropped.jpg"
+                            src="/images/ann_sather_photo_cropped.jpg"
                             alt="Ann Sather"
                             className="w-28 h-auto rounded-md shadow-md border border-gray-300"
                         />

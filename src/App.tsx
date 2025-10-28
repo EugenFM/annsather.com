@@ -81,7 +81,6 @@ const AnnSatherWebsite = () => {
             icon: ShoppingBag,
             color: 'hover:bg-red-500/30',
             links: {
-                // Belmont: 'https://www.doordash.com/store/ann-sather-chicago-3142/'
                 Belmont: 'https://order.online/store/3142?utm_source=dd-partner-link/',
                 Broadway: 'https://order.online/store/AnnSather-537540?hideModal=true&pickup=true&utm_source=dd-partner-link',
                 Granville: 'https://order.online/store/AnnSatherRestaurant-179764?hideModal=true&pickup=true&utm_source=dd-partner-link',
@@ -94,20 +93,20 @@ const AnnSatherWebsite = () => {
             name: "Belmont",
             address: "909 W. Belmont",
             phone: "773-348-2378",
-            image: "src/assets/images/EFM-AnnSather_PICS/Belmont-outdoor1.jpeg",
+            image: "/images/EFM-AnnSather_PICS/Belmont-outdoor1.jpeg",
             special: "Swedish Specials Available"
         },
         {
             name: "Broadway",
             address: "3415 N. Broadway",
             phone: "773-305-0024",
-            image: "src/assets/images/EFM-AnnSather_PICS/Broadview-outdoor3.jpg"
+            image: "/images/EFM-AnnSather_PICS/Belmont-outdoor4.jpg"
         },
         {
             name: "Granville",
             address: "1147 W. Granville",
             phone: "773-274-0557",
-            image: "src/assets/images/EFM-AnnSather_PICS/Granville-outside1.jpeg"
+            image: "/images/EFM-AnnSather_PICS/Granville-outside1.jpeg"
 
         }
     ];
@@ -117,26 +116,26 @@ const AnnSatherWebsite = () => {
             title: "Famous Cinnamon Rolls",
             description: "Our world-famous cinnamon rolls, made fresh daily",
             price: "$4.95",
-            image: "/src/assets/images/EFM-AnnSather_PICS/CRolls3.jpg",
+            image: "/images/EFM-AnnSather_PICS/CRolls3.jpg",
             popular: true
         },
         {
             title: "Omelet",
             description: "Choice of Omelet or Build Your Own",
             price: "$15.50",
-            image: "src/assets/images/EFM-AnnSather_PICS/Omelette3.jpeg"
+            image: "/images/EFM-AnnSather_PICS/Omelette3.jpeg"
         },
         {
             title: "Swedish Pancakes",
             description: "Thin, delicate pancakes served with lingonberries",
             price: "$12.95",
-            image: "src/assets/images/EFM-AnnSather_PICS/SwedishPancakes2.jpg"
+            image: "/images/EFM-AnnSather_PICS/SwedishPancakes2.jpg"
         },
         {
             title: "Eggs Benedict",
             description: "Classic brunch favorite with hollandaise sauce",
             price: "$16.95",
-            image: "src/assets/images/EFM-AnnSather_PICS/EggsBenedict3.jpeg"
+            image: "/images/EFM-AnnSather_PICS/EggsBenedict3.jpeg"
         }
     ];
     /* Helper to pick the correct link for the active location */
@@ -237,7 +236,7 @@ const AnnSatherWebsite = () => {
                     className="absolute top-29 bottom-5 left-5 right-5 bg-cover bg-center animate-zoomOut"
                     style={{
                         backgroundImage:
-                            "url('src/assets/images/EFM-AnnSather_PICS/Belmont-indoor7.jpeg')",
+                            "url('/images/EFM-AnnSather_PICS/Belmont-indoor7.jpeg')",
                     }}
                 ></div>
 
@@ -391,7 +390,7 @@ const AnnSatherWebsite = () => {
                                     alt={locations[activeLocation].name}
                                     className="w-full h-full object-cover"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                                 <div className="absolute bottom-6 left-6 text-white">
                                     <h3 className="text-2xl font-bold">{locations[activeLocation].name} Location</h3>
                                     <p className="opacity-90">{locations[activeLocation].address}</p>
@@ -454,7 +453,7 @@ const AnnSatherWebsite = () => {
 
             {/* Order Online – now clickable & location‑aware */}
             <section id="order-online"
-                     className="relative w-full h-[680px] bg-[#FFF] py-15 px-5 text-white overflow-hidden">
+                     className="scroll-mt-26 relative w-full h-[680px] bg-[#FFF] py-15 px-5 text-white overflow-hidden">
 
                 {/* Background image */}
                 <div
@@ -462,8 +461,8 @@ const AnnSatherWebsite = () => {
                     style={{
                         backgroundImage: `
             linear-gradient(rgba(96, 31, 31, .1), rgba(96, 31, 31, .3)),
-            url('src/assets/images/EFM-AnnSather_PICS/Belmont-walls1.jpeg')`,
-                        backgroundBlendMode: 'overlay',
+            url('/images/EFM-AnnSather_PICS/Belmont-walls1.jpeg')`,
+                        // backgroundBlendMode: 'overlay',
                         zIndex: 0,
                     }}
                 />
@@ -549,28 +548,6 @@ const AnnSatherWebsite = () => {
         </div>
     );
 };
-
-
-//--- App Component (Router) ---
-// export default function App() {
-//     const [path, setPath] = useState(window.location.pathname);
-//
-//     useEffect(() => {
-//         const onLocationChange = () => {
-//             setPath(window.location.pathname);
-//         };
-//         window.addEventListener('popstate', onLocationChange);
-//         return () => {
-//             window.removeEventListener('popstate', onLocationChange);
-//         };
-//     }, []);
-//
-//     // Fix: Handle both /admin and /admin/
-//     const isAdminPath = path === '/admin' || path === '/admin/';
-//
-//     if (isAdminPath) {
-//         return <AdminPage />;
-//     }
 
 export default function App() {
     return (

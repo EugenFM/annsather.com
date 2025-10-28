@@ -376,7 +376,7 @@ const CateringSection = () => {
     return (
         <section
             id="catering"
-            className="scroll-mt-28 relative w-full bg-[#FFF] py-15 px-5 text-white overflow-hidden"
+            className="scroll-mt-28 relative w-full bg-[#FFF] pt-15 pb-20 px-5 text-white overflow-hidden"
         >
             {/* Background image */}
             <div
@@ -384,7 +384,7 @@ const CateringSection = () => {
                 style={{
                     backgroundImage: `
             linear-gradient(rgba(96, 31, 31, .1), rgba(96, 31, 31, .3)),
-            url('src/assets/images/EFM-AnnSather_PICS/Belmont-wall3.jpg')`,
+            url('/images/EFM-AnnSather_PICS/Belmont-wall3.jpg')`,
 
 
                     backgroundBlendMode: 'overlay',
@@ -394,12 +394,12 @@ const CateringSection = () => {
 
             {/* Foreground content */}
             <div className="relative z-10">
-                <h3 className="text-4xl font-bold text-center p-5 mb-6">
+                <h3 className="text-4xl font-bold text-center p-8 mb-6">
                     Ann Sather Catering
                 </h3>
 
                 {/* Delivery + Catering Info buttons */}
-                <div className="mb-10 flex flex-col sm:flex-row justify-center items-center gap-4 pb-4 text-center">
+                <div className="mb-10 flex flex-col sm:flex-row justify-center items-center gap-4 pb-6 text-center">
                     <button
                         onClick={() => setShowDeliveryInfo(!showDeliveryInfo)}
                         className="bg-white/30 text-white font-bold px-4 py-2 rounded shadow-lg hover:bg-white/40 transition cursor-pointer w-[80%] max-w-xs sm:w-auto"
