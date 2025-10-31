@@ -248,8 +248,6 @@ const CateringSection = () => {
         desserts: useRef<HTMLDivElement | null>(null),
     };
 
-    const paragraphClass =
-        'max-w-7xl mx-auto text-[#601f1f] italic text-justify leading-relaxed px-4';
     const deliveryRef = useRef<HTMLDivElement | null>(null);
     const cateringRef = useRef<HTMLDivElement | null>(null);
 

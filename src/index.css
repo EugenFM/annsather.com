@@ -4,7 +4,7 @@
 /* Background styling */
 @layer components {
     .striped-bg {
-        @apply bg-white p-5;
+        @apply bg-white;
         background-color: #EDEDED;
         background-image: repeating-linear-gradient(
                 -45deg,

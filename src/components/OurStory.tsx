@@ -1,40 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
-
-// // ——— Recipes data (your original) ———
-// const recipeData = [
-//     {
-//         title: 'Breakfast',
-//         image: '/images/recipes/Breakfast-Sampler.jpg',
-//         pdfLinks: [
-//             { name: 'Swedish Pancakes', url: 'pdfs/swedish-pancakes.pdf' },
-//             { name: 'Hart-Shaped Waffles', url: 'pdfs/hart-shaped-waffles.pdf' },
-//             { name: 'Bran Muffins', url: 'pdfs/bran-muffins.pdf' },
-//             { name: 'Cinnamon Rolls', url: 'pdfs/cinnamon-rolls.pdf' },
-//             { name: 'Powdered Sugar Glazes', url: 'pdfs/powdered-sugar-glazed.pdf' },
-//         ],
-//     },
-//     {
-//         title: 'Starters',
-//         image: '/images/catering/AnnSather-Avocado-Wrap-S.jpg',
-//         pdfLinks: [{ name: 'House Salad', url: 'pdfs/house-salad.pdf' }],
-//     },
-//     {
-//         title: 'Sides',
-//         image: '/images/catering/3egg_omelet.jpg',
-//         pdfLinks: [{ name: 'Hash Browns', url: 'pdfs/hash-browns.pdf' }],
-//     },
-//     {
-//         title: 'Entrees',
-//         image: '/images/catering/AnnSather-Steak-&-Eggs 2-S.jpg',
-//         pdfLinks: [{ name: 'Swedish Meatballs', url: 'pdfs/swedish-meatballs.pdf' }],
-//     },
-//     {
-//         title: 'Desserts',
-//         image: '/images/EFM-AnnSather_PICS/SwedishPancakes1.jpeg',
-//         pdfLinks: [{ name: 'Pumpkin Squares', url: 'pdfs/pumpkin-squares.pdf' }],
-//     },
-// ];
 
 const OurStory: React.FC = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -64,30 +28,27 @@ const OurStory: React.FC = () => {
     // Support anchor navigation
     useEffect(() => {
         if (
-            window.location.hash === '#our-story' ||
-            window.location.hash === '#about-us'
+            window.location.hash === '#our-story'
         ) {
             setIsExpanded(false);
             sectionRef.current?.scrollIntoView({ behavior: 'smooth' });
         }
     }, []);
 
-    const toggleExpanded = () => setIsExpanded((prev) => !prev);
-
     return (
         <section
             id="our-story"
             ref={sectionRef}
-            className="scroll-mt-22 relative w-full bg-[#FFF] pb-5 px-5 text-[#601f1f] overflow-hidden"
+            className="scroll-mt-20 relative w-full bg-[#FFF] pb-5 px-5 text-[#601f1f] overflow-hidden"
 
         >
             {/* Hero / intro container */}
             <div
                 className={`faded-fixed-bg w-full h-full`}
             >
-                <div className="relative max-w-7xl mx-auto pb-10 px-4 sm:px-6 lg:px-8 text-[#601f1f]">
+                <div className="relative max-w-7xl mx-auto pb-5 px-4 sm:px-6 lg:px-8 text-[#601f1f]">
                     <div className="text-center mb-12">
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#601f1f] pt-12 mb-4">Our Story</h2>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#601f1f] pt-15 mb-4">Our Story</h2>
                     </div>
 
                     <div className="absolute right-10 top-8">
@@ -102,7 +63,7 @@ const OurStory: React.FC = () => {
                         Yes, there really was an Ann Sather.
                     </p>
 
-                    {/* ——— Intro paragraph (always visible) ——— */}
+                    {/* Intro paragraph */}
                     <p className={paragraphClass}>
                         In the 1940s, a vivacious career woman named Ann Sather decided that what she
                         really wanted to do was own and run a restaurant. Her restaurant. A place where
@@ -110,22 +71,17 @@ const OurStory: React.FC = () => {
                         moment they came in the door they went from being a customer to becoming a friend.
                     </p>
 
-                    {/* ——— Collapsible long copy ——— */}
                     <div className="transition-all duration-700 ease-in-out overflow-hidden">
-                        {/*<br />*/}
                         <p className={paragraphClass}>
                             So, in 1945, when the Swedish owners of a restaurant located on Belmont decided
                             to retire, Ann quit her job of 22 years, pooled her life savings and bought
                             herself a diner known today as Ann Sather Restaurant.
                         </p>
-
                         <p className={paragraphClass}>
                             For 35 years Ann ran the diner herself. Her devotion to wholesome,
                             made-from-scratch food, low prices, friendly service and hard work became
                             legendary in the Lakeview neighborhood and beyond.
                         </p>
-
-                        {/*<br />*/}
                         <p className={paragraphClass}>
                             In 1981, after searching for a successor who would meet her stringent demands
                             for quality and remain devoted to her patrons, Ann sold the restaurant to Tom
@@ -135,16 +91,12 @@ const OurStory: React.FC = () => {
                             immigrants who grew up on Chicago’s Southside, was learning all of the best
                             Scandinavian cooking secrets in town.
                         </p>
-
-                        {/*<br />*/}
                         <p className={paragraphClass}>
                             Although Ann Sather sadly passed away in 1996, her spirit still prevails in the
                             “good food, good friends and good conversation” philosophy that has made her
                             restaurants famous. She still looks over us all from her portrait hanging in the
                             dining room.
                         </p>
-
-                        {/*<br />*/}
                         <p className={paragraphClass}>
                             During the last 35 years, Tom has expanded the business to include the most
                             famous cinnamon rolls and breakfast in town, two additional restaurants and Ann
