@@ -68,12 +68,11 @@ const BreakfastMenu: React.FC = () => {
             const cat = item.category || "Other";
             (g[cat] ??= []).push(item);
         }
-        // stable alpha inside each section
         Object.values(g).forEach((arr) => arr.sort((a, b) => a.title.localeCompare(b.title)));
         return g;
     }, [data]);
 
-    // Filtered by search
+    // Filter by search
     const filtered: Categorized = useMemo(() => {
         if (!search.trim()) return grouped;
         const q = search.toLowerCase();
@@ -102,7 +101,6 @@ const BreakfastMenu: React.FC = () => {
     const handleAnchorClick = (id: string) => {
         const el = document.getElementById(id);
         if (!el) return;
-        // offset for fixed header
         const offset = 100;
         const y = el.getBoundingClientRect().top + window.scrollY - offset;
         window.scrollTo({ top: y, behavior: "smooth" });
@@ -137,7 +135,6 @@ const BreakfastMenu: React.FC = () => {
                         <h2 id="breakfast-menu-title" className="text-3xl font-bold text-[#601f1f]">
                             Our Breakfast Menu
                         </h2>
-                        {/*<p className="text-gray-700">Quick to scan. Breakfast-first. All the classics.</p>*/}
                     </div>
 
                     {/* Controls */}
@@ -164,20 +161,7 @@ const BreakfastMenu: React.FC = () => {
                             )}
                         </div>
 
-                        {/* Density */}
-              {/*          <button*/}
-              {/*              type="button"*/}
-              {/*              onClick={() => setDensity((d) => (d === "compact" ? "cozy" : "compact"))}*/}
-              {/*              className="inline-flex items-center gap-2 border border-[#601f1f] text-[#601f1f] rounded-md px-3 py-2 hover:bg-white"*/}
-              {/*              aria-pressed={density === "compact"}*/}
-              {/*              aria-label="Toggle density"*/}
-              {/*              title={`Switch to ${density === "compact" ? "cozy" : "compact"} density`}*/}
-              {/*          >*/}
-              {/*              <ListFilter size={16} />*/}
-              {/*              <span className="text-sm hidden sm:inline">*/}
-              {/*  {density === "compact" ? "Compact" : "Cozy"}*/}
-              {/*</span>*/}
-              {/*          </button>*/}
+
                     </div>
                 </div>
 
@@ -221,18 +205,24 @@ const BreakfastMenu: React.FC = () => {
                         </div>
                     </aside>
 
-                    {/* Sections */}
-                    <div className="space-y-6">
+                    {/* Sections: now a responsive grid (2–3 columns on wide screens) */}
+                    <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-6">
                         {sectionsInOrder.map((section) => {
                             const items = filtered[section];
                             if (!items || !items.length) return null;
                             const id = `sec-${slug(section)}`;
                             return (
-                                <article key={section} aria-labelledby={`${id}-title`} className="bg-white rounded-xl shadow-sm border border-gray-200">
+                                <article
+                                    key={section}
+                                    aria-labelledby={`${id}-title`}
+                                    className="h-full bg-white rounded-xl shadow-sm border border-gray-200 flex flex-col"
+                                >
                                     <header id={id} className={`scroll-mt-24 ${secPad} border-b border-gray-100`}>
                                         <div id={`${id}-title`} className="flex items-center justify-between">
                                             <h3 className="text-xl font-bold text-[#601f1f]">{section}</h3>
-                                            <span className="text-sm text-gray-600">{items.length} item{items.length > 1 ? "s" : ""}</span>
+                                            <span className="text-sm text-gray-600">
+                        {items.length} item{items.length > 1 ? "s" : ""}
+                      </span>
                                         </div>
                                     </header>
 
