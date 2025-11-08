@@ -25,6 +25,8 @@ import Header from "./components/layout/Header.tsx";
 import AdminPage from "./components/cms/admin-page.tsx";
 import {Amplify} from "aws-amplify";
 // import OurStory from "./components/OurStory.tsx";
+import BreakfastFavorites from './menu/BreakfastFavorites.tsx';
+import BreakfastMenu from './menu/BreakfastMenu.tsx';
 
 Amplify.configure({
     Auth: {
@@ -215,11 +217,11 @@ const AnnSatherWebsite = () => {
                 </div>
             </section>
 
-            {/* Menu Highlights with diagonal textured background */}
-            <MenuHighlights menuHighlights={menuHighlights} />
+            {/* Breakfast-focused Favorites */}
+            <BreakfastFavorites items={menuHighlights} />
 
-            {/*CompleteMenu Component*/}
-            <CompleteMenu />
+            {/* Simple Breakfast Menu */}
+            <BreakfastMenu />
 
             {/* Visit */}
             <Visit />
