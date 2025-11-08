@@ -14,11 +14,11 @@ import {
 import { Link } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 import MenuHighlights from './components/MenuHighlights.jsx';
-import CompleteMenu from "./menu/breakfast-menu.tsx";   // adjust the path if the file lives elsewhere
+import CompleteMenu from "./menu/breakfast-menu.tsx";
 import OurStory from './components/OurStory.tsx';
 import Catering from "./components/Catering.tsx";
 import Visit from "./components/Visit.tsx";
-import Recipes from "./components/Recipes.tsx";
+import Recipes from "./components/Recipes";
 import OrderOnline from "./components/OrderOnline.tsx";
 import Footer from "./components/layout/Footer.tsx";
 import Header from "./components/layout/Header.tsx";

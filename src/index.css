@@ -11,7 +11,7 @@
         background-image: repeating-linear-gradient(
                 -45deg,
                 rgba(96, 31, 31, 0.1) 0px,      /* stripe color */
-                rgba(0, 0, 0, 0.08) 0.1px,      /* stripe thickness */
+                rgba(0, 0, 0, 0.08) 0.3px,      /* stripe thickness */
                 transparent 2px,
                 transparent 6px                 /* spacing */
         );
@@ -34,18 +34,25 @@
         background-image: url('../public/images/EFM-AnnSather_PICS/Chicago-Skyline2.jpg');
         background-size: cover;
         background-position: center;
-        background-attachment: fixed; /* keeps it fixed when scrolling */
+        background-attachment: fixed;
+        position: relative !important;
+        z-index: 0 !important; /* keep it low */
+        isolation: isolate; /* prevents it from trapping child stacking */
     }
 
     .faded-fixed-bg::before {
         content: "";
         position: absolute;
         inset: 0;
-        background-color: #EDEDED; /* soft overlay color */
-        opacity: 0.90;             /* how faded the background looks */
+        background-color: #EDEDED;
+        opacity: 0.9;
         pointer-events: none;
+        z-index: -1; /* sits behind the recipes-data content */
     }
 }
+
+
+
 
 /* ZoomOut effect for hero-img */
 .animate-zoomOut {
