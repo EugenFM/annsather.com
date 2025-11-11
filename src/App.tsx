@@ -217,8 +217,8 @@ const AnnSatherWebsite = () => {
                 </div>
             </section>
 
-            {/* Breakfast-focused Favorites */}
-            <BreakfastFavorites items={menuHighlights} />
+            {/*/!* Breakfast-focused Favorites *!/*/}
+            {/*<BreakfastFavorites items={menuHighlights} />*/}
 
             {/* Simple Breakfast Menu */}
             <BreakfastMenu />
