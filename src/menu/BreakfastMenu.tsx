@@ -426,9 +426,9 @@ const BreakfastMenu: React.FC = () => {
                             <h3 id="favorites-title" className="text-xl font-bold text-[#601f1f]">
                                 Favorites
                             </h3>
-                            <span className="text-sm text-gray-700">
-                {favorites.length} item{favorites.length > 1 ? "s" : ""}
-              </span>
+              {/*              <span className="text-sm text-gray-700">*/}
+              {/*  {favorites.length} item{favorites.length > 1 ? "s" : ""}*/}
+              {/*</span>*/}
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-stretch gap-6">
