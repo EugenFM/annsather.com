@@ -1,12 +1,13 @@
-// src/components/menu/BreakfastMenu.tsx
+// src/menu/BreakfastMenu.tsx
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Search, Star, X, Heart } from "lucide-react";
+import { Search, Star, X, Heart, ChevronLeft, ChevronRight } from "lucide-react";
 import { publicGet } from "../utils/apiClient.ts";
 
 /**
  * Breakfast & Desserts menu with integrated Favorites (polished cards).
  * - Fetches Breakfast and optional Desserts.
  * - Renders Favorites grid with consistent hover & focus behavior.
+ * - Adds "Show full menu" modal (paged: Breakfast, Lunch, Specials, Entrees).
  * - Respects reduced-motion preferences.
  */
 
@@ -20,12 +21,13 @@ type ApiItem = {
 };
 
 type Categorized = Record<string, ApiItem[]>;
+
 // ---- Favorites: lock to exactly 4 with per-item fallback images ----
 type FavoriteTarget = {
-    key: string;              // lookup key (lowercase)
-    title: string;            // display title
-    img: string;              // fallback image (free stock)
-    synonyms: string[];       // match variants in your API titles
+    key: string;      // lookup key (lowercase)
+    title: string;    // display title
+    img: string;      // fallback image
+    synonyms: string[];
 };
 
 const FAVORITES_TARGETS: FavoriteTarget[] = [
@@ -44,14 +46,12 @@ const FAVORITES_TARGETS: FavoriteTarget[] = [
     {
         key: "swedish waffles",
         title: "Swedish Waffles",
-        // heart-shaped waffle photo (classic Swedish style)
         img: "https://github.com/Aracif/images/blob/main/swedish%20waffles.png?raw=true",
         synonyms: ["swedish waffle", "swedish waffles", "heart-shaped waffle", "heart shaped waffle"],
     },
     {
         key: "swedish pancakes",
         title: "Swedish Pancakes",
-        // thin crepes with berries (visually matches Swedish pannkakor)
         img: "https://github.com/Aracif/images/blob/main/swedish%20pancakes-with-lingonberries.png?raw=true",
         synonyms: ["swedish pancake", "swedish pancakes", "pannkakor", "crepes", "thin pancakes"],
     },
@@ -82,7 +82,7 @@ const FAVORITE_KEYWORDS = [
     "swedish",
 ];
 
-// Free stock fallback image (Pexels, free for commercial use; no attribution required)
+// Free stock fallback image
 const DEFAULT_FAVORITE_IMAGE =
     "https://images.pexels.com/photos/6072378/pexels-photo-6072378.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&q=80";
 
@@ -96,9 +96,224 @@ const formatPrice = (p: number | string) =>
             ? `${p}`
             : `$${p}`;
 
-// ---- Favorite Card (polished & consistent) ----
+/* -------------------------------------------------------
+   FullMenuModal: fetches all categories & renders pages
+   ------------------------------------------------------- */
+type Pages = Array<{
+    key: "Breakfast" | "Lunch" | "Specials" | "Entrees";
+    title: string;
+    data: Categorized;
+}>;
+
+function FullMenuModal({
+                           open,
+                           onClose,
+                       }: {
+    open: boolean;
+    onClose: () => void;
+}) {
+    const [loading, setLoading] = useState(true);
+    const [err, setErr] = useState("");
+    const [pages, setPages] = useState<Pages>([]);
+    const [page, setPage] = useState(0);
+    const closeBtnRef = useRef<HTMLButtonElement | null>(null);
+
+    useEffect(() => {
+        if (!open) return;
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === "Escape") onClose();
+            if (e.key === "ArrowLeft") setPage((p) => Math.max(0, p - 1));
+            if (e.key === "ArrowRight") setPage((p) => Math.min(pages.length - 1, p + 1));
+        };
+        window.addEventListener("keydown", onKey);
+        return () => window.removeEventListener("keydown", onKey);
+    }, [open, pages.length, onClose]);
+
+    useEffect(() => {
+        if (!open) return;
+        (async () => {
+            setLoading(true);
+            setErr("");
+            try {
+                const mealTypes: Array<Pages[number]["key"]> = ["Breakfast", "Lunch", "Specials", "Entrees"];
+                const built: Pages = [];
+                for (const meal of mealTypes) {
+                    const op = await publicGet(`/menu/${meal}`);
+                    const res = await op.response;
+                    const arr: ApiItem[] = await res.body.json();
+                    // Group by category
+                    const cat: Categorized = {};
+                    for (const item of arr) {
+                        const c = (item.category || "OTHER").toUpperCase();
+                        (cat[c] ??= []).push(item);
+                    }
+                    Object.values(cat).forEach((a) => a.sort((a, b) => a.title.localeCompare(b.title)));
+                    if (Object.keys(cat).length) {
+                        built.push({
+                            key: meal,
+                            title: meal,
+                            data: cat,
+                        });
+                    }
+                }
+                setPages(built);
+                setPage(0);
+            } catch (e) {
+                console.error(e);
+                setErr("Failed to load the full menu. Please try again later.");
+            } finally {
+                setLoading(false);
+                setTimeout(() => closeBtnRef.current?.focus(), 0);
+            }
+        })();
+    }, [open]);
+
+    if (!open) return null;
+
+    const current = pages[page];
+
+    return (
+        <div
+            className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-6"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="full-menu-title"
+            onClick={onClose}
+        >
+            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+            <div
+                className="relative z-10 w-full max-w-5xl rounded-2xl bg-white shadow-2xl ring-1 ring-black/10"
+                onClick={(e) => e.stopPropagation()}
+            >
+                {/* Header */}
+                <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
+                    <h2 id="full-menu-title" className="text-2xl font-bold text-[#601f1f]">
+                        Full Menu
+                    </h2>
+                    <button
+                        ref={closeBtnRef}
+                        onClick={onClose}
+                        aria-label="Close full menu"
+                        className="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+                    >
+                        <X />
+                    </button>
+                </div>
+
+                {/* Toolbar */}
+                <div className="flex items-center justify-between px-6 py-3 border-b border-gray-100">
+                    <div className="text-sm text-gray-600">
+                        {pages.length > 0 ? (
+                            <>
+                                <span className="font-semibold text-[#601f1f]">{current?.title}</span>{" "}
+                                <span>
+                  ({page + 1} / {pages.length})
+                </span>
+                            </>
+                        ) : (
+                            <span>Loading…</span>
+                        )}
+                    </div>
+                    <div className="flex gap-2">
+                        <button
+                            onClick={() => setPage((p) => Math.max(0, p - 1))}
+                            className="inline-flex items-center gap-2 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm hover:bg-gray-50 disabled:opacity-40"
+                            disabled={page === 0}
+                            aria-label="Previous page"
+                        >
+                            <ChevronLeft size={18} />
+                            Prev
+                        </button>
+                        <button
+                            onClick={() => setPage((p) => Math.min(pages.length - 1, p + 1))}
+                            className="inline-flex items-center gap-2 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm hover:bg-gray-50 disabled:opacity-40"
+                            disabled={page >= pages.length - 1}
+                            aria-label="Next page"
+                        >
+                            Next
+                            <ChevronRight size={18} />
+                        </button>
+                    </div>
+                </div>
+
+                {/* Body */}
+                <div className="max-h-[70vh] overflow-y-auto">
+                    {loading && (
+                        <div className="p-10 flex items-center justify-center">
+                            <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-[#601f1f]" />
+                        </div>
+                    )}
+                    {err && (
+                        <div className="p-6">
+                            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                                {err}
+                            </div>
+                        </div>
+                    )}
+                    {!loading && !err && current && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+                            {Object.entries(current.data).map(([section, items]) => (
+                                <article
+                                    key={section}
+                                    className="rounded-xl border border-gray-100 shadow-sm bg-white"
+                                >
+                                    <header className="px-5 py-4 border-b border-gray-100 bg-amber-50/60 rounded-t-xl">
+                                        <div className="flex items-center justify-between">
+                                            <h3 className="text-lg font-bold text-[#601f1f]">{section}</h3>
+                                            <span className="text-xs text-gray-600">{items.length} items</span>
+                                        </div>
+                                    </header>
+                                    <ul className="divide-y divide-gray-100/70">
+                                        {items.map((i, idx) => (
+                                            <li key={`${i.title}-${idx}`} className="px-5 py-3">
+                                                <div className="flex items-baseline gap-3">
+                                                    <div className="min-w-0">
+                                                        <div className="flex items-center gap-2">
+                                                            <h4 className="font-medium text-gray-900 truncate">{i.title}</h4>
+                                                            {i.featured && (
+                                                                <span className="inline-flex items-center gap-1 text-xs font-semibold text-yellow-800 bg-yellow-100 px-2 py-0.5 rounded-full">
+                                  <Star size={12} className="inline" /> Popular
+                                </span>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                    <span className="flex-1 border-b border-dashed border-gray-300 translate-y-1" />
+                                                    <div className="shrink-0 text-[15px] tabular-nums text-gray-900">
+                                                        {formatPrice(i.price)}
+                                                    </div>
+                                                </div>
+                                                {i.description && (
+                                                    <p className="mt-1 text-sm text-gray-700">{i.description}</p>
+                                                )}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </article>
+                            ))}
+                        </div>
+                    )}
+                </div>
+
+                {/* Footer */}
+                <div className="px-6 py-3 border-t border-gray-100 flex items-center justify-end">
+                    <button
+                        onClick={onClose}
+                        className="rounded-md bg-[#601f1f] text-white px-4 py-2 text-sm font-semibold hover:bg-[#4f1919] focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+                    >
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+/* -------------------------
+   Favorite Card (updated)
+   ------------------------- */
 function FavoriteCard({ item }: { item: ApiItem }) {
-    const imgSrc = item.image && item.image.trim().length > 0 ? item.image : DEFAULT_FAVORITE_IMAGE;
+    const imgSrc =
+        item.image && item.image.trim().length > 0 ? item.image : DEFAULT_FAVORITE_IMAGE;
 
     return (
         <article
@@ -158,7 +373,7 @@ function FavoriteCard({ item }: { item: ApiItem }) {
             </span>
                     )}
 
-                    {/* Heart */}
+                    {/* Heart — now solid red */}
                     <button
                         type="button"
                         aria-label={`Favorite ${item.title}`}
@@ -166,7 +381,7 @@ function FavoriteCard({ item }: { item: ApiItem }) {
               absolute right-3 top-3 z-10
               inline-flex h-9 w-9 items-center justify-center
               rounded-full bg-white/90 backdrop-blur
-              text-red-500
+              text-red-600
               shadow ring-1 ring-black/5
               transition-transform duration-200 ease-out
               hover:scale-110 active:scale-95
@@ -174,7 +389,8 @@ function FavoriteCard({ item }: { item: ApiItem }) {
               focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white
             "
                     >
-                        <Heart size={18} />
+                        {/* The fill prop turns the glyph solid using the current text color */}
+                        <Heart size={18} fill="currentColor" />
                     </button>
                 </div>
 
@@ -216,6 +432,7 @@ const BreakfastMenu: React.FC = () => {
     const [dessertData, setDessertData] = useState<ApiItem[]>([]);
     const [search, setSearch] = useState("");
     const [density] = useState<"cozy" | "compact">("compact");
+    const [showFullMenu, setShowFullMenu] = useState(false);
 
     const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -305,9 +522,7 @@ const BreakfastMenu: React.FC = () => {
         return [...ordered, ...leftovers];
     }, [filtered]);
 
-    // Favorites: featured items and sweets/classics; max 8
-// Exactly 4 favorites in the requested order,
-// pulling real items when available, otherwise using a clean fallback card.
+    // Favorites: exactly 4 targeted picks or fallbacks
     const favorites = useMemo(() => {
         const src = sectionsInOrder.flatMap((sec) => filtered[sec] || []);
 
@@ -321,20 +536,18 @@ const BreakfastMenu: React.FC = () => {
         return FAVORITES_TARGETS.map((t) => {
             const found = pickBySynonyms(t.synonyms);
             if (!found) {
-                // graceful fallback if your API doesn’t have an exact match
                 return {
                     title: t.title,
-                    price: "$",                    // shows a neutral symbol instead of an odd "$0.00"
+                    price: "$",
                     description: "",
                     image: t.img,
                     featured: true,
                     category: "FAVORITES",
                 };
             }
-            // prefer your API data, but ensure an image
             return {
                 ...found,
-                image: (found.image && found.image.trim().length > 0) ? found.image : t.img,
+                image: found.image && found.image.trim().length > 0 ? found.image : t.img,
                 category: found.category || "FAVORITES",
             };
         });
@@ -389,12 +602,10 @@ const BreakfastMenu: React.FC = () => {
                         <h2 id="breakfast-menu-title" className="text-3xl font-bold text-[#601f1f]">
                             Breakfast & Desserts
                         </h2>
-                        <p className="text-sm text-[#601f1f]/80">
-                            Our morning classics and sweet treats.
-                        </p>
+                        <p className="text-sm text-[#601f1f]/80">Our morning classics and sweet treats.</p>
                     </div>
 
-                    {/* Search */}
+                    {/* Search + Full menu link */}
                     <div className="flex items-center gap-3 w-full md:w-auto">
                         <div className="relative w-full md:w-80">
                             <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#601f1f]" />
@@ -416,6 +627,15 @@ const BreakfastMenu: React.FC = () => {
                                 </button>
                             )}
                         </div>
+
+                        {/* NEW: Show full menu modal trigger */}
+                        <button
+                            type="button"
+                            onClick={() => setShowFullMenu(true)}
+                            className="shrink-0 rounded-md border border-[#601f1f]/30 bg-white/90 backdrop-blur px-3 py-2 text-sm font-semibold text-[#601f1f] hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+                        >
+                            Show full menu
+                        </button>
                     </div>
                 </div>
 
@@ -426,9 +646,6 @@ const BreakfastMenu: React.FC = () => {
                             <h3 id="favorites-title" className="text-xl font-bold text-[#601f1f]">
                                 Favorites
                             </h3>
-              {/*              <span className="text-sm text-gray-700">*/}
-              {/*  {favorites.length} item{favorites.length > 1 ? "s" : ""}*/}
-              {/*</span>*/}
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-stretch gap-6">
@@ -534,6 +751,9 @@ const BreakfastMenu: React.FC = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Full Menu Modal */}
+            <FullMenuModal open={showFullMenu} onClose={() => setShowFullMenu(false)} />
         </section>
     );
 };
