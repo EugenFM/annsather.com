@@ -20,6 +20,42 @@ type ApiItem = {
 };
 
 type Categorized = Record<string, ApiItem[]>;
+// ---- Favorites: lock to exactly 4 with per-item fallback images ----
+type FavoriteTarget = {
+    key: string;              // lookup key (lowercase)
+    title: string;            // display title
+    img: string;              // fallback image (free stock)
+    synonyms: string[];       // match variants in your API titles
+};
+
+const FAVORITES_TARGETS: FavoriteTarget[] = [
+    {
+        key: "cinnamon rolls",
+        title: "Cinnamon Rolls",
+        img: "https://github.com/Aracif/images/blob/main/swedish-cinnamon-buns.png?raw=true",
+        synonyms: ["cinnamon roll", "cinnamon rolls", "cinnamon bun", "cinnamon buns"],
+    },
+    {
+        key: "french toast",
+        title: "French Toast",
+        img: "https://github.com/Aracif/images/blob/main/swedish-french-toast.png?raw=true",
+        synonyms: ["french toast", "pain perdu"],
+    },
+    {
+        key: "swedish waffles",
+        title: "Swedish Waffles",
+        // heart-shaped waffle photo (classic Swedish style)
+        img: "https://github.com/Aracif/images/blob/main/swedish%20waffles.png?raw=true",
+        synonyms: ["swedish waffle", "swedish waffles", "heart-shaped waffle", "heart shaped waffle"],
+    },
+    {
+        key: "swedish pancakes",
+        title: "Swedish Pancakes",
+        // thin crepes with berries (visually matches Swedish pannkakor)
+        img: "https://github.com/Aracif/images/blob/main/swedish%20pancakes-with-lingonberries.png?raw=true",
+        synonyms: ["swedish pancake", "swedish pancakes", "pannkakor", "crepes", "thin pancakes"],
+    },
+];
 
 const BREAKFAST_ORDER = [
     "EGGS BENEDICT",
@@ -46,6 +82,10 @@ const FAVORITE_KEYWORDS = [
     "swedish",
 ];
 
+// Free stock fallback image (Pexels, free for commercial use; no attribution required)
+const DEFAULT_FAVORITE_IMAGE =
+    "https://images.pexels.com/photos/6072378/pexels-photo-6072378.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&q=80";
+
 const slug = (s: string) =>
     s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
@@ -58,13 +98,12 @@ const formatPrice = (p: number | string) =>
 
 // ---- Favorite Card (polished & consistent) ----
 function FavoriteCard({ item }: { item: ApiItem }) {
-    const hasImage = !!item.image;
-    const initial = item.title?.charAt(0)?.toUpperCase() ?? "•";
+    const imgSrc = item.image && item.image.trim().length > 0 ? item.image : DEFAULT_FAVORITE_IMAGE;
 
     return (
         <article
             className="
-        group relative rounded-2xl p-[1px]
+        group relative h-full rounded-2xl p-[1px]
         bg-gradient-to-br from-amber-200 via-yellow-200/60 to-orange-200/40
         transition-all duration-300 ease-out
         motion-safe:hover:-translate-y-1
@@ -73,7 +112,7 @@ function FavoriteCard({ item }: { item: ApiItem }) {
         >
             <div
                 className="
-          rounded-2xl bg-white ring-1 ring-black/5 shadow-sm
+          flex h-full flex-col rounded-2xl bg-white ring-1 ring-black/5 shadow-sm
           transition-all duration-300 ease-out
           group-hover:shadow-xl
           group-focus-within:shadow-xl
@@ -82,29 +121,16 @@ function FavoriteCard({ item }: { item: ApiItem }) {
                 {/* Media */}
                 <div className="relative overflow-hidden rounded-t-2xl">
                     <div className="aspect-[4/3] w-full">
-                        {hasImage ? (
-                            <img
-                                src={item.image as string}
-                                alt={item.title}
-                                className="
-                  h-full w-full object-cover
-                  transition-transform duration-300 ease-out
-                  motion-safe:group-hover:scale-105
-                "
-                                loading="lazy"
-                            />
-                        ) : (
-                            <div
-                                aria-hidden
-                                className="
-                  h-full w-full
-                  bg-gradient-to-br from-amber-100 to-rose-100
-                  flex items-center justify-center
-                "
-                            >
-                                <span className="text-4xl font-bold text-[#601f1f]/70">{initial}</span>
-                            </div>
-                        )}
+                        <img
+                            src={imgSrc}
+                            alt={item.title}
+                            className="
+                h-full w-full object-cover
+                transition-transform duration-300 ease-out
+                motion-safe:group-hover:scale-105
+              "
+                            loading="lazy"
+                        />
                     </div>
 
                     {/* hover scrim */}
@@ -153,14 +179,18 @@ function FavoriteCard({ item }: { item: ApiItem }) {
                 </div>
 
                 {/* Body */}
-                <div className="space-y-2 px-4 py-4">
-                    <h4 className="line-clamp-2 text-base font-semibold text-[#601f1f]">
-                        {item.title}
-                    </h4>
-                    {item.description && (
-                        <p className="line-clamp-3 text-sm text-gray-700">{item.description}</p>
-                    )}
-                    <div className="flex items-center justify-between pt-1">
+                <div className="flex-1 px-4 py-4">
+                    <div className="space-y-2">
+                        <h4 className="line-clamp-2 text-base font-semibold text-[#601f1f]">
+                            {item.title}
+                        </h4>
+                        {item.description && (
+                            <p className="line-clamp-3 text-sm text-gray-700">{item.description}</p>
+                        )}
+                    </div>
+
+                    {/* Price row pinned to bottom via outer flex-1 */}
+                    <div className="mt-3 flex items-center justify-between">
             <span className="text-[15px] tabular-nums text-gray-900">
               {formatPrice(item.price)}
             </span>
@@ -276,21 +306,38 @@ const BreakfastMenu: React.FC = () => {
     }, [filtered]);
 
     // Favorites: featured items and sweets/classics; max 8
+// Exactly 4 favorites in the requested order,
+// pulling real items when available, otherwise using a clean fallback card.
     const favorites = useMemo(() => {
         const src = sectionsInOrder.flatMap((sec) => filtered[sec] || []);
-        const pool = src.filter(
-            (i) =>
-                i.featured ||
-                FAVORITE_KEYWORDS.some((k) => i.title?.toLowerCase().includes(k))
-        );
-        const seen = new Set<string>();
-        const unique = pool.filter((i) => {
-            const key = `${i.title}|${i.category}`;
-            if (seen.has(key)) return false;
-            seen.add(key);
-            return true;
+
+        const pickBySynonyms = (syns: string[]) => {
+            return src.find((i) => {
+                const t = (i.title || "").toLowerCase();
+                return syns.some((s) => t.includes(s));
+            });
+        };
+
+        return FAVORITES_TARGETS.map((t) => {
+            const found = pickBySynonyms(t.synonyms);
+            if (!found) {
+                // graceful fallback if your API doesn’t have an exact match
+                return {
+                    title: t.title,
+                    price: "$",                    // shows a neutral symbol instead of an odd "$0.00"
+                    description: "",
+                    image: t.img,
+                    featured: true,
+                    category: "FAVORITES",
+                };
+            }
+            // prefer your API data, but ensure an image
+            return {
+                ...found,
+                image: (found.image && found.image.trim().length > 0) ? found.image : t.img,
+                category: found.category || "FAVORITES",
+            };
         });
-        return unique.slice(0, 8);
     }, [filtered, sectionsInOrder]);
 
     const rowPad = "py-2";
@@ -384,7 +431,7 @@ const BreakfastMenu: React.FC = () => {
               </span>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-stretch gap-6">
                             {favorites.map((f, idx) => (
                                 <FavoriteCard key={`${f.title}-${idx}`} item={f} />
                             ))}
