@@ -1,4 +1,4 @@
-// src/components/menu/BreakfastFavorites.tsx
+// src/menu/BreakfastFavorites.tsx
 import React from "react";
 import { Star, Heart } from "lucide-react";
 
@@ -11,55 +11,146 @@ export type FavoriteItem = {
 };
 
 type Props = {
-    /** Reuse your existing `menuHighlights` array from App.tsx */
     items: FavoriteItem[];
 };
 
-const BreakfastFavorites: React.FC<Props> = ({ items }) => {
+function FavoriteCard({ item }: { item: FavoriteItem }) {
     return (
-        <section id="menu" className="scroll-mt-20 relative w-full bg-[#FFF] p-5 text-white overflow-hidden">
-            <div className="striped-bg w-full h-full">
-                <div className="max-w-7xl mx-auto pb-20 px-4 sm:px-6 lg:px-8">
-                    {/* Header */}
-                    <div className="text-center mb-12">
-                        <h2 className="text-4xl font-bold text-[#601f1f] pt-10 pb-5 mb-4">
-                            Breakfast Favorites
-                        </h2>
-                        <p className="text-xl text-[#601f1f]">
-                            Crowd-pleasers to start your morning right
-                        </p>
+        <article
+            className="
+        group relative
+        rounded-2xl
+        p-[1px]
+        bg-gradient-to-br from-amber-200 via-yellow-200/60 to-orange-200/40
+        transition-all duration-300 ease-out
+        motion-safe:hover:translate-y-[-4px]
+        focus-within:translate-y-[-4px]
+      "
+        >
+            {/* Inner card */}
+            <div
+                className="
+          rounded-2xl bg-white shadow-sm
+          ring-1 ring-black/5
+          transition-all duration-300 ease-out
+          group-hover:shadow-xl
+          focus-within:shadow-xl
+        "
+            >
+                {/* Media */}
+                <div className="relative overflow-hidden rounded-t-2xl">
+                    {/* Fixed aspect ratio keeps heights consistent across cards */}
+                    <div className="aspect-[4/3] w-full">
+                        <img
+                            src={item.image}
+                            alt={item.title}
+                            className="
+                h-full w-full object-cover
+                transition-transform duration-300 ease-out
+                motion-safe:group-hover:scale-105
+              "
+                            loading="lazy"
+                        />
                     </div>
 
-                    {/* Cards */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {items.map((item, idx) => (
-                            <article
-                                key={idx}
-                                className="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300 hover:shadow-2xl"
-                            >
-                                <div className="relative">
-                                    <img src={item.image} alt={item.title} className="w-full h-60 object-cover" />
-                                    {item.popular && (
-                                        <div className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold flex items-center">
-                                            <Star size={14} className="mr-1" fill="white" />
-                                            Popular
-                                        </div>
-                                    )}
-                                </div>
+                    {/* Gradient scrim on hover for contrast */}
+                    <div
+                        className="
+              pointer-events-none absolute inset-0
+              opacity-0 group-hover:opacity-100
+              transition-opacity duration-300 ease-out
+              bg-gradient-to-t from-black/40 via-black/10 to-transparent
+            "
+                        aria-hidden
+                    />
 
-                                <div className="p-4">
-                                    <h3 className="text-xl font-bold text-[#601f1f] mb-2">{item.title}</h3>
-                                    <p className="text-[#601f1f] mb-4">{item.description}</p>
-                                    <div className="flex justify-between items-center">
-                                        <span className="text-xl font-bold text-[#601f1f]">{item.price}</span>
-                                        <button aria-label={`favorite-${item.title}`} className="text-red-500 hover:text-red-600 transition-colors">
-                                            <Heart size={24} />
-                                        </button>
-                                    </div>
-                                </div>
-                            </article>
-                        ))}
+                    {/* Popular badge */}
+                    {item.popular && (
+                        <span
+                            className="
+                absolute left-3 top-3 z-10 inline-flex items-center gap-1
+                rounded-full bg-yellow-100 px-2.5 py-1
+                text-xs font-semibold text-yellow-900
+                shadow ring-1 ring-black/5
+              "
+                        >
+              <Star size={12} /> Popular
+            </span>
+                    )}
+
+                    {/* Favorite (heart) button */}
+                    <button
+                        type="button"
+                        aria-label={`Add ${item.title} to favorites`}
+                        className="
+              absolute right-3 top-3 z-10
+              inline-flex h-9 w-9 items-center justify-center
+              rounded-full bg-white/90 backdrop-blur
+              text-blue-500
+              shadow ring-1 ring-black/5
+              transition-transform duration-200 ease-out
+              hover:scale-110 active:scale-95
+              focus-visible:outline-none
+              focus-visible:ring-2 focus-visible:ring-[#601f1f] focus-visible:ring-offset-2 focus-visible:ring-offset-white
+            "
+                    >
+                        <Heart size={18} />
+                    </button>
+                </div>
+
+                {/* Body */}
+                <div className="space-y-2 px-4 py-4">
+                    <h4 className="line-clamp-2 text-base font-semibold text-[#601f1f]">
+                        {item.title}
+                    </h4>
+                    {item.description && (
+                        <p className="line-clamp-3 text-sm text-gray-700">{item.description}</p>
+                    )}
+                    <div className="flex items-center justify-between pt-1">
+                        <span className="text-[15px] tabular-nums text-gray-900">{item.price}</span>
+
+                        {/* Subtle underline grows on hover to signal interactivity */}
+                        <span
+                            className="
+                h-[2px] w-10 origin-left scale-x-0 bg-amber-300
+                transition-transform duration-300 ease-out
+                group-hover:scale-x-100
+              "
+                            aria-hidden
+                        />
                     </div>
+                </div>
+            </div>
+        </article>
+    );
+}
+
+const BreakfastFavorites: React.FC<Props> = ({ items }) => {
+    if (!items?.length) return null;
+
+    return (
+        <section aria-labelledby="favorites-title" className="py-10">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Header */}
+                <div className="mb-6 flex items-end justify-between">
+                    <div>
+                        <h3 id="favorites-title" className="text-2xl font-bold text-[#601f1f]">
+                            Favorites
+                        </h3>
+                        <p className="text-sm text-[#601f1f]/80">Guest-loved breakfast picks.</p>
+                    </div>
+
+                    {/* Count */}
+                    <span className="text-sm text-gray-600">
+            {items.length} item{items.length > 1 ? "s" : ""}
+          </span>
+                </div>
+
+                {/* Cards */}
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+                    {items.map((item, idx) => (
+                        <FavoriteCard key={`${item.title}-${idx}`} item={item} />
+                    ))}
                 </div>
             </div>
         </section>
