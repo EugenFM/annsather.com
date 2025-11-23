@@ -223,6 +223,8 @@ const AnnSatherWebsite = () => {
             {/* Simple Breakfast Menu */}
             <BreakfastMenu />
 
+            {/*<CompleteMenu />*/}
+
             {/* Visit */}
             <Visit />
 

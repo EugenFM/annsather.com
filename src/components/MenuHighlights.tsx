@@ -16,7 +16,7 @@ interface MenuHighlightsProps {
 const MenuHighlights: React.FC<MenuHighlightsProps> = ({ menuHighlights }) => {
     return (
         <section
-            id="menu"
+            // id="menu"
             className="scroll-mt-20 relative w-full bg-[#FFF] p-5 px-5 text-white overflow-hidden"
         >
             <div className="striped-bg w-full h-full">

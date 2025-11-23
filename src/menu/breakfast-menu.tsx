@@ -314,6 +314,10 @@ const CompleteMenu = () => {
     };
 
     return (
+        <section
+            id="menu"
+            className="scroll-mt-20 relative w-full bg-[#FFF] p-5 px-5 text-white overflow-hidden"
+        >
         <div className="min-h-screen bg-gray-50">
             {/* Add loading state */}
             {isLoadingMenu && (
@@ -407,15 +411,29 @@ const CompleteMenu = () => {
                                 key={category}
                                 className={`${activeCategory === category ? 'block' : 'hidden'}`}
                             >
-                                <div className="mb-8">
-                                    <h2 className="text-3xl font-bold text-gray-900 mb-2">{category}</h2>
-                                    <p className="text-gray-600">
+                                {/*<div className="mb-8">*/}
+                                {/*    <h2 className="text-3xl font-bold text-gray-900 mb-2">{category}</h2>*/}
+                                {/*    <p className="text-gray-600">*/}
+                                {/*        {category === 'Breakfast' && 'Start your day with our hearty breakfast selections'}*/}
+                                {/*        {category === 'Lunch' && 'Delicious lunch options to satisfy your midday cravings'}*/}
+                                {/*        {category === 'Specials' && 'Chef\'s special creations and seasonal favorites'}*/}
+                                {/*        {category === 'Entrees' && 'Classic Ann Sather entrées made with love'}*/}
+                                {/*    </p>*/}
+                                {/*</div>*/}
+
+                                <div className="mb-10 text-center">
+                                    <h2 className="text-4xl md:text-5xl font-bold text-[#601f1f] mb-3 tracking-tight font-['Playfair_Display']">
+                                        {category}
+                                    </h2>
+                                    <p className="text-lg md:text-xl text-[#330000]/80 italic font-['Cardo']">
                                         {category === 'Breakfast' && 'Start your day with our hearty breakfast selections'}
                                         {category === 'Lunch' && 'Delicious lunch options to satisfy your midday cravings'}
-                                        {category === 'Specials' && 'Chef\'s special creations and seasonal favorites'}
+                                        {category === 'Specials' && "Chef's special creations and seasonal favorites"}
                                         {category === 'Entrees' && 'Classic Ann Sather entrées made with love'}
+                                        {category === 'Breakfast & Desserts' && 'Our morning classics and sweet treats'}
                                     </p>
                                 </div>
+
 
                                 <div className="space-y-6">
                                     {Object.entries(sections).map(([section, items]) => (
@@ -475,6 +493,8 @@ const CompleteMenu = () => {
                 </>
             )}
         </div>
+        </section>
+
     );
 };
 
