@@ -1,5 +1,6 @@
 // src/menu/BreakfastMenu.tsx
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Search, Star, X, Heart, ChevronLeft, ChevronRight } from "lucide-react";
 import { publicGet } from "../utils/apiClient.ts";
 
@@ -106,9 +107,9 @@ type Pages = Array<{
 }>;
 
 function FullMenuModal({
-                           open,
-                           onClose,
-                       }: {
+    open,
+    onClose,
+}: {
     open: boolean;
     onClose: () => void;
 }) {
@@ -117,6 +118,18 @@ function FullMenuModal({
     const [pages, setPages] = useState<Pages>([]);
     const [page, setPage] = useState(0);
     const closeBtnRef = useRef<HTMLButtonElement | null>(null);
+
+    // Lock body scroll when modal is open
+    useEffect(() => {
+        if (open) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [open]);
 
     useEffect(() => {
         if (!open) return;
@@ -172,9 +185,9 @@ function FullMenuModal({
 
     const current = pages[page];
 
-    return (
+    return createPortal(
         <div
-            className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-6"
+            className="fixed inset-0 z-[9999] flex items-center justify-center px-4 py-6"
             role="dialog"
             aria-modal="true"
             aria-labelledby="full-menu-title"
@@ -182,7 +195,11 @@ function FullMenuModal({
         >
             <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
             <div
-                className="relative z-10 w-full max-w-5xl rounded-2xl bg-white shadow-2xl ring-1 ring-black/10"
+                className="relative z-50 w-full max-w-5xl rounded-2xl bg-white ring-1 ring-black/10"
+                style={{
+                    boxShadow: '0 0 0 3px #FECC00, 0 0 0 7px #0066B3, 0 20px 25px -5px rgba(0,0,0,0.3), 0 10px 10px -5px rgba(0,0,0,0.04)',
+                    border: '2px solid #FECC00',
+                }}
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Header */}
@@ -207,8 +224,8 @@ function FullMenuModal({
                             <>
                                 <span className="font-semibold text-[#601f1f]">{current?.title}</span>{" "}
                                 <span>
-                  ({page + 1} / {pages.length})
-                </span>
+                                    ({page + 1} / {pages.length})
+                                </span>
                             </>
                         ) : (
                             <span>Loading…</span>
@@ -272,8 +289,8 @@ function FullMenuModal({
                                                             <h4 className="font-medium text-gray-900 truncate">{i.title}</h4>
                                                             {i.featured && (
                                                                 <span className="inline-flex items-center gap-1 text-xs font-semibold text-yellow-800 bg-yellow-100 px-2 py-0.5 rounded-full">
-                                  <Star size={12} className="inline" /> Popular
-                                </span>
+                                                                    <Star size={12} className="inline" /> Popular
+                                                                </span>
                                                             )}
                                                         </div>
                                                     </div>
@@ -304,13 +321,12 @@ function FullMenuModal({
                     </button>
                 </div>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 }
 
-/* -------------------------
-   Favorite Card (updated)
-   ------------------------- */
+
 function FavoriteCard({ item }: { item: ApiItem }) {
     const imgSrc =
         item.image && item.image.trim().length > 0 ? item.image : DEFAULT_FAVORITE_IMAGE;
@@ -369,8 +385,8 @@ function FavoriteCard({ item }: { item: ApiItem }) {
                 shadow ring-1 ring-black/5
               "
                         >
-              <Star size={12} /> Popular
-            </span>
+                            <Star size={12} /> Popular
+                        </span>
                     )}
 
                     {/* Heart — now solid red */}
@@ -407,9 +423,9 @@ function FavoriteCard({ item }: { item: ApiItem }) {
 
                     {/* Price row pinned to bottom via outer flex-1 */}
                     <div className="mt-3 flex items-center justify-between">
-            <span className="text-[15px] tabular-nums text-gray-900">
-              {formatPrice(item.price)}
-            </span>
+                        <span className="text-[15px] tabular-nums text-gray-900">
+                            {formatPrice(item.price)}
+                        </span>
                         <span
                             aria-hidden
                             className="
@@ -420,8 +436,8 @@ function FavoriteCard({ item }: { item: ApiItem }) {
                         />
                     </div>
                 </div>
-            </div>
-        </article>
+            </div >
+        </article >
     );
 }
 
@@ -715,8 +731,8 @@ const BreakfastMenu: React.FC = () => {
                                         <div id={`${id}-title`} className="flex items-center justify-between">
                                             <h3 className="text-xl font-bold text-[#601f1f]">{section}</h3>
                                             <span className="text-sm text-gray-700">
-                        {items.length} item{items.length > 1 ? "s" : ""}
-                      </span>
+                                                {items.length} item{items.length > 1 ? "s" : ""}
+                                            </span>
                                         </div>
                                     </header>
 
@@ -729,8 +745,8 @@ const BreakfastMenu: React.FC = () => {
                                                             <h4 className="font-medium text-gray-900 truncate">{i.title}</h4>
                                                             {i.featured && (
                                                                 <span className="inline-flex items-center gap-1 text-xs font-semibold text-yellow-800 bg-yellow-100 px-2 py-0.5 rounded-full">
-                                  <Star size={12} className="inline" /> Popular
-                                </span>
+                                                                    <Star size={12} className="inline" /> Popular
+                                                                </span>
                                                             )}
                                                         </div>
                                                     </div>
