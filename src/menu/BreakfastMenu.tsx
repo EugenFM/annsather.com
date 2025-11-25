@@ -570,7 +570,7 @@ const BreakfastMenu: React.FC = () => {
     }, [filtered, sectionsInOrder]);
 
     const rowPad = "py-2";
-    const secPad = "px-6 py-6";
+    const secPad = "px-5 py-3";
 
     const handleAnchorClick = (id: string) => {
         const el = document.getElementById(id);
@@ -655,6 +655,17 @@ const BreakfastMenu: React.FC = () => {
                     </div>
                 </div>
 
+                {/* Sticky Section Header */}
+                <div className="sticky top-[93px] z-30 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-3 mb-4 bg-gradient-to-r from-[#601f1f] to-[#8b2f2f] shadow-lg border-b-2 border-amber-400 transition-all duration-300">
+                    <div className="flex items-center justify-between">
+                        <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                            <span className="inline-block w-1 h-6 bg-amber-400 rounded-full"></span>
+                            Breakfast & Desserts Menu
+                        </h3>
+                        <span className="text-sm text-amber-200">Scroll to explore our selections</span>
+                    </div>
+                </div>
+
                 {/* ===== Favorites (integrated, upgraded cards) ===== */}
                 {favorites.length > 0 && (
                     <section aria-labelledby="favorites-title" className="mb-10">
@@ -681,7 +692,7 @@ const BreakfastMenu: React.FC = () => {
                                 <button
                                     key={section}
                                     onClick={() => handleAnchorClick(id)}
-                                    className="shrink-0 rounded-full border border-[#601f1f]/50 text-[#601f1f] px-3 py-1 text-sm bg-white/80 backdrop-blur"
+                                    className="shrink-0 rounded-full border-2 border-[#601f1f] text-white bg-[#601f1f] px-4 py-2 text-sm font-medium shadow-sm hover:bg-[#4f1919] active:scale-95 transition-all"
                                 >
                                     {section}
                                 </button>
@@ -694,7 +705,7 @@ const BreakfastMenu: React.FC = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-8">
                     {/* Sticky left index */}
                     <aside className="hidden lg:block">
-                        <div className="sticky top-24 space-y-2">
+                        <div className="sticky top-48 space-y-2 p-4 bg-white/50 backdrop-blur rounded-xl border border-stone-200/60">
                             {sectionsInOrder.map((section) => {
                                 const id = `sec-${slug(section)}`;
                                 const count = (filtered[section]?.length ?? 0);
@@ -702,10 +713,10 @@ const BreakfastMenu: React.FC = () => {
                                     <button
                                         key={section}
                                         onClick={() => handleAnchorClick(id)}
-                                        className="w-full text-left px-3 py-2 rounded-md border border-white/60 bg-white/80 backdrop-blur hover:bg-white shadow-sm ring-1 ring-black/5 flex items-center justify-between"
+                                        className="w-full text-left px-4 py-3 rounded-lg border-2 border-[#601f1f]/20 bg-white shadow-sm hover:shadow-md hover:border-[#601f1f] hover:bg-amber-50 transition-all flex items-center justify-between group"
                                     >
-                                        <span className="truncate text-sm text-[#601f1f]">{section}</span>
-                                        <span className="ml-3 text-xs text-gray-600">{count}</span>
+                                        <span className="truncate text-sm font-semibold text-[#601f1f] group-hover:text-[#4f1919]">{section}</span>
+                                        <span className="ml-3 text-xs font-medium text-gray-700 bg-gray-100 px-2 py-1 rounded-full group-hover:bg-amber-200">{count}</span>
                                     </button>
                                 );
                             })}
@@ -722,15 +733,15 @@ const BreakfastMenu: React.FC = () => {
                                 <article
                                     key={section}
                                     aria-labelledby={`${id}-title`}
-                                    className="h-full bg-white/80 backdrop-blur rounded-xl shadow-sm hover:shadow-md transition-shadow border border-white/60 ring-1 ring-black/5 flex flex-col"
+                                    className="h-full bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-stone-100 flex flex-col overflow-hidden"
                                 >
                                     <header
                                         id={id}
-                                        className={`${secPad} border-b border-white/60 bg-gradient-to-r from-amber-50/80 to-transparent rounded-t-xl scroll-mt-24`}
+                                        className={`${secPad} border-b border-[#601f1f]/10 bg-[#601f1f] text-white scroll-mt-32`}
                                     >
                                         <div id={`${id}-title`} className="flex items-center justify-between">
-                                            <h3 className="text-xl font-bold text-[#601f1f]">{section}</h3>
-                                            <span className="text-sm text-gray-700">
+                                            <h3 className="text-lg font-bold text-white">{section}</h3>
+                                            <span className="text-sm text-amber-200 font-medium bg-white/10 px-2 py-0.5 rounded-full">
                                                 {items.length} item{items.length > 1 ? "s" : ""}
                                             </span>
                                         </div>
