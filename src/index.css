@@ -21,7 +21,7 @@
 @layer components {
     .chicago-bg {
         @apply relative bg-cover bg-center;
-        background-image: url('../public/images/EFM-AnnSather_PICS/Chicago-Skyline2.jpg');
+        background-image: url('/images/EFM-AnnSather_PICS/Chicago-Skyline2.jpg');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -31,7 +31,7 @@
 @layer components {
     .faded-fixed-bg {
         @apply relative bg-[#EDEDED] text-[#2e2b28];
-        background-image: url('../public/images/EFM-AnnSather_PICS/Chicago-Skyline2.jpg');
+        background-image: url('/images/EFM-AnnSather_PICS/Chicago-Skyline2.jpg');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
