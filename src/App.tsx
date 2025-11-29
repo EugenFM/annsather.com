@@ -27,6 +27,8 @@ import {Amplify} from "aws-amplify";
 // import OurStory from "./components/OurStory.tsx";
 import BreakfastFavorites from './menu/BreakfastFavorites.tsx';
 import BreakfastMenu from './menu/BreakfastMenu.tsx';
+import MenuPage from "./components/MenuPage.tsx";
+
 
 Amplify.configure({
     Auth: {
@@ -144,7 +146,7 @@ const AnnSatherWebsite = () => {
         },
         {
             title: "Omelet",
-            description: "Choice of Omelet or Build Your Own",
+            description: "Your Choice of Omelet or Build Your Own",
             price: "$15.50",
             image: "/images/EFM-AnnSather_PICS/Omelette3.jpeg"
         },
@@ -155,10 +157,10 @@ const AnnSatherWebsite = () => {
             image: "/images/EFM-AnnSather_PICS/SwedishPancakes2.jpg"
         },
         {
-            title: "Eggs Benedict",
+            title: "Traditional Benedict",
             description: "Classic brunch favorite with hollandaise sauce",
-            price: "$16.95",
-            image: "/images/EFM-AnnSather_PICS/EggsBenedict3.jpeg"
+            price: "$16.50",
+            image: "/images/EFM-AnnSather_PICS/Breakfast3.jpeg"
         }
     ];
     /* Helper to pick the correct link for the active location */
@@ -218,10 +220,10 @@ const AnnSatherWebsite = () => {
             </section>
 
             {/*/!* Breakfast-focused Favorites *!/*/}
-            {/*<BreakfastFavorites items={menuHighlights} />*/}
+            <BreakfastFavorites items={menuHighlights} />
 
             {/* Simple Breakfast Menu */}
-            <BreakfastMenu />
+            {/*<BreakfastMenu />*/}
 
             {/*<CompleteMenu />*/}
 
@@ -254,6 +256,9 @@ export default function App() {
         <Routes>
             {/* Main Website (Home page sections) */}
             <Route path="/" element={<AnnSatherWebsite />} />
+
+            { /* Menu Page (separate route) */ }
+            <Route path="/menu" element={<MenuPage />} />
 
             {/* Recipes Page (separate route) */}
             <Route path="/recipes" element={<Recipes />} />

@@ -411,15 +411,6 @@ const CompleteMenu = () => {
                                 key={category}
                                 className={`${activeCategory === category ? 'block' : 'hidden'}`}
                             >
-                                {/*<div className="mb-8">*/}
-                                {/*    <h2 className="text-3xl font-bold text-gray-900 mb-2">{category}</h2>*/}
-                                {/*    <p className="text-gray-600">*/}
-                                {/*        {category === 'Breakfast' && 'Start your day with our hearty breakfast selections'}*/}
-                                {/*        {category === 'Lunch' && 'Delicious lunch options to satisfy your midday cravings'}*/}
-                                {/*        {category === 'Specials' && 'Chef\'s special creations and seasonal favorites'}*/}
-                                {/*        {category === 'Entrees' && 'Classic Ann Sather entrées made with love'}*/}
-                                {/*    </p>*/}
-                                {/*</div>*/}
 
                                 <div className="mb-10 text-center">
                                     <h2 className="text-4xl md:text-5xl font-bold text-[#601f1f] mb-3 tracking-tight font-['Playfair_Display']">

@@ -127,7 +127,7 @@ const Visit = () => {
 
 
 
-                        <h3 className="text-xl font-bold text-[#601f1f] pt-4 mb-6 text-center uppercase tracking-wide">
+                        <h3 className="text-xl font-bold text-[#601f1f] mb-10 text-center uppercase tracking-wide">
                                 Our Team
                             </h3>
 

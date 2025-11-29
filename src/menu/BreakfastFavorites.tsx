@@ -45,7 +45,7 @@ function FavoriteCard({ item }: { item: FavoriteItem }) {
                             src={item.image}
                             alt={item.title}
                             className="
-                h-full w-full object-cover
+                h-[280px] w-full object-cover
                 transition-transform duration-300 ease-out
                 motion-safe:group-hover:scale-105
               "
@@ -86,7 +86,7 @@ function FavoriteCard({ item }: { item: FavoriteItem }) {
               absolute right-3 top-3 z-10
               inline-flex h-9 w-9 items-center justify-center
               rounded-full bg-white/90 backdrop-blur
-              text-blue-500
+              text-red-500
               shadow ring-1 ring-black/5
               transition-transform duration-200 ease-out
               hover:scale-110 active:scale-95
@@ -99,15 +99,15 @@ function FavoriteCard({ item }: { item: FavoriteItem }) {
                 </div>
 
                 {/* Body */}
-                <div className="space-y-2 px-4 py-4">
-                    <h4 className="line-clamp-2 text-base font-semibold text-[#601f1f]">
+                <div className="space-y-2 px-4 py-4 h-[180px]">
+                    <h4 className="line-clamp-2 text-xl font-semibold text-[#601f1f] p-2">
                         {item.title}
                     </h4>
                     {item.description && (
-                        <p className="line-clamp-3 text-sm text-gray-700">{item.description}</p>
+                        <p className="px-2 text-sm text-[#601f1f]">{item.description}</p>
                     )}
                     <div className="flex items-center justify-between pt-1">
-                        <span className="text-[15px] tabular-nums text-gray-900">{item.price}</span>
+                        <span className="px-2 text-[15px] tabular-nums text-[#601f1f]">{item.price}</span>
 
                         {/* Subtle underline grows on hover to signal interactivity */}
                         <span
@@ -129,19 +129,19 @@ const BreakfastFavorites: React.FC<Props> = ({ items }) => {
     if (!items?.length) return null;
 
     return (
-        <section aria-labelledby="favorites-title" className="py-10">
+        <section aria-labelledby="favorites-title" className="py-14">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
-                <div className="mb-6 flex items-end justify-between">
+                <div className="mb-8 flex items-end justify-between">
                     <div>
-                        <h3 id="favorites-title" className="text-2xl font-bold text-[#601f1f]">
+                        <h3 id="favorites-title" className="text-4xl font-bold text-[#601f1f]">
                             Favorites
                         </h3>
-                        <p className="text-sm text-[#601f1f]/80">Guest-loved breakfast picks.</p>
+                        <p className="text-base text-[#601f1f]/80">Guest-loved breakfast picks</p>
                     </div>
 
                     {/* Count */}
-                    <span className="text-sm text-gray-600">
+                    <span className="text-sm text-[#601f1f]">
             {items.length} item{items.length > 1 ? "s" : ""}
           </span>
                 </div>

@@ -351,7 +351,7 @@ const CateringSection = () => {
     ) => (
         <div
             ref={sectionRefs[id]}
-            className="bg-white/20 shadow-lg rounded overflow-hidden max-w-3xl mx-auto mb-6"
+            className="bg-white/20 shadow-lg rounded-lg overflow-hidden max-w-2xl mx-auto mb-6"
         >
             <button
                 onClick={() => setOpenSection((prev) => (prev === id ? null : id))}
@@ -400,14 +400,14 @@ const CateringSection = () => {
                 <div className="mb-10 flex flex-col sm:flex-row justify-center items-center gap-4 pb-6 text-center">
                     <button
                         onClick={() => setShowDeliveryInfo(!showDeliveryInfo)}
-                        className="bg-white/30 text-white font-bold px-4 py-2 rounded shadow-lg hover:bg-white/40 transition cursor-pointer w-[80%] max-w-xs sm:w-auto"
+                        className="bg-white/30 text-white font-bold px-4 py-2 rounded-lg shadow-lg hover:bg-white/40 transition cursor-pointer w-[80%] max-w-xs sm:w-auto"
                     >
                         {showDeliveryInfo ? 'Hide Delivery Info' : 'View Delivery Info'}
                     </button>
 
                     <button
                         onClick={() => setShowCateringInfo(!showCateringInfo)}
-                        className="bg-white/30 text-white font-bold px-4 py-2 rounded shadow-lg hover:bg-white/40 transition cursor-pointer w-[80%] max-w-xs sm:w-auto"
+                        className="bg-white/30 text-white font-bold px-4 py-2 rounded-lg shadow-lg hover:bg-white/40 transition cursor-pointer w-[80%] max-w-xs sm:w-auto"
                     >
                         {showCateringInfo ? 'Hide Catering Info' : 'View Catering Info'}
                     </button>
@@ -416,7 +416,7 @@ const CateringSection = () => {
 
                 {/* Delivery Info Panel */}
                 {showDeliveryInfo && (
-                    <div ref={deliveryRef} className="rounded-xl shadow-lg overflow-hidden max-w-5xl mx-auto mb-10">
+                    <div ref={deliveryRef} className="rounded shadow-lg overflow-hidden max-w-5xl mx-auto mb-10">
                         <div className="p-6 space-y-4 text-base bg-white/10 text-white leading-relaxed">
                             <h4 className="text-lg font-bold mb-4">Deliveries</h4>
                             <p className="mb-2"> To place a catering delivery order, please call: <strong>773-348-2378</strong>.
@@ -452,7 +452,7 @@ const CateringSection = () => {
 
                 {/* Catering Info Panel (NEW) */}
                 {showCateringInfo && (
-                    <div ref={cateringRef} className="rounded-xl shadow-lg overflow-hidden max-w-5xl mx-auto mb-10">
+                    <div ref={cateringRef} className="rounded shadow-lg overflow-hidden max-w-5xl mx-auto mb-10">
                         <div className="p-6 space-y-4 text-base bg-white/10 text-white leading-relaxed">
                             <p className="font-bold max-w-3xl text-xl leading-relaxed px-4">
                                 Ann Sather Corporate and Special Event Catering

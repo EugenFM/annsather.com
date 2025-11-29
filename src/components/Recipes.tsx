@@ -41,16 +41,16 @@ const Recipes: React.FC = () => {
                     <div className="relative max-w-7xl mx-auto pb-10 px-4 sm:px-6 lg:px-8 text-[#601f1f]">
                         {/* 🧠 Section Heading */}
                         <div className="text-center mb-12">
-                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#601f1f] pt-15 mb-8">
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#601f1f] pt-18 pb-4 mb-8">
                                 Cooking at Home with Ann Sather
                             </h2>
-                            <p className="max-w-5xl mx-auto text-lg mb-4 leading-relaxed">
+                            <p className="max-w-4xl mx-auto text-lg mb-4 leading-relaxed">
                                 Do you think it’s possible to replicate our much celebrated
                                 cinnamon rolls, Swedish pancakes, roast duck, or one of our
                                 delectable pies at home? We don’t think so either, but we’re
                                 giving you the opportunity to try.
                             </p>
-                            <p className="max-w-5xl mx-auto text-lg mb-10 leading-relaxed">
+                            <p className="max-w-4xl mx-auto text-lg mb-10 leading-relaxed pb-4">
                                 In 1994, Ann Sather’s restaurants published a 50th-anniversary
                                 cookbook. Due to popular demand, we now have recipes for some of
                                 our much-loved dishes available online. Browse through our
@@ -59,7 +59,7 @@ const Recipes: React.FC = () => {
                         </div>
 
                         {/* 🍳 Recipe Category Buttons */}
-                        <div className="flex flex-wrap justify-center gap-4 max-w-xl mx-auto">
+                        <div className="flex flex-wrap justify-center gap-8 max-w-xl mx-auto pb-8">
                             {recipeData.map(({ title }) => {
                                 const isActive = activeCategory === title;
                                 return (

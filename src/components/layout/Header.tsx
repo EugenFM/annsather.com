@@ -81,12 +81,15 @@ const Header = () => {
             {/* Right: Navigation */}
             <div className="flex-1 flex justify-end items-center gap-10 pr-8">
 
-           {/* Desktop navigation */}
+                {/* Desktop navigation */}
                 <div className="hidden md:flex items-center gap-10">
-                    {["Home", "Menu", "Visit", "Catering", "Recipes", "Our Story"].map(
-                        (item) => {
-                            const isRecipes = item === "Recipes";
-                            return isRecipes ? (
+                    {["Home", "Menu", "Visit", "Catering", "Recipes", "Our Story"].map((item) => {
+                        const isRecipes = item === "Recipes";
+                        const isMenu = item === "Menu";
+
+                        if (isRecipes) {
+                            // Recipes -> its own page
+                            return (
                                 <Link
                                     key={item}
                                     to="/recipes"
@@ -98,23 +101,43 @@ const Header = () => {
                                 >
                                     {item}
                                 </Link>
-                            ) : (
-                                <button
+                            );
+                        }
+
+                        if (isMenu) {
+                            // Menu -> new /menu page
+                            return (
+                                <Link
                                     key={item}
-                                    onClick={() => handleSectionClick(item)}
-                                    className={`font-medium tracking-wide font-['Playfair_Display'] uppercase cursor-pointer transition-all duration-300 ${
+                                    to="/menu"
+                                    className={`font-medium tracking-wide font-['Playfair_Display'] uppercase transition-all duration-300 ${
                                         scrolled
                                             ? "text-[#330000] hover:text-[#7a1a1a]"
                                             : "text-[#C8B8AE] hover:text-[#EAE6D2]"
                                     }`}
                                 >
                                     {item}
-                                </button>
+                                </Link>
                             );
                         }
-                    )}
 
-                    {/* Order Now button */}
+                        // Others still scroll within the SPA
+                        return (
+                            <button
+                                key={item}
+                                onClick={() => handleSectionClick(item)}
+                                className={`font-medium tracking-wide font-['Playfair_Display'] uppercase cursor-pointer transition-all duration-300 ${
+                                    scrolled
+                                        ? "text-[#330000] hover:text-[#7a1a1a]"
+                                        : "text-[#C8B8AE] hover:text-[#EAE6D2]"
+                                }`}
+                            >
+                                {item}
+                            </button>
+                        );
+                    })}
+
+                {/* Order Now button */}
                     <button
                         onClick={() => handleSectionClick("order-online")}
                         className={`ml-4 px-6 py-1 rounded-full font-bold font-['Playfair_Display'] uppercase cursor-pointer transition-all duration-300 ${

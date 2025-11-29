@@ -44,13 +44,13 @@ const OrderOnline: React.FC<OrderOnlineProps> = ({
 
             {/* Content */}
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 className="text-4xl font-bold pt-10 mb-6 opacity-90">Order Online</h2>
-                <p className="text-xl text-white mb-32 opacity-90">
+                <h2 className="text-4xl font-bold pt-10 mb-6">Order Online</h2>
+                <p className="text-xl text-white mb-32">
                     Get your favorites delivered or ready for pickup
                 </p>
 
                 {/* Delivery Platforms */}
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 max-w-4xl mx-auto">
                     {deliveryPlatforms.map((platform) => {
                         const link = getLink(platform.name);
                         const isDisabled = !link;
@@ -63,7 +63,7 @@ const OrderOnline: React.FC<OrderOnlineProps> = ({
                                 rel="noopener noreferrer"
                                 className={`font-bold text-2xl rounded-xl p-6 text-center bg-white/30 opacity-90 transition-all duration-300 transform ${
                                     isDisabled
-                                        ? "bg-white/10 cursor-not-allowed opacity-40"
+                                        ? "bg-white/10 cursor-not-allowed opacity-60"
                                         : `${platform.color} hover:scale-105 cursor-pointer`
                                 }`}
                                 aria-disabled={isDisabled}
@@ -80,10 +80,10 @@ const OrderOnline: React.FC<OrderOnlineProps> = ({
 
                 {/* Pickup Numbers */}
                 <div className="mt-12">
-                    <p className="font-bold mb-4 opacity-90 uppercase">
-                        Or call for pickup:
+                    <p className="font-bold mb-4 uppercase">
+                        Or call for pickup
                     </p>
-                    <div className="flex flex-wrap justify-center gap-6">
+                    <div className="flex flex-wrap justify-center gap-22">
                         {locations.map((location, index) => (
                             <div
                                 key={index}

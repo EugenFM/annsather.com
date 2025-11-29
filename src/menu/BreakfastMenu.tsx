@@ -1,6 +1,5 @@
 // src/menu/BreakfastMenu.tsx
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { createPortal } from "react-dom";
 import { Search, Star, X, Heart, ChevronLeft, ChevronRight } from "lucide-react";
 import { publicGet } from "../utils/apiClient.ts";
 
@@ -35,7 +34,7 @@ const FAVORITES_TARGETS: FavoriteTarget[] = [
     {
         key: "cinnamon rolls",
         title: "Cinnamon Rolls",
-        img: "https://github.com/Aracif/images/blob/main/swedish-cinnamon-buns.png?raw=true",
+        img: "/images/EFM-AnnSather_PICS/CRolls3.jpg",
         synonyms: ["cinnamon roll", "cinnamon rolls", "cinnamon bun", "cinnamon buns"],
     },
     {
@@ -47,13 +46,13 @@ const FAVORITES_TARGETS: FavoriteTarget[] = [
     {
         key: "swedish waffles",
         title: "Swedish Waffles",
-        img: "https://github.com/Aracif/images/blob/main/swedish%20waffles.png?raw=true",
+        img: "/images/EFM-AnnSather_PICS/Breakfast6.jpeg",
         synonyms: ["swedish waffle", "swedish waffles", "heart-shaped waffle", "heart shaped waffle"],
     },
     {
         key: "swedish pancakes",
         title: "Swedish Pancakes",
-        img: "https://github.com/Aracif/images/blob/main/swedish%20pancakes-with-lingonberries.png?raw=true",
+        img: "/images/EFM-AnnSather_PICS/Food1.jpeg",
         synonyms: ["swedish pancake", "swedish pancakes", "pannkakor", "crepes", "thin pancakes"],
     },
 ];
@@ -107,9 +106,9 @@ type Pages = Array<{
 }>;
 
 function FullMenuModal({
-    open,
-    onClose,
-}: {
+                           open,
+                           onClose,
+                       }: {
     open: boolean;
     onClose: () => void;
 }) {
@@ -118,18 +117,6 @@ function FullMenuModal({
     const [pages, setPages] = useState<Pages>([]);
     const [page, setPage] = useState(0);
     const closeBtnRef = useRef<HTMLButtonElement | null>(null);
-
-    // Lock body scroll when modal is open
-    useEffect(() => {
-        if (open) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-        return () => {
-            document.body.style.overflow = '';
-        };
-    }, [open]);
 
     useEffect(() => {
         if (!open) return;
@@ -185,9 +172,9 @@ function FullMenuModal({
 
     const current = pages[page];
 
-    return createPortal(
+    return (
         <div
-            className="fixed inset-0 z-[9999] flex items-center justify-center px-4 py-6"
+            className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-6"
             role="dialog"
             aria-modal="true"
             aria-labelledby="full-menu-title"
@@ -195,11 +182,7 @@ function FullMenuModal({
         >
             <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
             <div
-                className="relative z-50 w-full max-w-5xl rounded-2xl bg-white ring-1 ring-black/10"
-                style={{
-                    boxShadow: '0 0 0 3px #FECC00, 0 0 0 7px #0066B3, 0 20px 25px -5px rgba(0,0,0,0.3), 0 10px 10px -5px rgba(0,0,0,0.04)',
-                    border: '2px solid #FECC00',
-                }}
+                className="relative z-10 w-full max-w-5xl rounded-2xl bg-white shadow-2xl ring-1 ring-black/10"
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Header */}
@@ -224,8 +207,8 @@ function FullMenuModal({
                             <>
                                 <span className="font-semibold text-[#601f1f]">{current?.title}</span>{" "}
                                 <span>
-                                    ({page + 1} / {pages.length})
-                                </span>
+                  ({page + 1} / {pages.length})
+                </span>
                             </>
                         ) : (
                             <span>Loading…</span>
@@ -289,8 +272,8 @@ function FullMenuModal({
                                                             <h4 className="font-medium text-gray-900 truncate">{i.title}</h4>
                                                             {i.featured && (
                                                                 <span className="inline-flex items-center gap-1 text-xs font-semibold text-yellow-800 bg-yellow-100 px-2 py-0.5 rounded-full">
-                                                                    <Star size={12} className="inline" /> Popular
-                                                                </span>
+                                  <Star size={12} className="inline" /> Popular
+                                </span>
                                                             )}
                                                         </div>
                                                     </div>
@@ -321,12 +304,13 @@ function FullMenuModal({
                     </button>
                 </div>
             </div>
-        </div>,
-        document.body
+        </div>
     );
 }
 
-
+/* -------------------------
+   Favorite Card (updated)
+   ------------------------- */
 function FavoriteCard({ item }: { item: ApiItem }) {
     const imgSrc =
         item.image && item.image.trim().length > 0 ? item.image : DEFAULT_FAVORITE_IMAGE;
@@ -356,7 +340,7 @@ function FavoriteCard({ item }: { item: ApiItem }) {
                             src={imgSrc}
                             alt={item.title}
                             className="
-                h-full w-full object-cover
+                h-[280px] w-full object-cover
                 transition-transform duration-300 ease-out
                 motion-safe:group-hover:scale-105
               "
@@ -385,8 +369,8 @@ function FavoriteCard({ item }: { item: ApiItem }) {
                 shadow ring-1 ring-black/5
               "
                         >
-                            <Star size={12} /> Popular
-                        </span>
+              <Star size={12} /> Popular
+            </span>
                     )}
 
                     {/* Heart — now solid red */}
@@ -423,9 +407,9 @@ function FavoriteCard({ item }: { item: ApiItem }) {
 
                     {/* Price row pinned to bottom via outer flex-1 */}
                     <div className="mt-3 flex items-center justify-between">
-                        <span className="text-[15px] tabular-nums text-gray-900">
-                            {formatPrice(item.price)}
-                        </span>
+            <span className="text-[15px] tabular-nums text-[#601f1f]">
+              {formatPrice(item.price)}
+            </span>
                         <span
                             aria-hidden
                             className="
@@ -436,8 +420,8 @@ function FavoriteCard({ item }: { item: ApiItem }) {
                         />
                     </div>
                 </div>
-            </div >
-        </article >
+            </div>
+        </article>
     );
 }
 
@@ -570,7 +554,7 @@ const BreakfastMenu: React.FC = () => {
     }, [filtered, sectionsInOrder]);
 
     const rowPad = "py-2";
-    const secPad = "px-5 py-3";
+    const secPad = "px-6 py-6";
 
     const handleAnchorClick = (id: string) => {
         const el = document.getElementById(id);
@@ -603,22 +587,22 @@ const BreakfastMenu: React.FC = () => {
     }
 
     return (
-        <section aria-labelledby="breakfast-menu-title" className="relative z-0" ref={containerRef}>
+        <section id={'menu'} aria-labelledby="breakfast-menu-title" className="relative z-0 scroll-mt-24" ref={containerRef}>
             {/* Background image (motion-safe parallax on md+) */}
             <div
                 aria-hidden
-                className="pointer-events-none absolute inset-0 z-0 bg-[url('/images/breakfast-hero.png')] bg-cover bg-center bg-no-repeat bg-scroll md:bg-fixed motion-reduce:bg-scroll"
+                className="pointer-events-none absolute inset-0 z-0 bg-[url('/images/EFM-AnnSather_PICS/CRolls3.jpg')] bg-cover bg-center bg-no-repeat bg-scroll md:bg-fixed motion-reduce:bg-scroll"
             />
-            <div aria-hidden className="pointer-events-none absolute inset-0 z-10 bg-white/80 md:bg-white/70" />
+            <div aria-hidden className="pointer-events-none absolute inset-0 z-10 bg-white/80 md:bg-white/50" />
 
             <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
                 {/* Header Row */}
                 <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                     <div>
-                        <h2 id="breakfast-menu-title" className="text-3xl font-bold text-[#601f1f]">
+                        <h2 id="breakfast-menu-title" className="text-4xl font-bold text-[#601f1f]">
                             Breakfast & Desserts
                         </h2>
-                        <p className="text-sm text-[#601f1f]/80">Our morning classics and sweet treats.</p>
+                        <p className="text-lg text-[#601f1f]/80">Our morning classics and sweet treats.</p>
                     </div>
 
                     {/* Search + Full menu link */}
@@ -639,7 +623,7 @@ const BreakfastMenu: React.FC = () => {
                                     aria-label="Clear search"
                                     className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded hover:bg-white/60"
                                 >
-                                    <X size={16} />
+                                    <X size={18} />
                                 </button>
                             )}
                         </div>
@@ -648,21 +632,10 @@ const BreakfastMenu: React.FC = () => {
                         <button
                             type="button"
                             onClick={() => setShowFullMenu(true)}
-                            className="shrink-0 rounded-md border border-[#601f1f]/30 bg-white/90 backdrop-blur px-3 py-2 text-sm font-semibold text-[#601f1f] hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+                            className="shrink-0 rounded-md border border-[#601f1f]/30 bg-white/90 backdrop-blur px-3 py-2 text-base font-semibold text-[#601f1f] hover:bg-white cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
                         >
                             Show full menu
                         </button>
-                    </div>
-                </div>
-
-                {/* Sticky Section Header */}
-                <div className="sticky top-[93px] z-30 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-3 mb-4 bg-gradient-to-r from-[#601f1f] to-[#8b2f2f] shadow-lg border-b-2 border-amber-400 transition-all duration-300">
-                    <div className="flex items-center justify-between">
-                        <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                            <span className="inline-block w-1 h-6 bg-amber-400 rounded-full"></span>
-                            Breakfast & Desserts Menu
-                        </h3>
-                        <span className="text-sm text-amber-200">Scroll to explore our selections</span>
                     </div>
                 </div>
 
@@ -675,7 +648,7 @@ const BreakfastMenu: React.FC = () => {
                             </h3>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-stretch gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-stretch gap-6 cursor-pointer">
                             {favorites.map((f, idx) => (
                                 <FavoriteCard key={`${f.title}-${idx}`} item={f} />
                             ))}
@@ -692,7 +665,7 @@ const BreakfastMenu: React.FC = () => {
                                 <button
                                     key={section}
                                     onClick={() => handleAnchorClick(id)}
-                                    className="shrink-0 rounded-full border-2 border-[#601f1f] text-white bg-[#601f1f] px-4 py-2 text-sm font-medium shadow-sm hover:bg-[#4f1919] active:scale-95 transition-all"
+                                    className="shrink-0 rounded-full border border-[#601f1f]/50 text-[#601f1f] px-3 py-1 text-sm bg-white/80 backdrop-blur"
                                 >
                                     {section}
                                 </button>
@@ -702,10 +675,10 @@ const BreakfastMenu: React.FC = () => {
                 </div>
 
                 {/* Layout */}
-                <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-[285px_1fr] gap-6">
                     {/* Sticky left index */}
                     <aside className="hidden lg:block">
-                        <div className="sticky top-48 space-y-2 p-4 bg-white/50 backdrop-blur rounded-xl border border-stone-200/60">
+                        <div className="sticky top-24 space-y-2">
                             {sectionsInOrder.map((section) => {
                                 const id = `sec-${slug(section)}`;
                                 const count = (filtered[section]?.length ?? 0);
@@ -713,10 +686,10 @@ const BreakfastMenu: React.FC = () => {
                                     <button
                                         key={section}
                                         onClick={() => handleAnchorClick(id)}
-                                        className="w-full text-left px-4 py-3 rounded-lg border-2 border-[#601f1f]/20 bg-white shadow-sm hover:shadow-md hover:border-[#601f1f] hover:bg-amber-50 transition-all flex items-center justify-between group"
+                                        className="w-full text-left px-3 py-2 rounded-md border border-white/60 bg-white/80 backdrop-blur hover:bg-white shadow-sm ring-1 ring-black/5 flex items-center justify-between cursor-pointer"
                                     >
-                                        <span className="truncate text-sm font-semibold text-[#601f1f] group-hover:text-[#4f1919]">{section}</span>
-                                        <span className="ml-3 text-xs font-medium text-gray-700 bg-gray-100 px-2 py-1 rounded-full group-hover:bg-amber-200">{count}</span>
+                                        <span className="truncate text-sm text-[#601f1f]">{section}</span>
+                                        <span className="ml-3 text-sm text-[#601f1f]">{count}</span>
                                     </button>
                                 );
                             })}
@@ -733,17 +706,17 @@ const BreakfastMenu: React.FC = () => {
                                 <article
                                     key={section}
                                     aria-labelledby={`${id}-title`}
-                                    className="h-full bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-stone-100 flex flex-col overflow-hidden"
+                                    className="h-full bg-white/30 p-2 backdrop-blur rounded-xl shadow-sm hover:shadow-md transition-shadow border border-white/60 ring-1 ring-black/5 flex flex-col"
                                 >
                                     <header
                                         id={id}
-                                        className={`${secPad} border-b border-[#601f1f]/10 bg-[#601f1f] text-white scroll-mt-32`}
+                                        className={`${secPad} border-b border-white/60 bg-gradient-to-r from-amber-50/80 to-amber-50/70 rounded-xl scroll-mt-24`}
                                     >
                                         <div id={`${id}-title`} className="flex items-center justify-between">
-                                            <h3 className="text-lg font-bold text-white">{section}</h3>
-                                            <span className="text-sm text-amber-200 font-medium bg-white/10 px-2 py-0.5 rounded-full">
-                                                {items.length} item{items.length > 1 ? "s" : ""}
-                                            </span>
+                                            <h3 className="text-xl font-bold text-[#601f1f]">{section}</h3>
+                                            <span className="text-sm text-[#601f1f]">
+                        {items.length} item{items.length > 1 ? "s" : ""}
+                      </span>
                                         </div>
                                     </header>
 
@@ -753,21 +726,21 @@ const BreakfastMenu: React.FC = () => {
                                                 <div className="flex items-baseline gap-3">
                                                     <div className="min-w-0">
                                                         <div className="flex items-center gap-2">
-                                                            <h4 className="font-medium text-gray-900 truncate">{i.title}</h4>
+                                                            <h4 className="font-small text-[#601f1f]">{i.title}</h4>
                                                             {i.featured && (
                                                                 <span className="inline-flex items-center gap-1 text-xs font-semibold text-yellow-800 bg-yellow-100 px-2 py-0.5 rounded-full">
-                                                                    <Star size={12} className="inline" /> Popular
-                                                                </span>
+                                  <Star size={12} className="inline" /> Popular
+                                </span>
                                                             )}
                                                         </div>
                                                     </div>
                                                     <span className="flex-1 border-b border-dashed border-gray-300 translate-y-1" />
-                                                    <div className="shrink-0 text-[15px] tabular-nums text-gray-900">
+                                                    <div className="shrink-0 text-[15px] tabular-nums text-[#601f1f]">
                                                         {formatPrice(i.price)}
                                                     </div>
                                                 </div>
                                                 {i.description && (
-                                                    <p className="mt-1 text-sm text-gray-700">{i.description}</p>
+                                                    <p className="mt-1 text-sm text-[#601f1f]">{i.description}</p>
                                                 )}
                                             </li>
                                         ))}
