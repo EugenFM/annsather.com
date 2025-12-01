@@ -49,7 +49,7 @@
 
     .faded-fixed-city-bg {
         @apply relative bg-white text-[#2e2b28];
-        background-image: url('public/images/EFM-AnnSather_PICS/Chicago-Skyline2.jpg');
+        background-image: url('/images/EFM-AnnSather_PICS/Chicago-Skyline2.jpg');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -60,7 +60,7 @@
         position: absolute;
         inset: 0;
         background-color: #EDEDED;
-        opacity: 0.7;
+        opacity: 0.8;
         pointer-events: none;
         /* no z-index needed */
     }

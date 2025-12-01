@@ -139,7 +139,7 @@ const BreakfastFavorites: React.FC<Props> = ({ items }) => {
             </div>
             <div className={"w-full h-full px-4 sm:px-6 lg:px-8 faded-fixed-table-bg pb-15"}>
                 <h3 id="favorites-title" className="text-4xl font-bold text-[#601f1f] opacity-99 pt-15 text-center ">
-                    Our Favorite Morning Picks
+                    Our Morning Favorites
                 </h3>
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
