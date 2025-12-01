@@ -351,7 +351,7 @@ const CateringSection = () => {
     ) => (
         <div
             ref={sectionRefs[id]}
-            className="bg-white/20 shadow-lg rounded-lg overflow-hidden max-w-2xl mx-auto mb-6"
+            className="bg-white/20 shadow-lg rounded-lg overflow-hidden max-w-3xl mx-auto mb-6"
         >
             <button
                 onClick={() => setOpenSection((prev) => (prev === id ? null : id))}

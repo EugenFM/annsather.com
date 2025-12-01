@@ -133,10 +133,6 @@ const BreakfastFavorites: React.FC<Props> = ({ items }) => {
             aria-labelledby="favorites-title"
             className="scroll-mt-20 relative w-full bg-[#FFF] p-5 px-5 text-[#601f1f] overflow-hidden"
         >
-            <div>
-
-                {/*<p className="text-base text-[#601f1f]/80">Guest-loved breakfast picks</p>*/}
-            </div>
             <div className={"w-full h-full px-4 sm:px-6 lg:px-8 faded-fixed-table-bg pb-15"}>
                 <h3 id="favorites-title" className="text-4xl font-bold text-[#601f1f] opacity-99 pt-15 text-center ">
                     Our Morning Favorites

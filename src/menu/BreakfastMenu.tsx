@@ -436,12 +436,42 @@ const BreakfastMenu: React.FC = () => {
 
     const containerRef = useRef<HTMLDivElement | null>(null);
 
-    // fetch Breakfast + optional Desserts
+    // fetch Breakfast + optional Desserts with localStorage cache
     useEffect(() => {
+        let hasCache = false;
+
+        // 1️⃣ Try to load cached data first (instant render if available)
+        try {
+            const cachedBreakfast = localStorage.getItem("as_menu_breakfast");
+            const cachedDesserts = localStorage.getItem("as_menu_desserts");
+
+            if (cachedBreakfast) {
+                const parsedB: ApiItem[] = JSON.parse(cachedBreakfast);
+                setBreakfastData(parsedB);
+                hasCache = true;
+            }
+
+            if (cachedDesserts) {
+                const parsedD: ApiItem[] = JSON.parse(cachedDesserts);
+                setDessertData(parsedD);
+            }
+
+            if (hasCache) {
+                // we already have something to show, so don't block UI
+                setLoading(false);
+            }
+        } catch (e) {
+            console.error("Failed to read menu cache:", e);
+        }
+
+        // 2️⃣ Always fetch fresh data in the background
         (async () => {
-            setLoading(true);
             setErr("");
             try {
+                if (!hasCache) {
+                    setLoading(true); // only show spinner if nothing cached
+                }
+
                 const bOp = await publicGet(`/menu/Breakfast`);
                 const bRes = await bOp.response;
                 const bJson: ApiItem[] = await bRes.body.json();
@@ -454,24 +484,40 @@ const BreakfastMenu: React.FC = () => {
                         const dRes = await dOp.response;
                         const arr: ApiItem[] = await dRes.body.json();
                         if (Array.isArray(arr) && arr.length) {
-                            dJson = arr.map((i) => ({ ...i, category: i.category || "DESSERTS" }));
+                            dJson = arr.map((i) => ({
+                                ...i,
+                                category: i.category || "DESSERTS",
+                            }));
                             break;
                         }
                     } catch {
-                        // continue to next candidate
+                        // try next candidate
                     }
                 }
 
+                // ✅ Update state
                 setBreakfastData(bJson || []);
                 setDessertData(dJson || []);
+
+                // ✅ Update cache
+                try {
+                    localStorage.setItem("as_menu_breakfast", JSON.stringify(bJson || []));
+                    localStorage.setItem("as_menu_desserts", JSON.stringify(dJson || []));
+                } catch (e) {
+                    console.error("Failed to write menu cache:", e);
+                }
             } catch (e) {
                 console.error(e);
-                setErr("Failed to load breakfast menu. Please try again later.");
+                if (!hasCache) {
+                    // only show error if we truly have nothing to show
+                    setErr("Failed to load breakfast menu. Please try again later.");
+                }
             } finally {
                 setLoading(false);
             }
         })();
     }, []);
+
 
     // Combine breakfast + desserts (or derive dessertish items if missing)
     const allItems: ApiItem[] = useMemo(() => {
@@ -587,13 +633,14 @@ const BreakfastMenu: React.FC = () => {
     }
 
     return (
-        <section id={'menu'} aria-labelledby="breakfast-menu-title" className="relative z-0 scroll-mt-24" ref={containerRef}>
+        <section id={'menu'} aria-labelledby="breakfast-menu-title" className="relative w-viewport bg-[#FFF] ml-5 mt-5 mr-5 mx-auto text-[#601f1f] overflow-hidden scroll-mt-24" ref={containerRef}>
+
             {/* Background image (motion-safe parallax on md+) */}
             <div
                 aria-hidden
                 className="pointer-events-none absolute inset-0 z-0 bg-[url('/images/EFM-AnnSather_PICS/table.jpg')] bg-cover bg-center bg-no-repeat bg-scroll md:bg-fixed motion-reduce:bg-scroll"
             />
-            <div aria-hidden className="pointer-events-none absolute inset-0 z-10 bg-white/80 md:bg-white/70" />
+            <div aria-hidden className="pointer-events-none absolute inset-0 z-10 bg-white/70 md:bg-white/70" />
 
             <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
                 {/* Header Row */}
@@ -648,7 +695,7 @@ const BreakfastMenu: React.FC = () => {
                             </h3>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-stretch gap-6 cursor-pointer">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-stretch gap-6">
                             {favorites.map((f, idx) => (
                                 <FavoriteCard key={`${f.title}-${idx}`} item={f} />
                             ))}

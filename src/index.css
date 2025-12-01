@@ -26,6 +26,14 @@
         background-size: cover;
         background-position: center;
     }
+
+    .recipes-bg {
+        @apply bg-white relative bg-cover bg-center;
+        background-image: url('/images/EFM-AnnSather_PICS/trays.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
 }
 
 @layer components {
