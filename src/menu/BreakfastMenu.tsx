@@ -591,9 +591,9 @@ const BreakfastMenu: React.FC = () => {
             {/* Background image (motion-safe parallax on md+) */}
             <div
                 aria-hidden
-                className="pointer-events-none absolute inset-0 z-0 bg-[url('/images/EFM-AnnSather_PICS/CRolls3.jpg')] bg-cover bg-center bg-no-repeat bg-scroll md:bg-fixed motion-reduce:bg-scroll"
+                className="pointer-events-none absolute inset-0 z-0 bg-[url('/images/EFM-AnnSather_PICS/table.jpg')] bg-cover bg-center bg-no-repeat bg-scroll md:bg-fixed motion-reduce:bg-scroll"
             />
-            <div aria-hidden className="pointer-events-none absolute inset-0 z-10 bg-white/80 md:bg-white/50" />
+            <div aria-hidden className="pointer-events-none absolute inset-0 z-10 bg-white/80 md:bg-white/70" />
 
             <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
                 {/* Header Row */}

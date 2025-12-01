@@ -20,8 +20,8 @@
 
 @layer components {
     .chicago-bg {
-        @apply relative bg-cover bg-center;
-        background-image: url('/images/EFM-AnnSather_PICS/Chicago-Skyline2.jpg');
+        @apply bg-white relative bg-cover bg-center;
+        background-image: url('/images/EFM-AnnSather_PICS/table.jpg');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -29,28 +29,42 @@
 }
 
 @layer components {
-    .faded-fixed-bg {
-        @apply relative bg-[#EDEDED] text-[#2e2b28];
-        background-image: url('/images/EFM-AnnSather_PICS/Chicago-Skyline2.jpg');
+    .faded-fixed-table-bg {
+        @apply relative bg-white text-[#2e2b28];
+        background-image: url('/images/EFM-AnnSather_PICS/table.jpg');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
-        position: relative !important;
-        z-index: 0 !important; /* keep it low */
-        isolation: isolate; /* prevents it from trapping child stacking */
     }
 
-    .faded-fixed-bg::before {
+    .faded-fixed-table-bg::before {
         content: "";
         position: absolute;
         inset: 0;
         background-color: #EDEDED;
-        opacity: 0.9;
+        opacity: 0.7;
         pointer-events: none;
-        z-index: -1; /* sits behind the recipes-data content */
+        /* no z-index needed */
+    }
+
+    .faded-fixed-city-bg {
+        @apply relative bg-white text-[#2e2b28];
+        background-image: url('public/images/EFM-AnnSather_PICS/Chicago-Skyline2.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .faded-fixed-city-bg::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: #EDEDED;
+        opacity: 0.7;
+        pointer-events: none;
+        /* no z-index needed */
     }
 }
-
 
 
 

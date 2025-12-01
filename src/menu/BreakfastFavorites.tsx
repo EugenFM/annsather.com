@@ -129,17 +129,21 @@ const BreakfastFavorites: React.FC<Props> = ({ items }) => {
     if (!items?.length) return null;
 
     return (
-        <section aria-labelledby="favorites-title" className="py-14">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section
+            aria-labelledby="favorites-title"
+            className="scroll-mt-20 relative w-full bg-[#FFF] p-5 px-5 text-[#601f1f] overflow-hidden"
+        >
+            <div>
+
+                {/*<p className="text-base text-[#601f1f]/80">Guest-loved breakfast picks</p>*/}
+            </div>
+            <div className={"w-full h-full px-4 sm:px-6 lg:px-8 faded-fixed-table-bg pb-15"}>
+                <h3 id="favorites-title" className="text-4xl font-bold text-[#601f1f] opacity-99 pt-15 text-center ">
+                    Our Favorite Morning Picks
+                </h3>
+            <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <div className="mb-8 flex items-end justify-between">
-                    <div>
-                        <h3 id="favorites-title" className="text-4xl font-bold text-[#601f1f]">
-                            Favorites
-                        </h3>
-                        <p className="text-base text-[#601f1f]/80">Guest-loved breakfast picks</p>
-                    </div>
-
                     {/* Count */}
                     <span className="text-sm text-[#601f1f]">
             {items.length} item{items.length > 1 ? "s" : ""}
@@ -152,6 +156,7 @@ const BreakfastFavorites: React.FC<Props> = ({ items }) => {
                         <FavoriteCard key={`${item.title}-${idx}`} item={item} />
                     ))}
                 </div>
+            </div>
             </div>
         </section>
     );

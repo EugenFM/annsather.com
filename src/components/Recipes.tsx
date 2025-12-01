@@ -34,14 +34,14 @@ const Recipes: React.FC = () => {
                 className="relative w-full bg-[#FFF] pt-28 pb-5 px-5 text-[#601f1f] transition-opacity duration-1000"
             >
                 <div
-                    className={`faded-fixed-bg w-full transition-opacity duration-1000 ${
+                    className={`striped-bg w-full transition-opacity duration-1000 ${
                         isVisible ? "opacity-100" : "opacity-0"
                     }`}
                 >
                     <div className="relative max-w-7xl mx-auto pb-10 px-4 sm:px-6 lg:px-8 text-[#601f1f]">
                         {/* 🧠 Section Heading */}
                         <div className="text-center mb-12">
-                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#601f1f] pt-18 pb-4 mb-8">
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#601f1f] pt-15 pb-4 mb-8">
                                 Cooking at Home with Ann Sather
                             </h2>
                             <p className="max-w-4xl mx-auto text-lg mb-4 leading-relaxed">
@@ -59,7 +59,7 @@ const Recipes: React.FC = () => {
                         </div>
 
                         {/* 🍳 Recipe Category Buttons */}
-                        <div className="flex flex-wrap justify-center gap-8 max-w-xl mx-auto pb-8">
+                        <div className="flex flex-wrap justify-center gap-8 max-w-xl mx-auto pb-10">
                             {recipeData.map(({ title }) => {
                                 const isActive = activeCategory === title;
                                 return (
@@ -68,7 +68,7 @@ const Recipes: React.FC = () => {
                                         onClick={() =>
                                             setActiveCategory(isActive ? null : title)
                                         }
-                                        className={`px-8 py-2 rounded-full font-semibold uppercase tracking-wide transition-all duration-300 ${
+                                        className={`px-8 py-2 rounded-full font-semibold uppercase tracking-wide transition-all duration-300 cursor-pointer ${
                                             isActive
                                                 ? "bg-[#7a1a1a] text-white shadow-md scale-105"
                                                 : "bg-[#4a5456] text-white hover:bg-[#601f1f]"

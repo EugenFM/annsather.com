@@ -112,8 +112,8 @@ const Header = () => {
                                     to="/menu"
                                     className={`font-medium tracking-wide font-['Playfair_Display'] uppercase transition-all duration-300 ${
                                         scrolled
-                                            ? "text-[#330000] hover:text-[#7a1a1a]"
-                                            : "text-[#C8B8AE] hover:text-[#EAE6D2]"
+                                            ? "text-[#330000] hover:text-[#7a1a1a] hover:underline underline-offset-4 decoration-[#7a1a1a]"
+                                            : "text-[#C8B8AE] hover:text-[#EAE6D2] hover:underline underline-offset-4 decoration-[#EAE6D2]"
                                     }`}
                                 >
                                     {item}
