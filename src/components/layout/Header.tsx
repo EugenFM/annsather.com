@@ -30,6 +30,7 @@ const Header = () => {
     // ✅ Helper for scrolling to section
     const handleSectionClick = (id: string) => {
         const hash = `#${id.toLowerCase().replace(" ", "-")}`;
+
         if (location.pathname === "/") {
             const el = document.querySelector(hash);
             if (el) {
@@ -38,7 +39,7 @@ const Header = () => {
                 window.scrollTo({ top, behavior: "smooth" });
             }
         } else {
-            navigate(`/${hash}`);
+            navigate("/");
             setTimeout(() => {
                 const el = document.querySelector(hash);
                 if (el) {
@@ -46,7 +47,7 @@ const Header = () => {
                     const top = el.getBoundingClientRect().top + window.scrollY - offset;
                     window.scrollTo({ top, behavior: "smooth" });
                 }
-            }, 1000); // ⏱️ small wait to let DOM mount
+            }, 400);
         }
     };
 
@@ -180,8 +181,15 @@ const Header = () => {
                             <button
                                 key={item}
                                 onClick={() => {
-                                    if (item === "Recipes") navigate("/recipes");
-                                    else handleSectionClick(item);
+                                    if (item === "Home") {
+                                        handleLogoClick();
+                                    } else if (item === "Menu") {
+                                        navigate("/menu");
+                                    } else if (item === "Recipes") {
+                                        navigate("/recipes");
+                                    } else {
+                                        handleSectionClick(item);
+                                    }
                                     setMenuOpen(false);
                                 }}
                                 className="text-base uppercase font-['Playfair_Display'] hover:opacity-80 cursor-pointer transition-opacity duration-200"
@@ -189,6 +197,7 @@ const Header = () => {
                                 {item}
                             </button>
                         ))}
+
 
                         <button
                             onClick={() => {

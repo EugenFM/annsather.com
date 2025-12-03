@@ -54,14 +54,16 @@ const Visit = () => {
                                                     >
 
                     {/* LEFT: Locations accordion */}
-                        <div className="space-y-6">
-                            {locations.map((location, index) => (
+                        <div className="space-y-4 md:space-y-6">
+                        {locations.map((location, index) => (
                                 <div
                                     key={index}
                                     onClick={() => setActiveLocation(index)}
-                                    className={`p-6 rounded-xl cursor-pointer transition-all duration-300 ${
-                                        activeLocation === index
-                                            ? "bg-[#601f1f] text-white shadow-xl scale-105"
+                                    className={`rounded-xl cursor-pointer transition-all duration-300
+                                      p-4 md:p-6
+                                      ${
+                                            activeLocation === index
+                                            ? "bg-[#601f1f] text-white shadow-xl"
                                             : "bg-white shadow-lg hover:shadow-xl"
                                     }`}
                                 >

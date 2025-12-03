@@ -251,44 +251,6 @@ const CateringSection = () => {
     const deliveryRef = useRef<HTMLDivElement | null>(null);
     const cateringRef = useRef<HTMLDivElement | null>(null);
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    const id = entry.target.getAttribute('data-id');
-                    if (!entry.isIntersecting && openSection === id) {
-                        setOpenSection(null);
-                    }
-                });
-            },
-            { threshold: 0.1 }
-        );
-
-        Object.entries(sectionRefs).forEach(([id, ref]) => {
-            if (ref.current) {
-                ref.current.setAttribute('data-id', id);
-                observer.observe(ref.current);
-            }
-        });
-
-        return () => {
-            Object.values(sectionRefs).forEach((ref) => {
-                if (ref.current) observer.unobserve(ref.current);
-            });
-        };
-    }, [openSection]);
-
-    useEffect(() => {
-        if (openSection && sectionRefs[openSection]?.current) {
-            setTimeout(() => {
-                sectionRefs[openSection]?.current?.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start',
-                });
-            }, 100);
-        }
-    }, [openSection]);
-
     // Close accordion if clicked outside
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -351,8 +313,10 @@ const CateringSection = () => {
     ) => (
         <div
             ref={sectionRefs[id]}
-            className="bg-white/20 shadow-lg rounded-lg overflow-hidden max-w-3xl mx-auto mb-6"
-        >
+            // className="bg-white/20 shadow-lg rounded-lg overflow-hidden max-w-3xl mx-auto mb-6"
+            className="
+                     bg-white/20 shadow-lg rounded-lg overflow-hidden
+                     w-[80%] mx-auto mb-6 sm:w-80% md:w-80% lg:w-full lg:max-w-3xl">
             <button
                 onClick={() => setOpenSection((prev) => (prev === id ? null : id))}
                 className="w-full px-6 py-3 bg-white/10 hover:bg-white/30 text-white font-bold transition-colors flex items-center justify-between cursor-pointer"
@@ -399,19 +363,23 @@ const CateringSection = () => {
                 {/* Delivery + Catering Info buttons */}
                 <div className="mb-10 flex flex-col sm:flex-row justify-center items-center gap-4 pb-6 text-center">
                     <button
-                        onClick={() => setShowDeliveryInfo(!showDeliveryInfo)}
-                        className="bg-white/30 text-white font-bold px-4 py-2 rounded-lg shadow-lg hover:bg-white/40 transition cursor-pointer w-[80%] max-w-xs sm:w-auto"
+                        onMouseDown={(e) => e.stopPropagation()}
+                        onClick={() => setShowDeliveryInfo(prev => !prev)}
+                        className="bg-white/30 text-white font-bold px-4 py-2 rounded-lg shadow-lg hover:bg-white/40 transition cursor-pointer w-[50%] max-w-xs sm:w-auto"
                     >
                         {showDeliveryInfo ? 'Hide Delivery Info' : 'View Delivery Info'}
                     </button>
 
                     <button
-                        onClick={() => setShowCateringInfo(!showCateringInfo)}
-                        className="bg-white/30 text-white font-bold px-4 py-2 rounded-lg shadow-lg hover:bg-white/40 transition cursor-pointer w-[80%] max-w-xs sm:w-auto"
+                        onMouseDown={(e) => e.stopPropagation()}
+                        onClick={() => setShowCateringInfo(prev => !prev)}
+                        className="bg-white/30 text-white font-bold px-4 py-2 rounded-lg shadow-lg hover:bg-white/40 transition cursor-pointer w-[50%] max-w-xs sm:w-auto"
                     >
                         {showCateringInfo ? 'Hide Catering Info' : 'View Catering Info'}
                     </button>
                 </div>
+
+
 
 
                 {/* Delivery Info Panel */}

@@ -1,3 +1,135 @@
+// import React, { useEffect, useRef, useState } from 'react';
+//
+// const OurStory: React.FC = () => {
+//     const [isVisible, setIsVisible] = useState(false);
+//     const [isExpanded, setIsExpanded] = useState(false);
+//     const [activeCategory, setActiveCategory] = useState<string | null>(null);
+//     const sectionRef = useRef<HTMLDivElement | null>(null);
+//
+//     const paragraphClass =
+//         'max-w-7xl mx-auto text-[#601f1f] italic text-justify leading-relaxed px-4';
+//
+//     // Scroll-in animation + collapse when out of view
+//     useEffect(() => {
+//         const currentRef = sectionRef.current;
+//         if (!currentRef) return;
+//
+//         const observer = new IntersectionObserver(
+//             ([entry]) => {
+//                 setIsVisible(entry.isIntersecting);
+//                 if (!entry.isIntersecting) setIsExpanded(false);
+//             },
+//             { threshold: 0.2 }
+//         );
+//         observer.observe(currentRef);
+//         return () => observer.disconnect();
+//     }, []);
+//
+//     // Support anchor navigation
+//     useEffect(() => {
+//         if (
+//             window.location.hash === '#our-story'
+//         ) {
+//             setIsExpanded(false);
+//             sectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+//         }
+//     }, []);
+//
+//     return (
+//         <section
+//             id="our-story"
+//             ref={sectionRef}
+//             className="scroll-mt-20 relative w-full bg-[#FFF] pb-5 px-5 text-[#601f1f] overflow-hidden"
+//
+//         >
+//             {/* Hero / intro container */}
+//             <div
+//                 className={`faded-fixed-city-bg w-full h-full`}
+//             >
+//                 <div className="relative max-w-7xl mx-auto pb-5 px-4 sm:px-6 lg:px-8 text-[#601f1f]">
+//                     <div className="text-center mb-8">
+//                         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#601f1f] pt-15">Our Story</h2>
+//                     </div>
+//
+//                     <div className="absolute right-10 top-8">
+//                         <img
+//                             src="/images/ann_sather_photo_cropped.jpg"
+//                             alt="Ann Sather"
+//                             className="w-28 h-auto rounded-md shadow-md border border-gray-300"
+//                         />
+//                     </div>
+//
+//                     <p className="text-lg leading-relaxed italic text-center max-w-3xl mx-auto mb-4">
+//                         Yes, there really was an Ann Sather.
+//                     </p>
+//
+//                     {/* Intro paragraph */}
+//                     <p className={paragraphClass}>
+//                         In the 1940s, a vivacious career woman named Ann Sather decided that what she
+//                         really wanted to do was own and run a restaurant. Her restaurant. A place where
+//                         people could come for generous homemade meals, warm hospitality and know the
+//                         moment they came in the door they went from being a customer to becoming a friend.
+//                     </p>
+//
+//                     <div className="transition-all duration-700 ease-in-out overflow-hidden">
+//                         <p className={paragraphClass}>
+//                             So, in 1945, when the Swedish owners of a restaurant located on Belmont decided
+//                             to retire, Ann quit her job of 22 years, pooled her life savings and bought
+//                             herself a diner known today as Ann Sather Restaurant.
+//                         </p>
+//                         <p className={paragraphClass}>
+//                             For 35 years Ann ran the diner herself. Her devotion to wholesome,
+//                             made-from-scratch food, low prices, friendly service and hard work became
+//                             legendary in the Lakeview neighborhood and beyond.
+//                         </p>
+//                         <p className={paragraphClass}>
+//                             In 1981, after searching for a successor who would meet her stringent demands
+//                             for quality and remain devoted to her patrons, Ann sold the restaurant to Tom
+//                             Tunney, a 24-year-old graduate of the Cornell University School of Hotel and
+//                             Restaurant Management. Tom apprenticed with Ann for a year learning the business
+//                             from top to bottom. Armed with culinary training, Tom, the son of Irish
+//                             immigrants who grew up on Chicago’s Southside, was learning all of the best
+//                             Scandinavian cooking secrets in town.
+//                         </p>
+//                         <p className={paragraphClass}>
+//                             Although Ann Sather sadly passed away in 1996, her spirit still prevails in the
+//                             “good food, good friends and good conversation” philosophy that has made her
+//                             restaurants famous. She still looks over us all from her portrait hanging in the
+//                             dining room.
+//                         </p>
+//                         <p className={paragraphClass}>
+//                             During the last 35 years, Tom has expanded the business to include the most
+//                             famous cinnamon rolls and breakfast in town, two additional restaurants and Ann
+//                             Sather Corporate and Special Event Catering, which is well-known for its
+//                             corporate and special events, banquets, business breakfasts and lunches and
+//                             special deliveries.
+//                         </p>
+//                         <br />
+//                         <p className="font-bold max-w-3xl text-xl leading-relaxed px-4">
+//                             Serving the Community
+//                         </p>
+//                         <p className={paragraphClass}>
+//                             For many years, Ann Sather Restaurants also has been instrumental in serving the
+//                             community with its generous support of local organizations and causes. As Tom
+//                             says: "Good businesses are good to their communities.”
+//                         </p>
+//                         <p className={paragraphClass}>
+//                             As we celebrate our 80th anniversary, Ann Sather and her restaurant are
+//                             legendary and Tom not only serves good food, but also serves the 44th Ward as
+//                             its Alderman. But even with his busy schedule, Tom is the heart of the Ann
+//                             Sather family, so don’t be surprised to have him greet you at the door or find
+//                             him cooking breakfast orders on Sundays.
+//                         </p>
+//                     </div>
+//                 </div>
+//             </div>
+//         </section>
+//     );
+// };
+//
+// export default OurStory;
+
+
 import React, { useEffect, useRef, useState } from 'react';
 
 const OurStory: React.FC = () => {
@@ -27,9 +159,7 @@ const OurStory: React.FC = () => {
 
     // Support anchor navigation
     useEffect(() => {
-        if (
-            window.location.hash === '#our-story'
-        ) {
+        if (window.location.hash === '#our-story') {
             setIsExpanded(false);
             sectionRef.current?.scrollIntoView({ behavior: 'smooth' });
         }
@@ -40,22 +170,22 @@ const OurStory: React.FC = () => {
             id="our-story"
             ref={sectionRef}
             className="scroll-mt-20 relative w-full bg-[#FFF] pb-5 px-5 text-[#601f1f] overflow-hidden"
-
         >
             {/* Hero / intro container */}
-            <div
-                className={`faded-fixed-city-bg w-full h-full`}
-            >
+            <div className="faded-fixed-city-bg w-full h-full">
                 <div className="relative max-w-7xl mx-auto pb-5 px-4 sm:px-6 lg:px-8 text-[#601f1f]">
                     <div className="text-center mb-8">
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#601f1f] pt-15">Our Story</h2>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#601f1f] pt-15">
+                            Our Story
+                        </h2>
                     </div>
 
                     <div className="absolute right-10 top-8">
                         <img
                             src="/images/ann_sather_photo_cropped.jpg"
                             alt="Ann Sather"
-                            className="w-28 h-auto rounded-md shadow-md border border-gray-300"
+                            className="w-16 sm:w-20 md:w-26 lg:w-28
+                             h-auto rounded-md shadow-md border border-gray-300"
                         />
                     </div>
 
@@ -63,7 +193,7 @@ const OurStory: React.FC = () => {
                         Yes, there really was an Ann Sather.
                     </p>
 
-                    {/* Intro paragraph */}
+                    {/* Intro paragraph – always fully shown */}
                     <p className={paragraphClass}>
                         In the 1940s, a vivacious career woman named Ann Sather decided that what she
                         really wanted to do was own and run a restaurant. Her restaurant. A place where
@@ -71,7 +201,86 @@ const OurStory: React.FC = () => {
                         moment they came in the door they went from being a customer to becoming a friend.
                     </p>
 
-                    <div className="transition-all duration-700 ease-in-out overflow-hidden">
+                    {/* ============================
+              MOBILE: Collapsible content
+              ============================ */}
+                    <div className="md:hidden mt-4">
+                        <div
+                            className={`
+                transition-all duration-700 ease-in-out overflow-hidden relative
+                ${isExpanded ? 'max-h-[2000px]' : 'max-h-36'}
+              `}
+                        >
+                            {/* Fade at bottom when collapsed */}
+                            {!isExpanded && (
+                                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#FFF] to-transparent" />
+                            )}
+
+                            <p className={paragraphClass}>
+                                So, in 1945, when the Swedish owners of a restaurant located on Belmont decided
+                                to retire, Ann quit her job of 22 years, pooled her life savings and bought
+                                herself a diner known today as Ann Sather Restaurant.
+                            </p>
+                            <p className={paragraphClass}>
+                                For 35 years Ann ran the diner herself. Her devotion to wholesome,
+                                made-from-scratch food, low prices, friendly service and hard work became
+                                legendary in the Lakeview neighborhood and beyond.
+                            </p>
+                            <p className={paragraphClass}>
+                                In 1981, after searching for a successor who would meet her stringent demands
+                                for quality and remain devoted to her patrons, Ann sold the restaurant to Tom
+                                Tunney, a 24-year-old graduate of the Cornell University School of Hotel and
+                                Restaurant Management. Tom apprenticed with Ann for a year learning the business
+                                from top to bottom. Armed with culinary training, Tom, the son of Irish
+                                immigrants who grew up on Chicago’s Southside, was learning all of the best
+                                Scandinavian cooking secrets in town.
+                            </p>
+                            <p className={paragraphClass}>
+                                Although Ann Sather sadly passed away in 1996, her spirit still prevails in the
+                                “good food, good friends and good conversation” philosophy that has made her
+                                restaurants famous. She still looks over us all from her portrait hanging in the
+                                dining room.
+                            </p>
+                            <p className={paragraphClass}>
+                                During the last 35 years, Tom has expanded the business to include the most
+                                famous cinnamon rolls and breakfast in town, two additional restaurants and Ann
+                                Sather Corporate and Special Event Catering, which is well-known for its
+                                corporate and special events, banquets, business breakfasts and lunches and
+                                special deliveries.
+                            </p>
+                            <br />
+                            <p className="font-bold max-w-3xl text-xl leading-relaxed px-4">
+                                Serving the Community
+                            </p>
+                            <p className={paragraphClass}>
+                                For many years, Ann Sather Restaurants also has been instrumental in serving the
+                                community with its generous support of local organizations and causes. As Tom
+                                says: "Good businesses are good to their communities.”
+                            </p>
+                            <p className={paragraphClass}>
+                                As we celebrate our 80th anniversary, Ann Sather and her restaurant are
+                                legendary and Tom not only serves good food, but also serves the 44th Ward as
+                                its Alderman. But even with his busy schedule, Tom is the heart of the Ann
+                                Sather family, so don’t be surprised to have him greet you at the door or find
+                                him cooking breakfast orders on Sundays.
+                            </p>
+                        </div>
+
+                        <div className="flex justify-center mt-3">
+                            <button
+                                type="button"
+                                onClick={() => setIsExpanded((prev) => !prev)}
+                                className="text-sm font-semibold text-[#601f1f] underline underline-offset-4 cursor-pointer"
+                            >
+                                {isExpanded ? 'Show less' : 'Show more'}
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* ============================
+              DESKTOP / TABLET: full text
+              ============================ */}
+                    <div className="hidden md:block transition-all duration-700 ease-in-out">
                         <p className={paragraphClass}>
                             So, in 1945, when the Swedish owners of a restaurant located on Belmont decided
                             to retire, Ann quit her job of 22 years, pooled her life savings and bought
@@ -104,22 +313,6 @@ const OurStory: React.FC = () => {
                             corporate and special events, banquets, business breakfasts and lunches and
                             special deliveries.
                         </p>
-
-                        {/*<br />*/}
-                        {/*<p className="font-bold max-w-3xl text-xl leading-relaxed px-4">*/}
-                        {/*    Ann Sather Corporate and Special Event Catering*/}
-                        {/*</p>*/}
-                        {/*<p className={paragraphClass}>*/}
-                        {/*    In addition to our three Chicago dine-in locations, Ann Sather proudly offers*/}
-                        {/*    professional catering services tailored to corporate events, private gatherings,*/}
-                        {/*    and special occasions. Our catering team upholds our long-standing commitment to*/}
-                        {/*    quality, delivering exceptional Swedish comfort food alongside a wide selection*/}
-                        {/*    of hors d’oeuvres, entrées, and desserts. Each event is supported by our highly*/}
-                        {/*    trained service staff to ensure a seamless experience. Our flagship Belmont*/}
-                        {/*    Avenue location, as well as our cafés, are available for private catered events*/}
-                        {/*    — day or evening — for groups of 50 or more guests.*/}
-                        {/*</p>*/}
-
                         <br />
                         <p className="font-bold max-w-3xl text-xl leading-relaxed px-4">
                             Serving the Community

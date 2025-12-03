@@ -99,7 +99,7 @@ function FavoriteCard({ item }: { item: FavoriteItem }) {
                 </div>
 
                 {/* Body */}
-                <div className="space-y-2 px-4 py-4 h-[180px]">
+                <div className="space-y-2 px-4 py-2">
                     <h4 className="line-clamp-2 text-xl font-semibold text-[#601f1f] p-2">
                         {item.title}
                     </h4>
@@ -107,7 +107,7 @@ function FavoriteCard({ item }: { item: FavoriteItem }) {
                         <p className="px-2 text-sm text-[#601f1f]">{item.description}</p>
                     )}
                     <div className="flex items-center justify-between pt-1">
-                        <span className="px-2 text-[15px] tabular-nums text-[#601f1f]">{item.price}</span>
+                        <span className="px-2 text-[15px] tabular-nums text-[#601f1f] pb-2">{item.price}</span>
 
                         {/* Subtle underline grows on hover to signal interactivity */}
                         <span

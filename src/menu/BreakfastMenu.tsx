@@ -433,8 +433,18 @@ const BreakfastMenu: React.FC = () => {
     const [search, setSearch] = useState("");
     const [density] = useState<"cozy" | "compact">("compact");
     const [showFullMenu, setShowFullMenu] = useState(false);
+    const [showTop, setShowTop] = useState(false);
 
     const containerRef = useRef<HTMLDivElement | null>(null);
+
+    // 🧭 Show "Back to Top" button when scrolled down
+    useEffect(() => {
+        const handleScroll = () => {
+            setShowTop(window.scrollY > 400);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     // fetch Breakfast + optional Desserts with localStorage cache
     useEffect(() => {
@@ -796,6 +806,20 @@ const BreakfastMenu: React.FC = () => {
                             );
                         })}
                     </div>
+                    {/* 🔝 Back to Top Floating Button */}
+                    {showTop && (
+                        <button
+                            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                            aria-label="Back to top"
+                            className="fixed bottom-6 right-6 z-[9999] w-12 h-12 rounded-full
+            bg-[#EDEDED] text-[#601f1f] text-xl font-bold
+            flex items-center justify-center shadow-lg border border-[#601f1f]/30
+            hover:bg-[#601f1f] hover:text-[#EDEDED] hover:scale-110
+            transition-all duration-300 ease-in-out"
+                        >
+                            ↑
+                        </button>
+                    )}
                 </div>
             </div>
 
